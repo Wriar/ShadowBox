@@ -6,5 +6,5 @@ body {
 
 /* Navigational Element containing the Logo and User Options, displayed on the top of the page */
 .fm-headnav {
-
+    background-color: rgb(33, 33, 83)
 }

@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 //app.use(morgan('combined'));
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: "ifrogoaskdfksadf3zdfF:#(1undf83jfhdf29q8F*h4thLGzsuyaahq3HGZSEHGA",
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -47,7 +47,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 //Require Routes:
-require('./routes/filemanager.js')(app);
+require('./routes/fileManager.js')(app);
 //Require Databases:
 //require("./server/tryDbConnect")(require("./server/db/instData"), "User Database");
 
