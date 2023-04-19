@@ -1,0 +1,62 @@
+/* Remove Extenuating Body Margins */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigational Element containing the Logo and User Options, displayed on the top of the page DESKTOP */
+.fm-headnav_d {
+    background-color: #2b445a;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Large Logo with Text */
+.nav-logo {
+    width: auto;
+    height: 50px;
+}
+
+/* container for the logo */
+.logoContainer {
+    padding: 2px;
+}
+
+nav ul {
+    display: flex;
+}
+
+/* add margin to list items, remove any bullets */
+nav ul li {
+    margin: 0 12px;
+    list-style-type: none;
+}
+
+/* by default, not displayed, overriden by media query */
+.menu_icon {
+    display: none;
+}
+
+/* Media Query that changes the nav bar to a hamburger menu for mobile */
+@media (max-width: 700px) {
+    nav {
+        display: none;
+    }
+
+    nav ul {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 1.8rem 0
+    }
+
+    #menu {
+        display: inline-block;
+        margin-right: 2rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}

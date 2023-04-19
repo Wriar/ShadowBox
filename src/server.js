@@ -2,12 +2,12 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const dotenv = require('dotenv');
-const fs = require('fs');
+//const fs = require('fs');
 const helmet = require('helmet');
 const compression = require('compression');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+//const morgan = require('morgan');
 const crypto = require('crypto');
 
 console.clear();
@@ -55,9 +55,15 @@ require('./routes/fileManager.js')(app);
 //Require Server Modules:
 //require('./modules/auth')(app);
 
+const customHeaders = require('./server/customHeaders.js');
+app.disable('x-powered-by');
+app.use(customHeaders);
+
 //Error Handling Middlware
+
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-    console.log("Fatal Error emitted fro middleware init");
+    console.log("Fatal Error emitted from middleware init");
     console.log("Stack Trace: " + err.stack);
     res.status(500).send("Fatal Error");
 });
@@ -72,7 +78,7 @@ app.listen(PORT, () => {
     console.log(`\x1b[36m%s\x1b[0m`, `[SERVER] Server started on port ${PORT}`);
 });
 
-console.log("Attached Advanced Error Reporting");
+console.log('\x1b[35m%s\x1b[0m', '[REPORT] Attached Advanced Error Reporting');
 
 //404 Route
 app.use((req, res) => {
