@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: normal;
+    src: url('/static-resx/vendor/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+/* Bold Italic */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-style: italic;
+    src: url('/static-resx/vendor/fonts/OpenSans-BoldItalic.ttf') format('truetype');
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    src: url('/static-resx/vendor/fonts/OpenSans-Bold.ttf') format('truetype');
+}
+
+/* Extra Bold */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 800;
+    src: url('/static-resx/vendor/fonts/OpenSans-ExtraBold.ttf') format('truetype');
+}
+
+/* italic */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    src: url('/static-resx/vendor/fonts/OpenSans-Italic.ttf') format('truetype');
+}
+
+/* light */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    src: url('/static-resx/vendor/fonts/OpenSans-Light.ttf') format('truetype');
+}
+
+/* LightItalic */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-style: italic;
+    src: url('/static-resx/vendor/fonts/OpenSans-LightItalic.ttf') format('truetype');
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 500;
+    src: url('/static-resx/vendor/fonts/OpenSans-Medium.ttf') format('truetype');
+}
+
+/* MediumItalic */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 500;
+    font-style: italic;
+    src: url('/static-resx/vendor/fonts/OpenSans-MediumItalic.ttf') format('truetype');
+}
+
+/*SemiBold */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 600;
+    src: url('/static-resx/vendor/fonts/OpenSans-SemiBold.ttf') format('truetype');
+}
+
+/* SemiBold Italic */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-style: italic;
+    src: url('/static-resx/vendor/fonts/OpenSans-SemiBoldItalic.ttf') format('truetype');
+}
+
+/* Extra Bold Italic */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 800;
+    font-style: italic;
+    src: url('/static-resx/vendor/fonts/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+}

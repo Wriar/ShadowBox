@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static-resx/vendor/normalize.css" />
     <link rel="stylesheet" href="/static-resx/vendor/ico/icomoon-ultimate-webfont.css" />
 
+    <link rel="stylesheet" href="/static-resx/css/fontface.css" />
     <link rel="stylesheet" href="/static-resx/css/fileManager-nav.css" />
 
     <title>ShadowBox File Manager</title>
@@ -19,20 +20,51 @@
             <img class="nav-logo" alt="ShadowBox Logo" src="/static-resx/img/sb_logo_text.png">
         </div>
         
-
         <nav class="head_navigation">
             <ul>
-                <li>Account Settings</li>
-                <li>Log Out</li>
+                <li>
+                    <button type="button" class="nav-btn"><i class="icmn-cog3"></i>&nbsp;&nbsp;Account Settings</button>
+                </li>
+                <li>
+                    <button type="button" class="nav-btn"><i class="icmn-exit"></i>&nbsp;&nbsp;Logout</button>
+                </li>
             </ul>
         </nav>
 
-        <i id="menu" class="menu_icon"><img src="/static-resx/img/sb_logo.png"></i>
+        <i id="menu" class="menu_icon">
+            <button type="button" class="nav-btn btn-mobile"><i class="icmn-cog3"></i></button>
+            <button type="button" class="nav-btn btn-mobile"><i class="icmn-exit"></i></button>
+        </i>
     </div>
 
     <!--Tool Ribbon-->
-    <div class=""></div>
+    <div class="fm-ribbon">
+        <button><i class="icmn-plus2"></i> New File</button>
+        <button><i class="icmn-file-upload"></i> Upload File</button>
+        <button><i class="icmn-download"></i> Download</button>
+        <button><i class="icmn-move"></i> Move</button>
+        <button><i class="icmn-pencil2"></i> Edit</button>
+        <button><i class="icmn-marker2"></i> Rename</button>
+        <button class="danger"><i class="icmn-bin danger"></i> Delete</button>
+        <span class="spacer">|</span>
+        <button><i class="icmn-share2"></i> Share</button>
+        <button><i class="icmn-file-xml"></i> Properties</button>
+        
+    </div>
 
-    <i class="icmn-menu"></i>
+    <!--Tool Ribbion For Mobile, Minus Text, Icon Only-->
+    <div class="fm-ribbon-mobile">
+        <button title="New File"><i class="icmn-plus2"></i></button>
+        <button title="Upload File"><i class="icmn-file-upload"></i></button>
+        <button title="Download File"><i class="icmn-download"></i></button>
+        <button title="Move File"><i class="icmn-move"></i></button>
+        <button title="Edit File"><i class="icmn-pencil2"></i></button>
+        <button title="Rename File"><i class="icmn-marker2"></i></button>
+        <button title="Delete File"><i class="icmn-bin danger"></i></button>
+        <button title="Share File"><i class="icmn-share2"></i></button>
+        <button title="File Properties"><i class="icmn-file-xml"></i></button>
+    </div>
+
+    
 </body>
 </html>
