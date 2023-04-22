@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-vars */
-
-
 function toggleSideBar() {
     document.getElementById("propViewer").style.width = "250px";
     document.getElementById("filemanager-container").style.marginRight = "250px"; /* Change margin-left to margin-right */
@@ -9,7 +7,6 @@ function toggleSideBar() {
 
 function closeNav() {
     document.getElementById("propViewer").style.width = "0";
-    document.getElementById("filemanager-container").style.marginRight = "0"; /* Change margin-left to margin-right */
     document.getElementById("filemanager-wrapper").classList.add("filemanager-wrapper-closed");
     document.getElementById("filemanager-wrapper").classList.remove("filemanager-wrapper");
 
