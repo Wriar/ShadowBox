@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,61 +11,92 @@
 
     <link rel="stylesheet" href="/static-resx/css/fontface.css" />
     <link rel="stylesheet" href="/static-resx/css/fileManager-nav.css" />
+    <link rel="stylesheet" href="/static-resx/css/fileManager-sidenav.css" />
 
     <title>ShadowBox File Manager</title>
 </head>
+
 <body>
-    <!--Navigational Elements-->
-    <div class="fm-headnav_d">
-        <div class="logoContainer">
-            <img class="nav-logo" alt="ShadowBox Logo" src="/static-resx/img/sb_logo_text.png">
+    <!--[if IE]><p style="color: red;">WARNING: YOU ARE NOT USING A SUPPORTED BROWSER.</p><![endif]-->
+
+
+    <!--Contains the wrapper that may be displaced by the sidebar.-->
+    <div id="filemanager-wrapper" class="main">
+        <!--Navigational Elements-->
+        <div class="fm-headnav_d">
+            <div class="logoContainer">
+                <img class="nav-logo" alt="ShadowBox Logo" src="/static-resx/img/sb_logo_text.png">
+            </div>
+
+            <nav class="head_navigation">
+                <ul>
+                    <li>
+                        <button type="button" class="nav-btn"><i class="icmn-cog3"></i>&nbsp;&nbsp;Account
+                            Settings</button>
+                    </li>
+                    <li>
+                        <button type="button" class="nav-btn"><i class="icmn-exit"></i>&nbsp;&nbsp;Logout</button>
+                    </li>
+                </ul>
+            </nav>
+
+            <i id="menu" class="menu_icon">
+                <button type="button" class="nav-btn btn-mobile"><i class="icmn-cog3"></i></button>
+                <button type="button" class="nav-btn btn-mobile"><i class="icmn-exit"></i></button>
+            </i>
         </div>
+
+        <!--Tool Ribbon-->
+        <div class="fm-ribbon">
+            <button title="Creates a New File in the current directory."><i class="icmn-plus2"></i> New File</button>
+            <button title="Upload a file from your PC"><i class="icmn-file-upload"></i> Upload File</button>
+            <button title="Decrypts & Downloads the selected file from the server."><i class="icmn-download"></i>
+                Download</button>
+            <button title="Move the selected file's directory."><i class="icmn-move"></i> Move</button>
+            <button title="Opens the selected file in the file editor."><i class="icmn-pencil2"></i> Edit</button>
+            <button title="Change the file's name."><i class="icmn-marker2"></i> Rename</button>
+            <button title="Deletes a file from the server" class="danger"><i class="icmn-bin danger"></i>
+                Delete</button>
+            <span class="spacer">|</span>
+            <button title="Create a sharing opportunity or manage permissions."><i class="icmn-share2"></i>
+                Share</button>
+            <button title="Opens the File Property viewer."><i class="icmn-file-xml"></i> Properties</button>
+
+        </div>
+
+        <!--Tool Ribbion For Mobile, Minus Text, Icon Only-->
+        <div class="fm-ribbon-mobile">
+            <button title="New File"><i class="icmn-plus2"></i></button>
+            <button title="Upload File"><i class="icmn-file-upload"></i></button>
+            <button title="Download File"><i class="icmn-download"></i></button>
+            <button title="Move File"><i class="icmn-move"></i></button>
+            <button title="Edit File"><i class="icmn-pencil2"></i></button>
+            <button title="Rename File"><i class="icmn-marker2"></i></button>
+            <button title="Delete File"><i class="icmn-bin danger"></i></button>
+            <button title="Share File"><i class="icmn-share2"></i></button>
+            <button title="File Properties"><i class="icmn-file-xml"></i></button>
+        </div> 
+
+        <div id="filemanager-container">
+            <p>Keep Yourself Safe <b>NOW</b>!</p>
+            <button onclick="toggleSideBar()">Open Nav</button>
+        </div>
+
         
-        <nav class="head_navigation">
-            <ul>
-                <li>
-                    <button type="button" class="nav-btn"><i class="icmn-cog3"></i>&nbsp;&nbsp;Account Settings</button>
-                </li>
-                <li>
-                    <button type="button" class="nav-btn"><i class="icmn-exit"></i>&nbsp;&nbsp;Logout</button>
-                </li>
-            </ul>
-        </nav>
-
-        <i id="menu" class="menu_icon">
-            <button type="button" class="nav-btn btn-mobile"><i class="icmn-cog3"></i></button>
-            <button type="button" class="nav-btn btn-mobile"><i class="icmn-exit"></i></button>
-        </i>
     </div>
 
-    <!--Tool Ribbon-->
-    <div class="fm-ribbon">
-        <button><i class="icmn-plus2"></i> New File</button>
-        <button><i class="icmn-file-upload"></i> Upload File</button>
-        <button><i class="icmn-download"></i> Download</button>
-        <button><i class="icmn-move"></i> Move</button>
-        <button><i class="icmn-pencil2"></i> Edit</button>
-        <button><i class="icmn-marker2"></i> Rename</button>
-        <button class="danger"><i class="icmn-bin danger"></i> Delete</button>
-        <span class="spacer">|</span>
-        <button><i class="icmn-share2"></i> Share</button>
-        <button><i class="icmn-file-xml"></i> Properties</button>
-        
-    </div>
-
-    <!--Tool Ribbion For Mobile, Minus Text, Icon Only-->
-    <div class="fm-ribbon-mobile">
-        <button title="New File"><i class="icmn-plus2"></i></button>
-        <button title="Upload File"><i class="icmn-file-upload"></i></button>
-        <button title="Download File"><i class="icmn-download"></i></button>
-        <button title="Move File"><i class="icmn-move"></i></button>
-        <button title="Edit File"><i class="icmn-pencil2"></i></button>
-        <button title="Rename File"><i class="icmn-marker2"></i></button>
-        <button title="Delete File"><i class="icmn-bin danger"></i></button>
-        <button title="Share File"><i class="icmn-share2"></i></button>
-        <button title="File Properties"><i class="icmn-file-xml"></i></button>
-    </div>
 
     
+
+
+    <!--Sidebar File Property Viewer-->
+    <div id="propViewer" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav();">&times;</a>
+        <p style="color: white;">This is the file properties viewer.</p>
+    </div>
+
+    <script src="/static-resx/js/filemanager-sidenav.js"></script>
+
 </body>
+
 </html>
