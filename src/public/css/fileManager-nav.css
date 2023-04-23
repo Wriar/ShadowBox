@@ -110,11 +110,16 @@ nav ul li {
 }
 
 .fm-ribbon button {
+    background-color: #ebebee;
     color: #2b445a;
     white-space: nowrap;
     border: 0px;
     padding: 6px;
+    transition: all 0.2s ease-in-out;
+}
 
+.fm-ribbon button:hover {
+    background-color: #d8d8d8;
 }
 
 .fm-ribbon-mobile {
