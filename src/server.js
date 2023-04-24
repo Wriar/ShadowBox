@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 //app.use(morgan('combined'));
 
 app.use(session({
-    secret: "ifrogoaskdfksadf3zdfF:#(1undf83jfhdf29q8F*h4thLGzsuyaahq3HGZSEHGA",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
