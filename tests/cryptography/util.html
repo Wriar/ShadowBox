@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>File Upload Test</title>
+</head>
+<body>
+  <h1>File Upload Test</h1>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <label for="filename">File Name:</label>
+    <input type="text" id="filename" name="filename" required><br>
+    <label for="filepath">File Path:</label>
+    <input type="text" id="filepath" name="filepath" required><br>
+    <label for="file">File:</label>
+    <input type="file" id="file" name="file" required><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <!--Checkbox for IS DEBUG-->
+    <label for="isDebug">Is Debug:</label>
+    <input type="checkbox" id="isDebug" name="isDebug" value="true"><br>
+
+    <input type="submit" value="Upload">
+  </form>
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      //If is debug, set fetch to /uploadDebug instead of /upload
+      const fetchURL = formData.get('isDebug') ? '/uploadDebug' : '/upload';
+
+      try {
+        const response = await fetch(fetchURL, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Response:', data);
+          alert('File uploaded successfully');
+        } else {
+          console.error('Error:', response.statusText);
+          alert('File upload failed');
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        alert('File upload failed');
+      }
+    });
+  </script>
+</body>
+</html>
