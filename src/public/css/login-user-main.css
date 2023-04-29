@@ -1,0 +1,96 @@
+body {
+    /* FF Must be loaded from fontface.css (fallback specified)*/
+    font-family: 'Open Sans', 'Arial', 'Helvetica', sans-serif;
+
+    /* set theme background color */
+    background-color: #2b445a; 
+
+    /* gradient for supporting browsers */
+    background: linear-gradient(to bottom, #253b4f, #1a2e3d) fixed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#253b4f), to(#1a2e3d)) fixed;
+    background: -o-linear-gradient(top, #253b4f, #1a2e3d) fixed;
+    background: -moz-linear-gradient(top, #253b4f, #1a2e3d) fixed;
+
+}
+
+.login-center {
+    /* Centered in the middle of the page */
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 2rem;
+
+    color: #FFFFFF;
+}
+
+/* On mobile, login-center should be 100% width */
+@media (max-width: 750px) {
+    .login-center {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+footer {
+    /* Footer should be at the bottom of the page */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #545454;
+    color: #dddddd;
+}
+
+footer p {
+    /* small text, white */
+    font-size: 0.8rem;
+    color: #fff;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    margin-left: 1rem;
+    padding: 0px;
+}
+
+.logo {
+    width: 15vw;
+    min-width: 200px;
+}
+
+#username_reveal {
+    width: 100%;
+}
+
+#username_reveal input {
+    width: calc(100% - 2rem);
+    line-height: 1.5;
+    padding: 6px 12px;
+}
+
+#username_reveal button {
+    margin-top: 1rem;
+    width: 100%;
+    line-height: 1.5;
+    padding: 6px 12px;
+    text-align: center;
+
+    background-color: #406586;
+    color: white;
+    border: 0px;
+    border-radius: 0.25rem;
+
+    transition: all ease-in-out 0.1s;
+}
+
+#username_reveal button img {
+    /* It is a preloader */
+    height: 1rem;
+}
+
+#username_reveal button:hover {
+    background-color: #4b7497;
+}
+
+#username_reveal button:active {
+    background-color: #3a5a73;
+}

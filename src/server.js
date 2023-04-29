@@ -48,8 +48,10 @@ app.set('views', path.join(__dirname, 'views'));
 
 //Require Routes:
 require('./routes/fileManager.js')(app);
+require('./routes/loginRoutes.js')(app);
+
 //Require Databases:
-//require("./server/tryDbConnect")(require("./server/db/instData"), "User Database");
+require("./server/tryDbConnect")(require("./server/db/instData"), "User Database");
 
 
 //Require Server Modules:
@@ -63,7 +65,7 @@ app.use(customHeaders);
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-    console.log("Fatal Error emitted from middleware init");
+    console.log("Fatal Error emitted from middleware initiliazation: " + err.message);
     console.log("Stack Trace: " + err.stack);
     res.status(500).send("Fatal Error");
 });

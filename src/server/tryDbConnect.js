@@ -8,7 +8,9 @@
  * @throws {Error} If connection to the database fails.
  */
 
+
 module.exports = function(pool, dbname) {
+    console.log("[SQLDB] Attempting to connect to '" + dbname + "'...");
     pool.getConnection().then(conn => {
         conn.query("SELECT 1").then(() => {
             console.log('\x1b[32m%s\x1b[0m', '[OK] Connected to ' + dbname + ' Database.');

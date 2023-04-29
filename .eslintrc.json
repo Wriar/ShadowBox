@@ -3,7 +3,8 @@
         "commonjs": true,
         "node": true,
         "es2021": true,
-        "browser": true
+        "browser": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "overrides": [
@@ -12,5 +13,6 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-    }
+    },
+    "ignorePatterns": ["public/vendor/**/*"]
 }
