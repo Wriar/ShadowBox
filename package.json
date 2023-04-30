@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Wriar/ShadowBox-Dev#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",
     "cors": "^2.8.5",

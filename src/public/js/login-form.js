@@ -57,13 +57,63 @@ function usernameSubmit() {
     });
 }
 
+function passwordSubmit() {
+    console.log("Attempting password validation...");
+    $('#btn_login i').hide();
+    $('#btn_login img').show();
+
+    const password = $('#password').val();
+
+    //Ensure password is not empty
+    if (password === '') {
+        hideShowError(true, "Please enter a password.");
+        $('#btn_login i').show();
+        $('#btn_login img').hide();
+        return;
+    }
+
+    $.ajax({
+        url: '/login/auth',
+        type: 'POST',
+        data: {
+            password: password,
+            method: 'v_pass'
+        },
+        success: function (data) {
+            try {
+                const code = data.code;
+                const message = data.message;
+                if (code === 0) {
+                    //Success
+                    window.location.href = '/dashboard';
+                } else {
+                    hideShowError(true, message);
+                    $('#btn_login i').show();
+                    $('#btn_login img').hide();
+                }
+            } catch (ex) {
+                hideShowError(true, "Unexpected response from server. Please try again later." + data);
+                $('#btn_login i').show();
+                $('#btn_login img').hide();
+                console.log("An error occured when attempting to parse server response of " + data);
+            }
+        },
+        error: function (xhr, status, error) {
+            hideShowError(true, "An error occured when negotiating request with server. Please try again later.");
+            $('#btn_login i').show();
+            $('#btn_login img').hide();
+            console.log(error);
+        }
+    });
+}
+
 /**
  * Return to the username screen
  */
 function returnToUsername() {
     //Clear password
     $('#password').val('');
-    
+
     hideShowError();
     $('#password_reveal').fadeOut(1, function () {
         $('#h_username').hide();
