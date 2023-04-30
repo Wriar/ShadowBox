@@ -55,7 +55,7 @@ require("./server/tryDbConnect")(require("./server/db/instData"), "User Database
 
 
 //Require Server Modules:
-//require('./modules/auth')(app);
+require('./server/userLoginAuthManager.js')(app);
 
 const customHeaders = require('./server/customHeaders.js');
 app.disable('x-powered-by');

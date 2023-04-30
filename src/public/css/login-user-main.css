@@ -38,16 +38,16 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: #545454;
+    background-color: #000000;
     color: #dddddd;
 }
 
 footer p {
     /* small text, white */
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #fff;
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
     margin-left: 1rem;
     padding: 0px;
 }
@@ -57,17 +57,20 @@ footer p {
     min-width: 200px;
 }
 
-#username_reveal {
+.field_reveal {
     width: 100%;
+
+    /* When hiding/showing, ease-in-out transition */
+    transition: all ease-in-out 0.5s;
 }
 
-#username_reveal input {
+.field_reveal input {
     width: calc(100% - 2rem);
     line-height: 1.5;
     padding: 6px 12px;
 }
 
-#username_reveal button {
+.field_reveal button {
     margin-top: 1rem;
     width: 100%;
     line-height: 1.5;
@@ -82,15 +85,37 @@ footer p {
     transition: all ease-in-out 0.1s;
 }
 
-#username_reveal button img {
+.field_reveal a {
+    text-align: left;
+    /* align to the left of parent */
+    float: left;
+    margin-top: 1rem;
+    /* no underline */
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+}
+
+.field_reveal a:hover {
+    color: #4b7497;
+}
+
+.field_reveal a:active {
+    color: #3a5a73;
+}
+
+.field_reveal button img {
     /* It is a preloader */
     height: 1rem;
 }
 
-#username_reveal button:hover {
+.field_reveal button:hover {
     background-color: #4b7497;
 }
 
-#username_reveal button:active {
+.field_reveal button:active {
     background-color: #3a5a73;
+}
+
+.error-text {
+    color: #ff0000;
 }

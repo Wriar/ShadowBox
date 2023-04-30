@@ -5,3 +5,24 @@ $('#username').keyup(function(event) {
         usernameSubmit();
     }
 });
+
+$('#username').value = '';
+$('#username').focus();
+
+//Add event listener to btn_userNext to submit username
+$('#btn_userNext').click(function() {
+    // eslint-disable-next-line no-undef
+    usernameSubmit();
+});
+
+//Add event listener to btn_login to submit password
+$('#btn_login').click(function() {
+    // eslint-disable-next-line no-undef
+    passwordSubmit();
+});
+
+//Add event lisnter to link_back to return to username screen
+$('#link_back').click(function() {
+    // eslint-disable-next-line no-undef
+    returnToUsername();
+});
