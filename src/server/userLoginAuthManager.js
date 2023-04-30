@@ -69,10 +69,6 @@ module.exports = function(app) {
         }
     }
 
-    returnUsernameValadidity('admin').then((result) => {
-        console.log(result);
-    });
-
     async function returnUsernamePasswordValadidity(username, passwordPlain) {
         const conn = await pool.getConnection();
         try {
