@@ -3,6 +3,7 @@ const pool = require('../server/db/instData');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 
+
 module.exports = function(app) {
     app.post('/login/auth', async (req, res) => {
         const method = req.body.method;
@@ -59,7 +60,6 @@ module.exports = function(app) {
         const conn = await pool.getConnection();
         try {
             const rows = await conn.query('SELECT username FROM users WHERE username = ?', [username]);
-            console.log("The rows: " + rows);
             return [rows.length > 0, rows[0]];
         } catch (err) {
             console.log(err);
@@ -69,6 +69,9 @@ module.exports = function(app) {
         }
     }
 
+    /***
+     * Validate the password with bcrypt
+     */
     async function returnUsernamePasswordValadidity(username, passwordPlain) {
         const conn = await pool.getConnection();
         try {
@@ -77,9 +80,7 @@ module.exports = function(app) {
     
             if (rows.length > 0) {
                 const result = await new Promise((resolve, reject) => {
-                    console.log("Comparing " + passwordPlain + " to " + rows[0].password + " btw the username is " + username);
                     bcrypt.compare(passwordPlain, rows[0].password, (err, result) => {
-                        console.log("The reuslt is " + result)
                         if (err) {
                             console.log(err);
                             reject(err);
