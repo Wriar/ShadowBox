@@ -85,7 +85,7 @@ function passwordSubmit() {
                 const message = data.message;
                 if (code === 0) {
                     //Success
-                    window.location.href = '/dashboard';
+                    window.location.href = '/filemanager';
                 } else {
                     hideShowError(true, message);
                     $('#btn_login i').show();
