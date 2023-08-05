@@ -38,7 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('*/sb-shared', express.static(path.join(__dirname, 'public')));
+app.use('*/static-resx', express.static(path.join(__dirname, 'public')));
 
 //Recursively load routes from the routes directory O(n) * O(1) = O(n).
 function loadRoutes(app, dir) {
@@ -60,6 +60,9 @@ function loadRoutes(app, dir) {
 
 //Load the routes
 loadRoutes(app, path.join(__dirname, 'routes'));
+
+//Load the modules
+require('./server/authentication')(app);
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 

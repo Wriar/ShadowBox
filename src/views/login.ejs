@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static-resx/css/normalize.css" />
+    <link rel="stylesheet" href="/static-resx/ico/icomoon-ultimate-webfont.css" />
+    <link rel="stylesheet" href="/static-resx/css/fontface.css" />
+
+    <link rel="stylesheet" href="/static-resx/css/login-user-main.css" />
+
+    <!--Disable FavIcon (for now)-->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <title>Please Log On</title>
+</head>
+<body>
+    <div class="login-center">
+        <img src="/static-resx/img/sb_logo_text.png" alt="ShadowBox Logo" class="logo" draggable="false" />
+        <h3 id="h_username" hidden></h3>
+        <p>Please enter your login information to authenticate.</p>
+
+        <div id="username_reveal" class="field_reveal">
+            <input maxlength="64" type="text" id="username" name="username" placeholder="Username" />
+
+            <button id="btn_userNext" type="button">Next 
+                <i class="icmn-arrow-right8"></i>
+                <img hidden="true" src="/static-resx/img/preloader.gif" alt="...">
+            </button>
+        </div>
+
+        <div id="password_reveal" class="field_reveal" hidden>
+            <input maxlength="64" type="password" id="password" name="password" placeholder="Password" />
+
+            <button id="btn_login" type="button">Login 
+                <i class="icmn-arrow-right8"></i>
+                <img hidden="true" src="/static-resx/img/preloader.gif" alt="...">
+            </button>
+
+            <a id="link_back" href="#"><i class="icmn-arrow-left8"></i> Back</a>
+        </div>
+
+        <p id="error-text" class="error-text" hidden>An error has occured.</p>
+    </div>
+
+    <footer>
+        <p><%- footer_copyright_text %></p>
+    </footer>
+
+
+<script src="/static-resx/js/jquery-3.6.4.min.js"></script>
+<script src="/static-resx/js/jquery-migrate-3.4.1.min.js"></script>
+<script src="/static-resx/js/login-formstyling.js" defer></script>
+<script src="/static-resx/js/login-form.js"></script>
+
+</body>
+</html>

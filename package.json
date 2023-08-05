@@ -4,7 +4,9 @@
   "description": "Development Repository of ShadowBox",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "a": "nodemon src/server.js",
+    "b": "sass --watch src/public/scss/:src/public/css/"
   },
   "repository": {
     "type": "git",

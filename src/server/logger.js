@@ -1,5 +1,5 @@
 function createLog() {
-    console.log("test");
+    //console.log("test");
 }
 
 module.exports = createLog;
