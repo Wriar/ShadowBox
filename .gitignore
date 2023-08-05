@@ -132,3 +132,5 @@ dist
 .idea
 certs/cert.crt
 certs/key.key
+.env
+.env
