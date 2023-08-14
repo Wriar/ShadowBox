@@ -8,7 +8,7 @@ const crypto = require('crypto');
 const helmet = require('helmet');
 const compression = require('compression');
 const cors = require('cors');
-const createLog = require('./server/logger');
+const createLog = require('./server/logger').default;
 const app = express();
 
 console.clear();
@@ -75,7 +75,7 @@ function loadRoutes(app, dir) {
 loadRoutes(app, path.join(__dirname, 'routes'));
 
 //Load the modules
-require('./server/authentication')(app);
+require('./server/userAuthFlow')(app);
 
 //Load & Test the database connection
 require("./server/dbTryConnect")(require("./server/db/instData"), "User Database");
