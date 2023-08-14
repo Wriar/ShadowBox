@@ -14,15 +14,15 @@ console.log('\x1b[33m%s\x1b[0m', '[SERVER] Starting server...');
 
 dotenv.config();
 
-const port = process.env.PORT || 80;
-const useHTTPS = process.env.USE_HTTPS || true;
-const productionStatus = process.env.PRODUCTION || false;
+const port = process.env.PORT ?? 80;
+const useHTTPS = process.env.USE_HTTPS ?? true;
+const productionStatus = process.env.PRODUCTION ?? false;
 
 
 app.use(session({
-    secret: process.env.SESSION_SECRET || crypto.randomBytes(20).toString('hex'),
+    secret: process.env.SESSION_SECRET ?? crypto.randomBytes(20).toString('hex'),
     saveUninitialized: true,
-    cookie: { secure: true, maxAge: process.env.COOKIE_MAX_AGE || 1000 * 60 * 60 * 24 * 7 },
+    cookie: { secure: true, maxAge: process.env.COOKIE_MAX_AGE ?? 1000 * 60 * 60 * 24 * 7 },
     resave: false
 }));
 
