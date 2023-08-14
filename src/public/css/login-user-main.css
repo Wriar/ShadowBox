@@ -21,9 +21,8 @@ body .login-center {
 }
 @media (max-width: 750px) {
   body .login-center {
-    /* On mobile, login-center should be 100% width */
-    width: 100%;
-    padding: 10px;
+    /* On mobile, login-center should be 90% width */
+    width: 90%;
   }
 }
 

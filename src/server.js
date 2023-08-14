@@ -8,9 +8,9 @@ const crypto = require('crypto');
 const createLog = require('./server/logger');
 const app = express();
 
+console.clear();
 console.log('\n');
 console.log('\x1b[33m%s\x1b[0m', '[SERVER] Starting server...');
-
 
 dotenv.config();
 
@@ -35,6 +35,10 @@ const httpsOptions = {
     cert: fs.readFileSync(certPath)
 }
 
+//Log SSL Certificate Setting to Console
+productionStatus ? console.log('\x1b[1m\x1b[32m%s\x1b[0m', '[OK] Using Production Certificates') : console.log('\x1b[1m\x1b[33m%s\x1b[0m', '[WARNING] Using Demo Certificates');
+
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -43,7 +47,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('*/static-resx', express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'raw')));
 
-//Recursively load routes from the routes directory O(n) * O(1) = O(n).
+//Recursively load routes from the routes directory.
 function loadRoutes(app, dir) {
     fs.readdirSync(dir).forEach(file => {
         const filePath = path.join(dir, file);
