@@ -79,7 +79,7 @@ console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 
 if (useHTTPS) {
     https.createServer(httpsOptions, app).listen(443, () => {
-        console.log('\x1b[36m%s\x1b[0m', `[OK] HTTPS Server listening on port 443`);
+        console.log('\x1b[36m%s\x1b[0m', "[OK] HTTPS Server listening on port 443");
     })
 } else {
     app.listen(port, () => {
