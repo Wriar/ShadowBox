@@ -71,6 +71,10 @@ loadRoutes(app, path.join(__dirname, 'routes'));
 //Load the modules
 require('./server/authentication')(app);
 
+//Load & Test the database connection
+require("./server/dbTryConnect")(require("./server/db/instData"), "User Database");
+
+
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 
 if (useHTTPS) {
