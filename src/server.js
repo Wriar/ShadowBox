@@ -36,7 +36,7 @@ const httpsOptions = {
 }
 
 //Log SSL Certificate Setting to Console
-productionStatus ? console.log('\x1b[1m\x1b[32m%s\x1b[0m', '[OK] Using Production Certificates') : console.log('\x1b[1m\x1b[33m%s\x1b[0m', '[WARNING] Using Demo Certificates');
+productionStatus ? console.log('\x1b[1m\x1b[32m%s\x1b[0m', '[OK] Using Production Certificates') : console.warn('\x1b[1m\x1b[33m%s\x1b[0m', '[WARNING] Using Demo Certificates');
 
 
 app.set('view engine', 'ejs');
