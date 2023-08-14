@@ -22,7 +22,7 @@ const productionStatus = process.env.PRODUCTION || false;
 app.use(session({
     secret: process.env.SESSION_SECRET || crypto.randomBytes(20).toString('hex'),
     saveUninitialized: true,
-    cookie: { secure: true },
+    cookie: { secure: true, maxAge: process.env.COOKIE_MAX_AGE || 1000 * 60 * 60 * 24 * 7 },
     resave: false
 }));
 
