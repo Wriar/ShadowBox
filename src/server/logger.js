@@ -1,6 +1,6 @@
 /**
  * Logs & entrusts an log to the application. Codes will be processed accordingly.
- * @param {Number} code Log Code (0=Info, 1=Warning, 2=Error, 3=Fatal Error)
+ * @param {Number} code Log Code (0=Info, 1=Warning, 2=Error, 3=Fatal Error, 4=Security Error)
  * @param {String} message Friendly Message of the Error
  * @param {Error} [error] Optional Error Object
  */

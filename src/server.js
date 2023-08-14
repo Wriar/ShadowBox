@@ -54,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'raw')));
 app.use(cors());
 app.use(compression());
 
-//Load the login route
+//Load the routes
 import loginRoute from './routes/login.js';
 loginRoute(app);
 

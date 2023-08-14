@@ -1,4 +1,5 @@
 import instanceDataPool from './db/instData.js';
+import createLog from './logger.js';
 //import bcrypt from 'bcrypt';
 
 /**
@@ -7,15 +8,26 @@ import instanceDataPool from './db/instData.js';
  * @returns {Array} [Boolean, Boolean] Boolean: Whether the request succeeded, Boolean: Whether the username is valid.
  */
 async function returnUsernameValidity(username) {
-    const conn = await instanceDataPool.getConnection();
+    let conn;
     try {
+        conn = await instanceDataPool.getConnection();
         const [rows] = await conn.query('SELECT username FROM accounts WHERE username = ?', [username]);
-        return [true, rows.length > 0];
+        console.log(rows);
+        if (rows != undefined) {
+            //Username was found!
+            return [true, true];
+        } else {
+            //Username was not found.
+            return [true, false];
+        }
     } catch (err) {
+        createLog(3, "Could not complete login account query.", err)
         console.error(err);
         return [false, null];
     } finally {
-        conn.release();
+        if (conn) {
+            conn.release();
+        }
     }
 }
 
@@ -29,16 +41,21 @@ export default function configureLoginRoutes(app) {
                 const username = req.body.username;
 
                 try {
-                    const [success, usernameValid] = await returnUsernameValidity(username);
-
+                    const [success, usernameFound] = await returnUsernameValidity(username);
                     if (!success) {
                         res.json({ code: 2, message: "Could not log in at this time. Please try again later." });
                         return;
                     }
 
+                    if(!usernameFound) {
+                        res.json({code: 1, message: "Invalid Username. Please try again."});
+                        return;
+                    }
+
                     req.session.username = username;
                     req.session.usernameVerified = true;
-                    res.send({ code: 0, usernameValid: usernameValid, username: username });
+                    res.send({ code: 0, usernameValid: true, username: username });
+                    return;
                 } catch (error) {
                     console.error(error);
                     res.json({ code: 2, message: "Could not log in at this time. Please try again later." });
