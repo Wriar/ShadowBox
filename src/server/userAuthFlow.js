@@ -13,7 +13,7 @@ async function returnUsernameValidity(username) {
         conn = await instanceDataPool.getConnection();
         const [rows] = await conn.query('SELECT username FROM accounts WHERE username = ?', [username]);
         console.log(rows);
-        if (rows != undefined) {
+        if (rows !== undefined) {
             //Username was found!
             return [true, true];
         } else {
