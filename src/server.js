@@ -5,6 +5,9 @@ const path = require('path');
 const dotenv = require('dotenv');
 const fs = require('fs');
 const crypto = require('crypto');
+const helmet = require('helmet');
+const compression = require('compression');
+const cors = require('cors');
 const createLog = require('./server/logger');
 const app = express();
 
@@ -37,7 +40,7 @@ const httpsOptions = {
 
 //Log SSL Certificate Setting to Console
 productionStatus ? console.log('\x1b[1m\x1b[32m%s\x1b[0m', '[OK] Using Production Certificates') : console.warn('\x1b[1m\x1b[33m%s\x1b[0m', '[WARNING] Using Demo Certificates');
-
+productionStatus ? app.use(helmet()) : console.warn('\x1b[1m\x1b[33m%s\x1b[0m', '[WARNING] Helmet is disabled in non-production mode.');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -46,6 +49,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('*/static-resx', express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'raw')));
+app.use(cors());
+app.use(compression());
+
 
 //Recursively load routes from the routes directory.
 function loadRoutes(app, dir) {
