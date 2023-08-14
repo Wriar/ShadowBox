@@ -12,4 +12,4 @@ function createLog(code, message, error) {
     return 0;
 }
 
-module.exports = createLog();
+export default createLog;

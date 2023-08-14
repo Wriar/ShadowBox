@@ -1,4 +1,4 @@
-module.exports = function(app) {
+export default function loginRoute(app) {
     app.get('/', (req, res) => {
         res.redirect('/login');
     });
