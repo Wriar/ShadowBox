@@ -12,7 +12,7 @@ import cors from 'cors';
 import createLog from './server/logger.js';
 const app = express();
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url)); //Allows __dirname to be used
 
 console.clear();
 console.log('\n');
