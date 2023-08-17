@@ -9,7 +9,12 @@ import crypto from 'crypto';
 import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
+
 import createLog from './server/logger.js';
+import loadRoutes from './routing.js';
+import dbTryConnect from './server/dbTryConnect.js';
+import instData from './server/db/instData.js';
+
 const app = express();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url)); //Allows __dirname to be used
@@ -55,16 +60,12 @@ app.use(cors());
 app.use(compression());
 
 //Load the routes
-import loginRoute from './routes/login.js';
-loginRoute(app);
+loadRoutes(app);
 
-// Load the modules
-import userAuthFlow from './server/userAuthFlow.js';
-userAuthFlow(app);
+// TODO: Load the modules
+
 
 // Load & Test the database connection
-import dbTryConnect from './server/dbTryConnect.js';
-import instData from './server/db/instData.js';
 dbTryConnect(instData, "User Database");
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
