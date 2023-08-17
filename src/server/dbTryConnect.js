@@ -18,13 +18,13 @@ export default function connectToDatabase(pool, dbname) {
                 })
                 .catch(err => {
                     console.log('\x1b[31m%s\x1b[0m', `[ERROR] Failed to connect to ${dbname} Database.`);
-                    console.log(err);
+                    console.error(err);
                     process.exit(1);
                 });
         })
         .catch(err => {
             console.log('\x1b[31m%s\x1b[0m', `[ERROR] Failed to connect to ${dbname} Database. Please see details below:`);
-            console.log(err);
+            console.error(err);
             process.exit(1);
         });
 }
