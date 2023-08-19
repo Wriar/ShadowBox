@@ -1,5 +1,5 @@
-# ShadowBox-Dev
-Development Repository of ShadowBox
+# ShadowBox-Dev [![Active Issues](https://app.deepsource.com/gh/Wriar/ShadowBox-Dev.svg/?label=active+issues&show_trend=true&token=5APRnpsK93ZKzHm3t9ZQKgp8)](https://app.deepsource.com/gh/Wriar/ShadowBox-Dev/?ref=repository-badge)
+Development Repository of ShadowBox 
 
 Wriar ("Wriar") ("Wriar Development") CONFIDENTIAL
 Unpublished Copyright (c) 2023 Wriar Development, All Rights Reserved.
