@@ -41,7 +41,7 @@ export default function configureLoginRoutes(app) {
                 const username = req.body.username;
 
                 try {
-                    const [success, usernameFound] = returnUsernameValidity(username);
+                    const [success, usernameFound] = await returnUsernameValidity(username);
                     if (!success) {
                         res.json({ code: 2, message: "Could not log in at this time. Please try again later." });
                         return;
