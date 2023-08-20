@@ -3,4 +3,5 @@ const authenticationEnumLockStates = {
     AUTH_COMPLETE: 2,
 }
 
+
 export {authenticationEnumLockStates};
