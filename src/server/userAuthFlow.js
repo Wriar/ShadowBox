@@ -1,5 +1,6 @@
 import instanceDataPool from './db/instData.js';
 import createLog from './logger.js';
+import { authenticationEnumLockStates } from './types.js';
 //import bcrypt from 'bcrypt';
 
 /**
@@ -31,6 +32,8 @@ async function returnUsernameValidity(username) {
     }
 }
 
+
+
 export default function configureLoginRoutes(app) {
     app.post('/login/auth', async (req, res) => {
         const method = req.body.method;
@@ -54,6 +57,7 @@ export default function configureLoginRoutes(app) {
 
                     req.session.username = username;
                     req.session.usernameVerified = true;
+                    req.session.sessionLockState = authenticationEnumLockStates.AWAIT_PASSWORD;
                     res.send({ code: 0, usernameValid: true, username: username });
                     return;
                 } catch (error) {
@@ -62,6 +66,20 @@ export default function configureLoginRoutes(app) {
                 }
 
                 break;
+            }
+
+            case "v_pass": {
+                const password = req.body.password;
+
+                //Verify that the page is on the correct state.
+                if(req.session.sessionLockState !== authenticationEnumLockStates.AWAIT_PASSWORD) {
+                    res.json({code: 1, message: "Invalid request. Please refresh the page."});
+                    return;
+                }
+
+                res.json({code: 1, message: `yipee ${password}!`});
+                break;
+
             }
 
             default:
