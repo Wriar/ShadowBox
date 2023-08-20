@@ -10,7 +10,7 @@ export default function sessionDebugRoute(app) {
         }
 
         if(req.query.key !== process.env.SESSION_SECRET) {
-            createLog(4, `Session Debug Route is accessed from ${req.ip} with an invalid key of ${req.query.key}. (Is it properly URl encoded?)`);
+            createLog(4, `Session Debug Route is accessed from ${req.ip} with an invalid key of ${req.query.key}. (Is it properly URL encoded?)`);
             res.sendStatus(403);
             return;
         }
