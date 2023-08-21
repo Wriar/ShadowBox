@@ -1,0 +1,11 @@
+@import "_fileManager-container.scss";
+@import "_fileManager-nav.scss";
+@import "_fileManager-sidenav.scss";
+
+body {
+    font-family: 'Open Sans', 'Arial', 'Helvetica', sans-serif;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}

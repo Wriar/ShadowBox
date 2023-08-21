@@ -3,6 +3,7 @@
  */
 
 import loginRoute from './routes/login.js';
+import dashboardRoute from './routes/dashboard.js';
 import userAuthFlow from './server/userAuthFlow.js';
 
 import sessionDebugRoute from './sessionDebug.js';
@@ -13,6 +14,7 @@ import sessionDebugRoute from './sessionDebug.js';
  */
 export default function loadRoutes(app) {
     loginRoute(app);
+    dashboardRoute(app);
     userAuthFlow(app);
     sessionDebugRoute(app);
 

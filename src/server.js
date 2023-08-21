@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import crypto from 'crypto';
-import helmet from 'helmet';
+//import helmet from 'helmet';
 import compression from 'compression';
 import cors from 'cors';
 
@@ -47,7 +47,7 @@ const httpsOptions = {
 
 // Log SSL Certificate Setting to Console
 productionStatus ? console.log('\x1b[1m\x1b[32m%s\x1b[0m', '[OK] Using Production Certificates') : console.warn('\x1b[1m\x1b[33m%s\x1b[0m', '[WARNING] Using Demo Certificates');
-productionStatus ? app.use(helmet()) : console.warn('\x1b[1m\x1b[33m%s\x1b[0m', '[WARNING] Helmet is disabled in non-production mode.');
+//productionStatus ? app.use(helmet()) : console.warn('\x1b[1m\x1b[33m%s\x1b[0m', '[WARNING] Helmet is disabled in non-production mode.');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

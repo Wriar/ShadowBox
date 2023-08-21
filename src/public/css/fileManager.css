@@ -1,0 +1,221 @@
+#filemanager-container {
+  padding: 10px;
+}
+
+/* Navigational Element containing the Logo and User Options, displayed on the top of the page DESKTOP */
+.fm-headnav_d {
+  background-color: #2b445a;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Large Logo with Text */
+.nav-logo {
+  width: auto;
+  height: 50px;
+}
+
+/* container for the logo */
+.logoContainer {
+  padding: 2px;
+}
+
+nav ul {
+  display: flex;
+}
+
+/* add margin to list items, remove any bullets */
+nav ul li {
+  margin: 0 12px;
+  list-style-type: none;
+}
+
+/* by default, not displayed, overriden by media query */
+.menu_icon {
+  display: none;
+}
+
+/* Media Query that changes the nav bar to a hamburger menu for mobile */
+@media (max-width: 750px) {
+  nav {
+    display: none;
+  }
+  nav ul {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  nav ul li {
+    margin: 1.8rem 0;
+  }
+  #menu {
+    display: inline-block;
+    margin-right: 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+.nav-extension {
+  margin-left: 10rem;
+  margin-right: 10rax;
+  color: #ffafaf;
+}
+
+/* default styles for nav button */
+.nav-btn {
+  background-color: #ebebee;
+  padding: 5px 8px 5px 8px;
+  border: 1px solid gray;
+  font-size: 14px;
+  color: #232323;
+  font-weight: medium;
+}
+
+/* adds square padding to mobile nav buttons */
+.btn-mobile {
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: transparent !important;
+  border: 0px;
+  font-size: 80%;
+  color: gainsboro;
+}
+
+.btn-mobile:hover {
+  color: dimgrey;
+  background-color: transparent !important;
+}
+
+/* hover and active styles for nav buttons */
+.nav-btn:hover {
+  background-color: #d8d8d8;
+}
+
+.nav-btn:active {
+  background-color: #b7b7b7;
+}
+
+/* RIBBON ELEMENTS */
+.fm-ribbon {
+  background-color: #ebebee;
+  /* force items to stay on one line, never overflow */
+  white-space: nowrap;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.fm-ribbon button {
+  background-color: #ebebee;
+  color: #2b445a;
+  white-space: nowrap;
+  border: 0px;
+  padding: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.fm-ribbon button:hover {
+  background-color: #d8d8d8;
+}
+
+.fm-ribbon-mobile {
+  display: none; /* media query only*/
+  background-color: #ebebee;
+  /* force items to stay on one line, never overflow and allow scrollbar*/
+  white-space: nowrap;
+  overflow-x: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.fm-ribbon-mobile button {
+  color: #2b445a;
+  white-space: nowrap;
+  border: 0px;
+  padding: 10px;
+  border-right: 1px solid #2b445a;
+}
+
+.danger {
+  color: red !important;
+}
+
+/* test */
+span.spacer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (max-width: 750px) {
+  .fm-ribbon {
+    display: none;
+  }
+  .fm-ribbon-mobile {
+    display: block;
+  }
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 32px 8px 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  /* Change right to left */
+  font-size: 36px;
+  margin-right: 50px;
+  /* Change margin-left to margin-right */
+}
+
+/* this class will be added to the #filemanager-wrapper div when the sidebar is revealed NOT on mobile.*/
+@media (min-width: 750px) {
+  .filemanager-wrapper {
+    margin-right: 250px;
+    transition: all 0.5s;
+  }
+  /* this class plays the closing animation when the sidebar is closed NOT on mobile.*/
+  .filemanager-wrapper-closed {
+    margin-right: 0px;
+    transition: all 0.5s;
+  }
+}
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+body {
+  font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/*# sourceMappingURL=fileManager.css.map */
