@@ -6,7 +6,7 @@
  */
 function createLog(code, message, error) {
     //TODO: Make it do more stuff
-    console.log(`[${code}] ${message}`);
+    console.log(`[Code ${code}] ${message}`);
     if (error) console.log(error);
 
     return 0;
