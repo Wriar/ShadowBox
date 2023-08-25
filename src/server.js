@@ -19,6 +19,9 @@ const app = express();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url)); //Allows __dirname to be used
 
+//If the process is run with the -n flag, it will override any database connections which may be restricted under the workflow runner.
+const mountDBs = (process.argv[2] && process.argv[2] === '-n') ? true : false;
+
 console.clear();
 console.log('\n');
 console.log('\x1b[33m%s\x1b[0m', '[SERVER] Starting server...');
@@ -66,16 +69,12 @@ loadRoutes(app);
 
 
 // Load & Test the database connection
-dbTryConnect(instData, "User Database");
+mountDBs && dbTryConnect(instData, "User Database");
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 
-//If the process is run with the -n flag, it will override the HTTPS setting and run the server in HTTP mode.
-//This is used in workflow testing where port 443 is not available.
-let secureOverride = (process.argv[2] && process.argv[2] === '-n') ? true : false;
 
-
-if (useHTTPS && !secureOverride) {
+if (useHTTPS) {
     https.createServer(httpsOptions, app).listen(443, () => {
         console.log('\x1b[36m%s\x1b[0m', "[OK] HTTPS Server listening on port 443");
         createLog(0, "HTTPS Server has started.");
