@@ -20,7 +20,7 @@ const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url)); //Allows __dirname to be used
 
 //If the process is run with the -n flag, it will override any database connections which may be restricted under the workflow runner.
-const mountDBs = (process.argv[2] && process.argv[2] === '-n') ? true : false;
+let mountDBs = (process.argv[2] && process.argv[2] === '-n') ? true : false;
 
 console.clear();
 console.log('\n');
@@ -73,7 +73,7 @@ mountDBs && dbTryConnect(instData, "User Database");
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 
-if (mountDBs) {
+if (process.env.TEST_MODE) {
     console.log("Testing Completed Successfully!");
     process.exit(0);
 }
