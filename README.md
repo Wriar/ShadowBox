@@ -1,4 +1,4 @@
-# ShadowBox-Dev [![Active Issues](https://app.deepsource.com/gh/Wriar/ShadowBox-Dev.svg/?label=active+issues&show_trend=true&token=5APRnpsK93ZKzHm3t9ZQKgp8)](https://app.deepsource.com/gh/Wriar/ShadowBox-Dev/?ref=repository-badge)
+# ShadowBox-Dev [![Active Issues](https://app.deepsource.com/gh/Wriar/ShadowBox-Dev.svg/?label=active+issues&show_trend=true&token=5APRnpsK93ZKzHm3t9ZQKgp8)](https://app.deepsource.com/gh/Wriar/ShadowBox-Dev/?ref=repository-badge) [![CodeFactor](https://www.codefactor.io/repository/github/wriar/shadowbox-dev/badge?s=892deaf91df08db750f4974dfa5b688e8cdcc423)](https://www.codefactor.io/repository/github/wriar/shadowbox-dev)
 Development Repository of ShadowBox 
 
 Wriar ("Wriar") ("Wriar Development") CONFIDENTIAL
