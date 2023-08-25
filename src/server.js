@@ -85,3 +85,7 @@ if (useHTTPS) {
         createLog(0, "HTTP Server has started.");
     });
 }
+
+if (mountDBs) {
+    process.exit(0);
+}
