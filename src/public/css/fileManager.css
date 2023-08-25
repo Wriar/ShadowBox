@@ -111,6 +111,7 @@ nav ul li {
   white-space: nowrap;
   border: 0px;
   padding: 6px;
+  transition: all ease-in-out 0.1s;
 }
 
 .fm-ribbon button:hover {
@@ -141,14 +142,6 @@ nav ul li {
 
 .danger {
   color: rgb(180, 0, 0) !important;
-}
-
-.danger:hover {
-  color: #ff0000 !important;
-}
-
-.danger:active {
-  color: #ff3838 !important;
 }
 
 /* test */
