@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "a": "nodemon src/server.js",
     "b": "sass --watch src/public/scss/:src/public/css/",
-    "ghActionTest": "sudo node src/server.js -n"
+    "ghActionTest": "sudo node src/server.js"
   },
   "repository": {
     "type": "git",
