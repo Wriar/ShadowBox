@@ -73,6 +73,10 @@ mountDBs && dbTryConnect(instData, "User Database");
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 
+if (mountDBs) {
+    console.log("Testing Completed Successfully!");
+    process.exit(0);
+}
 
 if (useHTTPS) {
     https.createServer(httpsOptions, app).listen(443, () => {
@@ -86,6 +90,3 @@ if (useHTTPS) {
     });
 }
 
-if (mountDBs) {
-    process.exit(0);
-}
