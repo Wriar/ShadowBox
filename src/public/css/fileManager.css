@@ -111,11 +111,14 @@ nav ul li {
   white-space: nowrap;
   border: 0px;
   padding: 6px;
-  transition: all 0.2s ease-in-out;
 }
 
 .fm-ribbon button:hover {
-  background-color: #d8d8d8;
+  color: #1b619e;
+}
+
+.fm-ribbon button:active {
+  color: #1f84dc;
 }
 
 .fm-ribbon-mobile {
@@ -137,7 +140,15 @@ nav ul li {
 }
 
 .danger {
-  color: red !important;
+  color: rgb(180, 0, 0) !important;
+}
+
+.danger:hover {
+  color: #ff0000 !important;
+}
+
+.danger:active {
+  color: #ff3838 !important;
 }
 
 /* test */
