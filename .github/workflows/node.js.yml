@@ -40,4 +40,4 @@ jobs:
         cache: 'npm'
     - run: sudo npm install
     - run: sudo npm run build --if-present
-    - run: sudo npm run ghActionTest
+    - run: sudo npm run ghActionTest -n
