@@ -22,6 +22,7 @@ jobs:
       ENABLE_DEBUG_DUMP: True
       SESSION_SECRET: 123Testing321!
       COOKIE_MAX_AGE: 604800
+      TEST_MODE: True
 
     runs-on: ubuntu-latest
 
