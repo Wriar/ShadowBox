@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     env:
+      CI: true
       MYSQL_DATABASE_HOST: ${{secrets.MYSQL_DATABASE_HOST}}
       MYSQL_DATABASE_PASSWORD: ${{secrets.MYSQL_DATABASE_PASSWORD}}
       MYSQL_DATABASE_USER: ${{secrets.MYSQL_DATABASE_USER}}
