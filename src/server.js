@@ -72,6 +72,8 @@ loadRoutes(app);
 mountDBs && dbTryConnect(instData, "User Database");
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
+
+console.log(`Test Mode is: ${process.env.TEST_MODE}`);
 process.exit(0);
 console.log("Process has exited!");
 
