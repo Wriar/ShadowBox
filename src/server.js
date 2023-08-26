@@ -72,6 +72,8 @@ loadRoutes(app);
 mountDBs && dbTryConnect(instData, "User Database");
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
+process.exit(0);
+console.log("Process has exited!");
 
 if (process.env.TEST_MODE == "github") {
     console.log("Testing Completed Successfully!");
