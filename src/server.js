@@ -73,7 +73,7 @@ mountDBs && dbTryConnect(instData, "User Database");
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 
-if (process.env.TEST_MODE == 1) {
+if (process.env.TEST_MODE == "github") {
     console.log("Testing Completed Successfully!");
     process.exit(0);
 }
