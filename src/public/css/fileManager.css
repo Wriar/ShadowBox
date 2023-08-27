@@ -1,7 +1,3 @@
-#filemanager-container {
-  padding: 10px;
-}
-
 /* Navigational Element containing the Logo and User Options, displayed on the top of the page DESKTOP */
 .fm-headnav_d {
   background-color: #2b445a;
@@ -169,6 +165,7 @@ span.spacer {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  margin-top: 60px;
 }
 
 .sidenav a {
@@ -220,6 +217,37 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
+}
+
+#filemanager-container {
+  padding: 10px;
+}
+
+.v-wrapper .v-left {
+  /* navigational tree view */
+  background-color: #ebebee;
+  width: 16%;
+  height: calc(100vh - 59.7px);
+  float: left;
+}
+.v-wrapper .v-left .tree-container {
+  padding: 10px;
+}
+.v-wrapper .v-right {
+  /* file content view */
+  width: 84%;
+  float: right;
+  word-wrap: break-word;
+}
+.v-wrapper .fullwidth {
+  width: 100%;
+}
+.v-wrapper .hidden {
+  width: 0%;
+}
+
+.fm-fileview {
+  padding: 10px;
 }
 
 /*# sourceMappingURL=fileManager.css.map */

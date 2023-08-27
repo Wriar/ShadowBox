@@ -1,4 +1,3 @@
-@import "_fileManager-container.scss";
 @import "_fileManager-nav.scss";
 @import "_fileManager-sidenav.scss";
 
@@ -8,4 +7,42 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+#filemanager-container {
+    padding: 10px;
+}
+
+.v-wrapper {
+    $V-TREE-PADDING: 10px;
+    .v-left {
+        /* navigational tree view */
+        background-color: #ebebee;
+        width: 16%;
+        height: calc(100vh - 59.7px);
+        float: left;
+
+        .tree-container {
+            padding: 10px;
+        }
+    }
+    .v-right {
+        /* file content view */
+        width: 84%;
+        float: right;
+        word-wrap: break-word;
+
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+
+    .hidden {
+        width: 0%;
+    }
+}
+
+.fm-fileview {
+    padding: 10px;
 }
