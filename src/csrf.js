@@ -4,4 +4,4 @@ function generateCSRFToken() {
     return crypto.randomBytes(16).toString('hex');
 }
 
-export { generateCSRFToken}
+export { generateCSRFToken }
