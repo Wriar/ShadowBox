@@ -28,6 +28,8 @@ if (Get-Command openssl -ErrorAction SilentlyContinue) {
     Write-Host "OpenSSL is installed."
 } else {
     Write-Host "OpenSSL is not installed."
+    Write-Host "Please ensure the latest version of OpenSSL is installed on your computer"
+    exit
 }
 
 
