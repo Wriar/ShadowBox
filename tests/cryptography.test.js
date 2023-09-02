@@ -15,13 +15,6 @@ beforeAll(() => {
     }
 });
 
-afterAll(() => {
-    if (fs.existsSync(TMP_DIR)) {
-        //FORCE DELETE THE DIRECTORY
-        //fs.rmdirSync(TMP_DIR, { recursive: true, force: true });
-    }
-});
-
 
 const plaintextFile = `${TMP_DIR}/plaintext.txt`;
 const encryptedFile = `${TMP_DIR}/encrypted.enc`;
@@ -30,9 +23,6 @@ const decryptedFile = `${TMP_DIR}/decrypted.txt`;
 
 //Convert the password to 32 bytes
 const secret = crypto.scryptSync(testPassword, 'goofyAAH', 32);
-
-
-
 
 
 describe('AES File Steam Encryption', () => {
@@ -121,7 +111,5 @@ afterAll(() => {
                 console.log(err);
             }
         });
-
-
     }
 });
