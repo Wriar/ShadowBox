@@ -171,6 +171,7 @@ async function aesDecryptFileStream(inputStream, outputStream, secret) {
 
     let decipher = crypto.createDecipheriv(algorithm, secret, iv);
 
+
     return new Promise((resolve, reject) => {
         decipher.on('error', (err) => {
             console.error('Decryption error:', err.message);
@@ -178,6 +179,8 @@ async function aesDecryptFileStream(inputStream, outputStream, secret) {
         });
 
         inputStream.pipe(decipher).pipe(outputStream);
+
+        //Strip null bytes from the end of the stream.
 
         inputStream.on('end', () => {
             resolve();
