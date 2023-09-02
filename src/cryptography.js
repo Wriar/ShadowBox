@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
 import crypto from 'crypto';
 
+
+
+
 /**
  * Asynchronous SB Implementation that Encrypts a String using ``AES-256-CBC``
  * 
@@ -79,12 +82,42 @@ async function aesDecryptText(encryptedText, password) {
 }
 
 
-async function aesEncryptFileStream(inputStream, outputStream, secret, iv) {
-    const algorithm = 'aes-256-cbc';
-    //const iv = crypto.randomBytes(16); // Initialization vector.
+const IV_BUFFER_ALLOC_SIZE = 16; //Allocate 16 bytes for the IV buffer.
+const AES_ALGORITHM = 'aes-256-cbc'; //AES-256-CBC Algorithm using 16-byte IV.
+const AES_KEY_SIZE = 32; //AES-256-CBC Key Size in Bytes.
+
+
+/**
+ * Asynchronous SB Implementation that Encrypts an Incoming FileStream using ``AES-256-CBC``
+ * 
+ * Provided a (default) 32-byte secret designated for ``AES-256-CBC``, encrypt an incoming stream and write it to an output stream with encrypted data.
+ * A (default) 16-byte IV is generated and written to the output stream head so that it may be used later.
+ * 
+ * Usage Example:
+ * ```js
+ * import { aesEncryptFileStream } from './cryptography.js';
+ * 
+ * aesEncryptFileStream(inputStream, outputStream, MY_SECRET).then((iv) => {
+ *     console.log("Generated IV " + iv.toString('hex'));
+ *     file.resume(); // Consume the remaining stream if needed.
+ * }).catch((err) => {
+ *    console.error(err);
+ * });
+ * ```
+
+ * @param {Stream} inputStream Input Stream to Encrypt
+ * @param {Stream} outputStream Output Stream to Write Encrypted Data
+ * @param {String} secret Secret (for AES-265-CBC length is 32 bytes) to encrypt incoming stream
+ * @returns {Promise} Promise that resolves when the input stream has been encrypted and written to the output stream.
+ */
+async function aesEncryptFileStream(inputStream, outputStream, secret) {
+    const algorithm = AES_ALGORITHM;
+    const iv = crypto.randomBytes(IV_BUFFER_ALLOC_SIZE); // Initialization vector.
 
     const cipher = crypto.createCipheriv(algorithm, secret, iv);
 
+    outputStream.write(iv); //Write IV to the output stream so it may be used later.
+    console.log("Generated IV " + iv.toString('hex'));
     return new Promise((resolve, reject) => {
         inputStream.pipe(cipher).pipe(outputStream);
 
@@ -98,12 +131,54 @@ async function aesEncryptFileStream(inputStream, outputStream, secret, iv) {
     });
 }
 
-async function aesDecryptFile(inputStream, outputStream, iv, secret) {
-    const algorithm = 'aes-256-cbc';
+/**
+ * Asynchronous SB Implementation that Decrypts an Incoming FileStream using ``AES-256-CBC``
+ * 
+ * Extracts the IV (default size specified by ``IV_BUFFER_ALLOC_SIZE = 32`` in bytes) that is written to the head of the input stream, and decrypts the rest of the stream using the provided secret.
+ * 
+ * Usage Example:
+ * ```js
+ * import { aesDecryptFileStream } from './cryptography.js';
+ * 
+ * aesDecryptFileStream(inputStream, outputStream, MY_SECRET).then(() => {
+ *    console.log("Decryption Complete");
+ * }).catch((err) => {
+ *   console.error(err);
+ * });
+ * ```
+ * @param {Stream} inputStream Input Stream to Decrypt
+ * @param {Stream} outputStream Output Stream to Write Decrypted Data
+ * @param {String} secret Secret (for AES-265-CBC length is 32 bytes) to decrypt incoming stream
+ * @throws {Error} If the IV is not found in the input stream.
+ * @returns {Promise} Promise that resolves when the input stream has been decrypted and written to the output stream.
+ */
+async function aesDecryptFileStream(inputStream, outputStream, secret) {
+    const algorithm = AES_ALGORITHM;
 
-    const decipher = crypto.createDecipheriv(algorithm, Buffer.from(secret), iv);
+    //Read the IV from the input stream.
+    const iv = await new Promise((resolve, reject) => {
+        inputStream.once('readable', () => {
+            const iv = inputStream.read(IV_BUFFER_ALLOC_SIZE);
+            if (iv) {
+                resolve(iv);
+            } else {
+                reject(new Error(`IV not found in input stream.`));
+            }
+        });
+
+        inputStream.on('error', (err) => {
+            reject(err);
+        });
+    });
+
+    let decipher = crypto.createDecipheriv(algorithm, secret, iv);
 
     return new Promise((resolve, reject) => {
+        decipher.on('error', (err) => {
+            console.error('Decryption error:', err.message);
+            outputStream.end(); // End the output stream to gracefully terminate processing.
+        });
+
         inputStream.pipe(decipher).pipe(outputStream);
 
         inputStream.on('end', () => {
@@ -111,10 +186,11 @@ async function aesDecryptFile(inputStream, outputStream, iv, secret) {
         });
 
         inputStream.on('error', (err) => {
+            console.warn("Error in input stream. Promise is rejected");
             reject(err);
         });
     });
 }
 
-export { aesEncryptText, aesDecryptText, aesDecryptFile, aesEncryptFileStream };
+export { aesEncryptText, aesDecryptText, aesDecryptFileStream, aesEncryptFileStream };
 

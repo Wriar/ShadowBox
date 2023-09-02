@@ -8,7 +8,7 @@ let vwLastPreserveWidth = window.innerWidth;
 //If the window width goes back to the original width, reset the inline styles.
 const window_element_resize_observer = new ResizeObserver(function (entries) {
     // eslint-disable-next-line no-unused-vars
-    for (const entry of entries) {
+    for (const targetResizeObservers of entries) {
         console.log("The width of left item: " + v_left_element.offsetWidth + "px")
         if (v_left_element.offsetWidth <= 200) {
             if (vwLastPreserveWidth === -1) {
