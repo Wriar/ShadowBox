@@ -21,6 +21,11 @@ import crypto from 'crypto';
  */
 async function aesEncryptText(text, password, iv = crypto.randomBytes(16)) {
     return new Promise((resolve, reject) => {
+        //Check to see if IV is a Buffer
+        if (!Buffer.isBuffer(iv)) {
+            reject(new Error('IV must be a Buffer'));
+            return;
+        }
         crypto.scrypt(password, 'salt', 32, (err, key) => {
             if (err) {
                 reject(err);

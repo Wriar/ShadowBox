@@ -103,6 +103,12 @@ describe('AES Text Encryption Suite', () => {
         expect(testDecryptedString).toBe(testString);
     });
 
+    test('Encryption function should either reject or throw an error if the optional IV is incorrectly formatted', async () => {
+        await aesEncryptText(testString, testPassword, '123').catch((err) => {
+            expect(err).toBeInstanceOf(Error);
+        });
+    });
+
 
 });
 
