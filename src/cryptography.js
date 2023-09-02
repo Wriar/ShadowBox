@@ -17,7 +17,7 @@ import crypto from 'crypto';
  * @param {String} password Plaintext to Decrypt
  * @returns {String} Encrypted Text in a Promise.
  */
-async function aesEncryptText(text, password) {
+async function aesEncryptText(text, password, iv) {
     return new Promise((resolve, reject) => {
         crypto.scrypt(password, 'salt', 32, (err, key) => {
             if (err) {
@@ -25,7 +25,7 @@ async function aesEncryptText(text, password) {
                 return;
             }
 
-            const iv = crypto.randomBytes(16);
+            //const iv = crypto.randomBytes(16);
             const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
             let encryptedData = cipher.update(text, 'utf-8', 'hex');
             encryptedData += cipher.final('hex');
@@ -79,6 +79,42 @@ async function aesDecryptText(encryptedText, password) {
 }
 
 
+async function aesEncryptFileStream(inputStream, outputStream, secret, iv) {
+    const algorithm = 'aes-256-cbc';
+    //const iv = crypto.randomBytes(16); // Initialization vector.
 
-export { aesEncryptText, aesDecryptText };
+    const cipher = crypto.createCipheriv(algorithm, secret, iv);
+
+    return new Promise((resolve, reject) => {
+        inputStream.pipe(cipher).pipe(outputStream);
+
+        inputStream.on('end', () => {
+            resolve(iv);
+        });
+
+        inputStream.on('error', (err) => {
+            reject(err);
+        });
+    });
+}
+
+async function aesDecryptFile(inputStream, outputStream, iv, secret) {
+    const algorithm = 'aes-256-cbc';
+
+    const decipher = crypto.createDecipheriv(algorithm, Buffer.from(secret), iv);
+
+    return new Promise((resolve, reject) => {
+        inputStream.pipe(decipher).pipe(outputStream);
+
+        inputStream.on('end', () => {
+            resolve();
+        });
+
+        inputStream.on('error', (err) => {
+            reject(err);
+        });
+    });
+}
+
+export { aesEncryptText, aesDecryptText, aesDecryptFile, aesEncryptFileStream };
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Uploader Test</title>
+</head>
+<body>
+    <input type="file" id="fileInput" />
+    <span id="progress">0%</span>
+    <button id="uploadButton">Upload</button>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const progressSpan = document.getElementById('progress');
+        const uploadButton = document.getElementById('uploadButton');
+
+        uploadButton.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/upload', true);
+
+                xhr.upload.onprogress = (event) => {
+                    if (event.lengthComputable) {
+                        const percentComplete = (event.loaded / event.total) * 100;
+                        progressSpan.textContent = percentComplete.toFixed(2) + '%';
+                    }
+                };
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        progressSpan.textContent = 'Upload Complete';
+                    } else {
+                        console.error('Upload failed');
+                        progressSpan.textContent = 'Upload Failed';
+                    }
+                };
+
+                const formData = new FormData();
+                formData.append('file', file);
+                xhr.send(formData);
+            } else {
+                console.error('No file selected');
+            }
+        });
+    </script>
+</body>
+</html>
