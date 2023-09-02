@@ -1,9 +1,6 @@
 /* eslint-disable no-unused-vars */
 import crypto from 'crypto';
 
-
-
-
 /**
  * Asynchronous SB Implementation that Encrypts a String using ``AES-256-CBC``
  * 
@@ -13,14 +10,16 @@ import crypto from 'crypto';
  * Usage Example:
  * ```js
  * import { aesEncryptText } from './cryptography.js';
+ * //You may optionally pass a 3rd parameter to specify the IV. If not specified, a random IV will be generated.
  * const encryptedText = await aesEncryptText("eating a burger with no honey mustard", "Lilith");
  * console.log(`Encrypted: ${encryptedText}`);
  * ```
  * @param {String} text Plaintext to Encrypt
- * @param {String} password Plaintext to Decrypt
- * @returns {String} Encrypted Text in a Promise.
+ * @param {String} password Any-Length Password to encrypt with
+ * @param {Buffer} [iv=crypto.randomBytes(16)] Initialization Vector to use for encryption. (Default: ``crypto.randomBytes(16)``)
+ * @returns {String} Encrypted Text in a Promise. Offered in format ``<IV As Hex>:<EncryptedData>``
  */
-async function aesEncryptText(text, password, iv) {
+async function aesEncryptText(text, password, iv = crypto.randomBytes(16)) {
     return new Promise((resolve, reject) => {
         crypto.scrypt(password, 'salt', 32, (err, key) => {
             if (err) {
