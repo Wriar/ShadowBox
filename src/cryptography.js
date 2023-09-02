@@ -117,7 +117,6 @@ async function aesEncryptFileStream(inputStream, outputStream, secret) {
     const cipher = crypto.createCipheriv(algorithm, secret, iv);
 
     outputStream.write(iv); //Write IV to the output stream so it may be used later.
-    console.log("Generated IV " + iv.toString('hex'));
     return new Promise((resolve, reject) => {
         inputStream.pipe(cipher).pipe(outputStream);
 
