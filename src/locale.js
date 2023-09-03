@@ -7,6 +7,8 @@ const loginMessages = {
     PASSWORD_INVALID: "Invalid Password. Please try again.",
     USERNAME_INVALID: "Invalid Username. Please try again.",
 
+    ACCOUNT_MASTER_INVALID: "Could not log in at this time. Please try again later.",
+
     OK: "Logged in, redirecting..."
 }
 

@@ -2,6 +2,7 @@ import instanceDataPool from './db/instData.js';
 import bcrypt from 'bcrypt';
 import createLog from './logger.js';
 import { authenticationEnumLockStates } from './types.js';
+import { aesDecryptText } from '../cryptography.js';
 import { loginMessages } from '../locale.js';
 //import bcrypt from 'bcrypt';
 
@@ -96,6 +97,8 @@ export default function configureLoginRoutes(app) {
                     req.session.username = username;
                     req.session.usernameVerified = true;
                     req.session.sessionLockState = authenticationEnumLockStates.AWAIT_PASSWORD;
+
+                    
                     res.send({ code: 0, usernameValid: true, username: username });
 
                     return;
@@ -128,10 +131,20 @@ export default function configureLoginRoutes(app) {
                     return;
                 }
 
+                
+                const encryptedAccountMaster = userData[0].accountMaster;
+                const decryptedAccountMaster = await aesDecryptText(encryptedAccountMaster, password);
+
+                //Check if decryptedAccountMaster is 32 bytes long.
+                if(decryptedAccountMaster.length !== 32) {
+                    res.json({code: 1, message: loginMessages.ACCOUNT_MASTER_INVALID});
+                    return;
+                }
+
                 req.session.userData = userData;
                 req.session.loggedIn = true;
                 req.session.sessionLockState = authenticationEnumLockStates.AUTH_COMPLETE;
-
+                req.session.decryptedAccountMaster = decryptedAccountMaster;
                 res.json({code: 0, message: loginMessages.OK});
                 break;
 

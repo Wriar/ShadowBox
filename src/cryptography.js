@@ -23,7 +23,7 @@ async function aesEncryptText(text, password, iv = crypto.randomBytes(16)) {
     return new Promise((resolve, reject) => {
         //Check to see if IV is a Buffer
         if (!Buffer.isBuffer(iv)) {
-            reject(new Error('IV must be a Buffer'));
+            reject(new Error('IV must be a Buffer.'));
             return;
         }
         crypto.scrypt(password, 'salt', 32, (err, key) => {
@@ -31,8 +31,6 @@ async function aesEncryptText(text, password, iv = crypto.randomBytes(16)) {
                 reject(err);
                 return;
             }
-
-            //const iv = crypto.randomBytes(16);
             const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
             let encryptedData = cipher.update(text, 'utf-8', 'hex');
             encryptedData += cipher.final('hex');
