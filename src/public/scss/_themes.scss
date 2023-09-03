@@ -1,0 +1,29 @@
+:root {
+    --background-color: #FFFFFF;
+    --control-color: #EBEBEE;
+    --control-hover-color: #D8D8D8;
+
+    --navigation-color: #2B446A;
+    --theme-color: #2B445A;
+    --theme-hover-color: #1B619E;
+    --theme-active-color: #1F84DC;
+
+    --default-text-color: #000000;
+    --maximum-color: #000;
+
+}
+
+.theme-dark {
+    --background-color: #181818;
+    --control-color: #242424;
+    --control-hover-color: #242424;
+
+    //Left to right, starting at #1c2b41;
+    --navigation-color: linear-gradient(to right, #162132, #253b5b);
+    --theme-color: #328bda;
+    --theme-hover-color: rgb(45, 152, 245);
+    --theme-active-color: #3ba4ff;
+
+    --default-text-color: rgb(212, 212, 212);
+    --maximum-color: #FFFFFF;
+}

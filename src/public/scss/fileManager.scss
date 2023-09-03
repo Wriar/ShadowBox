@@ -1,5 +1,7 @@
+@import "_themes.scss";
 @import "_fileManager-nav.scss";
 @import "_fileManager-sidenav.scss";
+
 
 body {
     font-family: 'Open Sans', 'Arial', 'Helvetica', sans-serif;
@@ -7,6 +9,8 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
+    background-color: var(--background-color);
+    color: var(--default-text-color);
 }
 
 #filemanager-container {
@@ -17,9 +21,9 @@ body {
     $V-TREE-PADDING: 10px;
     .v-left {
         /* navigational tree view */
-        background-color: #ebebee;
+        background-color: var(--control-color);
         width: 16%;
-        height: calc(100vh - 59.7px);
+        height: calc(100vh - 65px);
         float: left;
 
         .tree-container {

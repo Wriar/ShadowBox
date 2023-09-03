@@ -1,6 +1,30 @@
+:root {
+  --background-color: #FFFFFF;
+  --control-color: #EBEBEE;
+  --control-hover-color: #D8D8D8;
+  --navigation-color: #2B446A;
+  --theme-color: #2B445A;
+  --theme-hover-color: #1B619E;
+  --theme-active-color: #1F84DC;
+  --default-text-color: #000000;
+  --maximum-color: #000;
+}
+
+.theme-dark {
+  --background-color: #181818;
+  --control-color: #242424;
+  --control-hover-color: #242424;
+  --navigation-color: linear-gradient(to right, #162132, #253b5b);
+  --theme-color: #328bda;
+  --theme-hover-color: rgb(45, 152, 245);
+  --theme-active-color: #3ba4ff;
+  --default-text-color: rgb(212, 212, 212);
+  --maximum-color: #FFFFFF;
+}
+
 /* Navigational Element containing the Logo and User Options, displayed on the top of the page DESKTOP */
 .fm-headnav_d {
-  background-color: #2b445a;
+  background: var(--navigation-color);
   display: flex;
   justify-content: space-between;
 }
@@ -8,7 +32,7 @@
 /* Large Logo with Text */
 .nav-logo {
   width: auto;
-  height: 50px;
+  height: 55px;
 }
 
 /* container for the logo */
@@ -24,6 +48,10 @@ nav ul {
 nav ul li {
   margin: 0 12px;
   list-style-type: none;
+}
+
+li {
+  margin-top: 5px;
 }
 
 /* by default, not displayed, overriden by media query */
@@ -59,11 +87,11 @@ nav ul li {
 
 /* default styles for nav button */
 .nav-btn {
-  background-color: #ebebee;
+  background-color: var(--control-color);
   padding: 5px 8px;
   border: 1px solid gray;
   font-size: 14px;
-  color: #232323;
+  color: var(--default-text-color);
   font-weight: medium;
 }
 
@@ -75,7 +103,7 @@ nav ul li {
   background-color: transparent !important;
   border: 0px;
   font-size: 80%;
-  color: gainsboro;
+  color: var(--control-color);
 }
 
 .btn-mobile:hover {
@@ -85,16 +113,16 @@ nav ul li {
 
 /* hover and active styles for nav buttons */
 .nav-btn:hover {
-  background-color: #d8d8d8;
+  background-color: var(--control-hover-color);
 }
 
 .nav-btn:active {
-  background-color: #b7b7b7;
+  background-color: var(--control-active-color);
 }
 
 /* RIBBON ELEMENTS */
 .fm-ribbon {
-  background-color: #ebebee;
+  background-color: var(--control-color);
   /* force items to stay on one line, never overflow */
   white-space: nowrap;
   padding-left: 5px;
@@ -102,8 +130,8 @@ nav ul li {
 }
 
 .fm-ribbon button {
-  background-color: #ebebee;
-  color: #2b445a;
+  background-color: var(--control-color);
+  color: var(--theme-color);
   white-space: nowrap;
   border: 0px;
   padding: 6px;
@@ -111,16 +139,16 @@ nav ul li {
 }
 
 .fm-ribbon button:hover {
-  color: #1b619e;
+  color: var(--theme-hover-color);
 }
 
 .fm-ribbon button:active {
-  color: #1f84dc;
+  color: var(--theme-active-color);
 }
 
 .fm-ribbon-mobile {
   display: none; /* media query only*/
-  background-color: #ebebee;
+  background-color: var(--control-color);
   /* force items to stay on one line, never overflow and allow scrollbar*/
   white-space: nowrap;
   overflow-x: auto;
@@ -129,7 +157,7 @@ nav ul li {
 }
 
 .fm-ribbon-mobile button {
-  color: #2b445a;
+  color: var(--theme-color);
   white-space: nowrap;
   border: 0px;
   padding: 10px;
@@ -211,12 +239,82 @@ span.spacer {
     font-size: 18px;
   }
 }
+/* File Tree */
+/* Remove default bullets */
+ul,
+#fileTree {
+  list-style-type: none;
+  font-size: 15px;
+}
+
+/* Remove margins and padding from the parent ul */
+#fileTree {
+  margin: 0;
+  padding: 10px;
+  padding-bottom: 0px;
+  padding-top: 28px;
+}
+
+.fileItem:before {
+  font-family: "lucide" !important;
+}
+
+.fileItem.generic:before {
+  content: "\f2e8";
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.fileItem.folder:before {
+  content: "\f30e";
+  margin-right: 6px;
+  display: inline-block;
+}
+
+/* Style the caret/arrow */
+.caret {
+  cursor: pointer;
+  user-select: none;
+  color: var(--maximum-color);
+  /* Prevent text selection */
+}
+
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+  font-family: "lucide" !important;
+  content: "\f30e";
+  color: orange;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+  content: "\f31f" !important;
+}
+
+/* Hide the nested list */
+.nested {
+  display: none;
+}
+
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+.active {
+  display: block;
+}
+
+li:not(.first) {
+  margin-top: 4px;
+}
+
 body {
   font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
   height: 100vh;
   margin: 0;
   padding: 0;
   border: 0;
+  background-color: var(--background-color);
+  color: var(--default-text-color);
 }
 
 #filemanager-container {
@@ -225,9 +323,9 @@ body {
 
 .v-wrapper .v-left {
   /* navigational tree view */
-  background-color: #ebebee;
+  background-color: var(--control-color);
   width: 16%;
-  height: calc(100vh - 59.7px);
+  height: calc(100vh - 65px);
   float: left;
 }
 .v-wrapper .v-left .tree-container {

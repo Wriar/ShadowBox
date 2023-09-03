@@ -87,6 +87,9 @@ footer p {
 .field_reveal button:active {
   background-color: #3a5a73;
 }
+.field_reveal button i {
+  font-size: 1.2rem;
+}
 .field_reveal a {
   text-align: left;
   /* align to the left of parent */
