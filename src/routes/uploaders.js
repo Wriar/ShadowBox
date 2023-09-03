@@ -54,6 +54,9 @@ export default function uploadersRoute(app) {
             // Perform file decryption asynchronously
             //console.log("Using IV: " + iv.toString('hex'));
             console.log("Awaiting AES Decrypt Stream");
+            
+            res.setHeader('Content-Disposition', 'attachment; filename=' + fileName);
+
             await aesDecryptFileStream(readStream, res, "TESTESTESTESTESTESTESTESTESTESTE");
 
             //For debugging purposes we will just copy the file.
