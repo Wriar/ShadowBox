@@ -16,6 +16,7 @@ const window_element_resize_observer = new ResizeObserver(function (entries) {
             }
             v_left_element.classList.add("hidden");
             v_right_element.classList.add("fullwidth");
+            document.getElementById('fileTree').style.display = "none";
         }
 
         if (window.innerWidth > vwLastPreserveWidth) {
@@ -23,6 +24,7 @@ const window_element_resize_observer = new ResizeObserver(function (entries) {
             //Reset the inline styles.
             v_left_element.classList.remove("hidden");
             v_right_element.classList.remove("fullwidth");
+            document.getElementById('fileTree').style.display = "block";
         }
     }
 });

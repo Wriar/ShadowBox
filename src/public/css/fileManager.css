@@ -136,6 +136,7 @@ li {
   border: 0px;
   padding: 6px;
   transition: all ease-in-out 0.1s;
+  cursor: pointer;
 }
 
 .fm-ribbon button:hover {
@@ -158,6 +159,7 @@ li {
 
 .fm-ribbon-mobile button {
   color: var(--theme-color);
+  background-color: var(--control-color);
   white-space: nowrap;
   border: 0px;
   padding: 10px;
@@ -165,7 +167,7 @@ li {
 }
 
 .danger {
-  color: rgb(180, 0, 0) !important;
+  color: rgb(217, 2, 2) !important;
 }
 
 /* test */
