@@ -163,7 +163,7 @@ async function aesDecryptFileStream(inputStream, outputStream, secret) {
             if (iv) {
                 resolve(iv);
             } else {
-                reject(new Error(`IV not found in input stream.`));
+                reject(new Error("IV not found in input stream."));
             }
         });
 
