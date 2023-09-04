@@ -30,7 +30,7 @@ beforeAll(() => {
 });
 
 afterAll((done) => {
-    fs.rmdir(sampleFileStructurePath, { recursive: true }, (err) => {
+    fs.rm(sampleFileStructurePath, { recursive: true }, (err) => {
         if (err) {
             throw err;
         }
