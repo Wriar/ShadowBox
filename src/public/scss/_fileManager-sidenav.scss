@@ -73,7 +73,6 @@ ul,
     margin: 0;
     padding: 10px;
     padding-bottom: 0px;
-    padding-top: 28px;
     
 }
 
@@ -128,4 +127,64 @@ ul,
 //Apply to all li items, but not those with the class "first"
 li:not(.first) {
     margin-top: 4px;
+}
+
+.fileTreeView {
+    position: relative;
+
+    table {
+        width: 100%;
+        tr {
+            td {
+                text-align: center;
+            }
+            td.search {
+                width: 80%;
+                text-align: center;
+                input {
+                    margin-left: 6px;
+                    width: calc(95% - 6px);
+                    background-color: transparent;
+                    border: 1px solid var(--default-text-color);
+                    border-radius: 2px;
+                    padding: calc(5px + 0.2rem);
+                    color: var(--default-text-color);
+                    transition: none;
+                    font-size: 0.9rem;
+                    :focus {
+                        outline: none;
+                    }
+                }
+                input::placeholder {
+                    content: "Search";
+                }
+            }
+            td.controls {
+                width: 20%;
+                text-align: center;
+                button {
+                    background-color: transparent;
+                    border: none;
+                    color: var(--theme-color);
+                    transition: all 0.1s ease-in-out;
+                    :hover {
+                        color: var(--theme-hover-color);
+                    }
+                    :active {
+                        color: var(--theme-active-color);
+                    }
+                }
+
+            }
+        }
+    }
+
+    button.btn-sidebar {
+        display: inline;
+    }
+    .interfaceControls {
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+    }
 }

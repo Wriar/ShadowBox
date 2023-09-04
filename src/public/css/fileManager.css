@@ -254,7 +254,6 @@ ul,
   margin: 0;
   padding: 10px;
   padding-bottom: 0px;
-  padding-top: 28px;
 }
 
 .fileItem:before {
@@ -307,6 +306,61 @@ ul,
 
 li:not(.first) {
   margin-top: 4px;
+}
+
+.fileTreeView {
+  position: relative;
+}
+.fileTreeView table {
+  width: 100%;
+}
+.fileTreeView table tr td {
+  text-align: center;
+}
+.fileTreeView table tr td.search {
+  width: 80%;
+  text-align: center;
+}
+.fileTreeView table tr td.search input {
+  margin-left: 6px;
+  width: calc(95% - 6px);
+  background-color: transparent;
+  border: 1px solid var(--default-text-color);
+  border-radius: 2px;
+  padding: calc(5px + 0.2rem);
+  color: var(--default-text-color);
+  transition: none;
+  font-size: 0.9rem;
+}
+.fileTreeView table tr td.search input :focus {
+  outline: none;
+}
+.fileTreeView table tr td.search input::placeholder {
+  content: "Search";
+}
+.fileTreeView table tr td.controls {
+  width: 20%;
+  text-align: center;
+}
+.fileTreeView table tr td.controls button {
+  background-color: transparent;
+  border: none;
+  color: var(--theme-color);
+  transition: all 0.1s ease-in-out;
+}
+.fileTreeView table tr td.controls button :hover {
+  color: var(--theme-hover-color);
+}
+.fileTreeView table tr td.controls button :active {
+  color: var(--theme-active-color);
+}
+.fileTreeView button.btn-sidebar {
+  display: inline;
+}
+.fileTreeView .interfaceControls {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
 }
 
 body {
