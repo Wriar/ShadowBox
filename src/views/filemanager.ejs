@@ -69,10 +69,10 @@
 
 
                 <ul id="fileTree" ondragstate="">
-                    <li><span class="caret root"><i class="icon-home"></i> My Files</span>
+                    <li><span class="folder caret root"><i class="icon-home"></i> My Files</span>
                         <ul class="nested">
                         
-                          <li><span class="caret">Work</span>
+                          <li><span class=" folder caret">Work</span>
                             <ul class="nested">
                               <li class="fileItem folder">Projects</li>
                               <li class="fileItem folder">Letters</li>
@@ -176,7 +176,7 @@ var i;
 for (i = 0; i < toggler.length; i++) {
   toggler[i].addEventListener("click", function() {
     this.parentElement.querySelector(".nested").classList.toggle("active");
-    this.classList.toggle("caret-down");
+    this.classList.toggle("folder-down");
   });
 }
     </script>

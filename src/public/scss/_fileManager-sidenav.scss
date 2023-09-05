@@ -60,73 +60,60 @@
     }
 }
 
-/* File Tree */
-/* Remove default bullets */
-ul,
+ul,#fileTree {
+	list-style-type: none;
+	font-size: 15px;
+}
 #fileTree {
-    list-style-type: none;
-    font-size: 15px;
+	margin: 0;
+	padding: 10px;
+	padding-bottom: 0px;
 }
-
-/* Remove margins and padding from the parent ul */
-#fileTree {
-    margin: 0;
-    padding: 10px;
-    padding-bottom: 0px;
-    
+.fileItem {
+	&:before {
+		font-family: 'lucide' !important;
+	}
+	&.generic {
+		&:before {
+			content: "\f2e8";
+			margin-right: 6px;
+			display: inline-block;
+		}
+	}
+	&.folder {
+		&:before {
+			content: "\f30e";
+			margin-right: 6px;
+			display: inline-block;
+		}
+	}
 }
-
-.fileItem:before {
-    font-family: 'lucide' !important;
+.caret.folder {
+	cursor: pointer;
+	user-select: none;
+	color: var(--maximum-color);
+	&::before {
+		font-family: 'lucide' !important;
+		content: "\f30e";
+		color: orange;
+		display: inline-block;
+		margin-right: 6px;
+	}
 }
-
-.fileItem.generic:before {
-    content: "\f2e8";
-    margin-right: 6px;
-    display: inline-block;
+.caret.folder-down {
+	&::before {
+		content: "\f31f" !important;
+	}
 }
-
-.fileItem.folder:before {
-    content: "\f30e";
-    margin-right: 6px;
-    display: inline-block;
-}
-
-/* Style the caret/arrow */
-.caret {
-    cursor: pointer;
-    user-select: none;
-    color: var(--maximum-color);
-    /* Prevent text selection */
-}
-
-/* Create the caret/arrow with a unicode, and style it */
-.caret::before {
-    font-family: 'lucide' !important;
-    content: "\f30e";
-    color: orange;
-    display: inline-block;
-    margin-right: 6px;
-}
-
-/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-.caret-down::before {
-    content: "\f31f" !important;
-}
-
-/* Hide the nested list */
 .nested {
-    display: none;
+	display: none;
 }
-
-/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
 .active {
-    display: block;
+	display: block;
 }
-
 //Apply to all li items, but not those with the class "first"
 li:not(.first) {
-    margin-top: 4px;
+	margin-top: 4px;
 }
 
 .fileTreeView {

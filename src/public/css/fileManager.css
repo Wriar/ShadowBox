@@ -241,15 +241,11 @@ span.spacer {
     font-size: 18px;
   }
 }
-/* File Tree */
-/* Remove default bullets */
-ul,
-#fileTree {
+ul, #fileTree {
   list-style-type: none;
   font-size: 15px;
 }
 
-/* Remove margins and padding from the parent ul */
 #fileTree {
   margin: 0;
   padding: 10px;
@@ -259,29 +255,23 @@ ul,
 .fileItem:before {
   font-family: "lucide" !important;
 }
-
 .fileItem.generic:before {
   content: "\f2e8";
   margin-right: 6px;
   display: inline-block;
 }
-
 .fileItem.folder:before {
   content: "\f30e";
   margin-right: 6px;
   display: inline-block;
 }
 
-/* Style the caret/arrow */
-.caret {
+.caret.folder {
   cursor: pointer;
   user-select: none;
   color: var(--maximum-color);
-  /* Prevent text selection */
 }
-
-/* Create the caret/arrow with a unicode, and style it */
-.caret::before {
+.caret.folder::before {
   font-family: "lucide" !important;
   content: "\f30e";
   color: orange;
@@ -289,17 +279,14 @@ ul,
   margin-right: 6px;
 }
 
-/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-.caret-down::before {
+.caret.folder-down::before {
   content: "\f31f" !important;
 }
 
-/* Hide the nested list */
 .nested {
   display: none;
 }
 
-/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
 .active {
   display: block;
 }
