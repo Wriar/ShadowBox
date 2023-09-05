@@ -58,7 +58,7 @@
                             <!--Search-->
                             <button class="btn-sidebar"><i class="icon-search"></i></button>
                             <!--Refresh-->
-                            <button class="btn-sidebar"><i class="icon-refresh-cw"></i></button>
+                            <button onclick="regenerateFolderStructure();" class="btn-sidebar"><i class="icon-refresh-cw"></i></button>
                             <!--Close Panel-->
                             <button class="btn-sidebar"><i class="icon-panel-left-close"></i></button>
                         </td>
@@ -69,10 +69,11 @@
 
 
                 <ul id="fileTree" ondragstate="">
+                    <!--
                     <li><span class="folder caret root"><i class="icon-home"></i> My Files</span>
                         <ul class="nested">
                         
-                          <li><span class=" folder caret">Work</span>
+                          <li><span class="folder caret">Work</span>
                             <ul class="nested">
                               <li class="fileItem folder">Projects</li>
                               <li class="fileItem folder">Letters</li>
@@ -85,7 +86,7 @@
                                 </ul>
                               </li>
                             </ul>
-                          </li>  
+                          </li>
 
                           <li class="fileItem folder">Documents</li>
 
@@ -94,7 +95,22 @@
                           <li class="fileItem folder">Videos</li>
                         </ul>
                       </li>
+                      -->
                 </ul>
+
+                <div class="statusContainer" id="fileTree-status">
+                    <!--Begin Preloader-->
+                    <span class="status">
+                        <span class="loader">
+                            <span class="loader-box"></span>
+                            <span class="loader-box"></span>
+                            <span class="loader-box"></span>
+                        </span>
+                        &ensp;Introspecting...
+                        
+                    </span>
+                    <!--End Preloader-->
+                </div>
 
                 <div class="interfaceControls">
                     <p>Interface Controsl</p>
@@ -156,11 +172,6 @@
             </div>
         </div>
 
-
-
-
-
-
     </div>
 
     <!--Sidebar File Property Viewer-->
@@ -170,18 +181,14 @@
     </div>
 
     <script>
-        var toggler = document.getElementsByClassName("caret");
-var i;
+        
+        
+        
 
-for (i = 0; i < toggler.length; i++) {
-  toggler[i].addEventListener("click", function() {
-    this.parentElement.querySelector(".nested").classList.toggle("active");
-    this.classList.toggle("folder-down");
-  });
-}
     </script>
 
-    <script nonce="KYS" src="/static-resx/js/filemanager-sidenav.js"></script>
+    <script src="/static-resx/js/filemanager-sidenav.js"></script>
+    <script src="/static-resx/js/filemanager-folderStructure.js"></script>
     <script src="/static-resx/js/filemanager-styles.js"></script>
 </body>
 
