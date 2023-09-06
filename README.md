@@ -9,3 +9,9 @@ ShadowBox *will* be a zero-knowledge open-source web-based file storage & hostin
 3. Run ``npm install`` to install all dependencies
 4. Run ``npm run a`` then ``npm run b`` concurrently to start the Nodemon development server and Scss compiler respectively.
 5. It is recommended to generate your own SSL certificates using the ``generateCertificates`` scripts.
+
+## Creating File Bucket
+Storing uploaded files are supported on partitions mounted to the computer running the server or a network share. Specify the name of the directory to store these files in the ``.env`` file.
+1. Create a directory or folder which the SB instance as permissions to write & ready to.
+2. Specify that directory in the ``FILE_BIN_BASEPATH`` environmental variable.
+3. Restart the Server
