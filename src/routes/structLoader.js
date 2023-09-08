@@ -8,6 +8,15 @@ export default function structLoaderRoutes(app) {
             return;
         }
 
+        //Verify the CSRF Token
+        const presentedCSRFToken = req.query.csrf_token;
+        if(req.session.csrf_token !== presentedCSRFToken) {
+            res.json({code: 1, message: "CSRF token mismatch."});
+            return;
+        } else {
+            console.log(`Presented CSRF token of ${presentedCSRFToken} matches session token of ${req.session.csrf_token}`)
+        }
+
         const username = req.session.userData[0].username;
         const accountMaster = req.session.decryptedAccountMaster;
 

@@ -4,6 +4,8 @@ import createLog from './logger.js';
 import { authenticationEnumLockStates } from './types.js';
 import { aesDecryptText } from '../cryptography.js';
 import { loginMessages } from '../locale.js';
+import { generateCSRFToken } from '../csrf.js';
+
 //import bcrypt from 'bcrypt';
 
 /**
@@ -94,6 +96,7 @@ export default function configureLoginRoutes(app) {
                         return;
                     }
 
+                    req.session.csrf_token = generateCSRFToken();
                     req.session.username = username;
                     req.session.usernameVerified = true;
                     req.session.sessionLockState = authenticationEnumLockStates.AWAIT_PASSWORD;

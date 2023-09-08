@@ -1,13 +1,14 @@
 //let folderStructureCache;
 const DO_EXPAND_ROOT_STRUCTURE = true;
-
+const csrfToken = document.getElementById("csrf_token").value;
 function regenerateFolderStructure() {
     //Remove all HTML from the fileTree element.
     document.getElementById("fileTree").innerHTML = "";
     document.getElementById('fileTree-status').style.display = "block";
     // Create a new XMLHttpRequest object
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "/api/fm-dash/getFolderStructure");
+    const url = `/api/fm-dash/getFolderStructure?csrf_token=${csrfToken}`;
+    xhr.open("GET", url, true);
     xhr.responseType = "json";
     xhr.onload = function () {
         if (xhr.status === 200) {
@@ -20,7 +21,6 @@ function regenerateFolderStructure() {
                 if (createFolderStructure(document.getElementById("fileTree"), data)) {
                     document.getElementById('fileTree-status').style.display = "none";
                 }
-
 
                 let toggler = document.getElementsByClassName("caret");
                 let i;
@@ -83,7 +83,7 @@ function createFolderStructure(parent, data) {
             } else {
                 const item = document.createElement("li");
                 item.className = "fileItem folder";
-                
+
                 item.textContent = child.name;
                 ul.appendChild(item);
             }
