@@ -1,4 +1,5 @@
 //let folderStructureCache;
+const DO_EXPAND_ROOT_STRUCTURE = true;
 
 function regenerateFolderStructure() {
     //Remove all HTML from the fileTree element.
@@ -51,11 +52,18 @@ function regenerateFolderStructure() {
 }
 
 let createdHomeIcon = false;
+
+//Used to initially expand the root folder if DO_EXPAND_ROOT_STRUCTURE is true.
+let expandedInitialNestElement = false;
+
 function createFolderStructure(parent, data) {
     const folder = document.createElement("li");
 
     if (data.children && data.children.length > 0) {
-        if (!createdHomeIcon) {
+        if (!createdHomeIcon && DO_EXPAND_ROOT_STRUCTURE) {
+            folder.innerHTML = `<span class="folder caret folder-down"><i class="icon-home"></i> ${data.name}</span>`;
+            createdHomeIcon = true;
+        } else if (!createdHomeIcon && !DO_EXPAND_ROOT_STRUCTURE) {
             folder.innerHTML = `<span class="folder caret"><i class="icon-home"></i> ${data.name}</span>`;
             createdHomeIcon = true;
         } else {
@@ -64,6 +72,10 @@ function createFolderStructure(parent, data) {
 
         const ul = document.createElement("ul");
         ul.className = "nested";
+        if (!expandedInitialNestElement && DO_EXPAND_ROOT_STRUCTURE) {
+            ul.className += " active";
+            expandedInitialNestElement = true;
+        }
 
         data.children.forEach((child) => {
             if (child.children) {
@@ -71,6 +83,7 @@ function createFolderStructure(parent, data) {
             } else {
                 const item = document.createElement("li");
                 item.className = "fileItem folder";
+                
                 item.textContent = child.name;
                 ul.appendChild(item);
             }
