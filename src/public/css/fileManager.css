@@ -252,6 +252,9 @@ ul, #fileTree {
   padding-bottom: 0px;
 }
 
+.fileItem {
+  cursor: alias;
+}
 .fileItem:before {
   font-family: "lucide" !important;
 }
@@ -265,6 +268,9 @@ ul, #fileTree {
   margin-right: 6px;
   display: inline-block;
 }
+.fileItem:hover:before {
+  color: whitesmoke;
+}
 
 .caret.folder {
   cursor: pointer;
@@ -277,6 +283,9 @@ ul, #fileTree {
   color: orange;
   display: inline-block;
   margin-right: 6px;
+}
+.caret.folder:hover:before {
+  color: gold;
 }
 
 .caret.folder-down::before {

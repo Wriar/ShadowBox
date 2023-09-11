@@ -70,6 +70,7 @@ ul,#fileTree {
 	padding-bottom: 0px;
 }
 .fileItem {
+    cursor: alias;
 	&:before {
 		font-family: 'lucide' !important;
 	}
@@ -87,7 +88,16 @@ ul,#fileTree {
 			display: inline-block;
 		}
 	}
+
+    //If .folder is hovered, change the color of the icon
+    &:hover {
+        &:before {
+            color: whitesmoke;
+        }
+    }
 }
+
+
 .caret.folder {
 	cursor: pointer;
 	user-select: none;
@@ -99,6 +109,13 @@ ul,#fileTree {
 		display: inline-block;
 		margin-right: 6px;
 	}
+
+    //If .caret.folder is hovered, change the color of the icon
+    &:hover {
+        &:before {
+            color: gold;
+        }
+    }
 }
 .caret.folder-down {
 	&::before {
