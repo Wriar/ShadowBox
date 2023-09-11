@@ -92,7 +92,7 @@ ul,#fileTree {
     //If .folder is hovered, change the color of the icon
     &:hover {
         &:before {
-            color: whitesmoke;
+            color: var(--maximum-color);
         }
     }
 }

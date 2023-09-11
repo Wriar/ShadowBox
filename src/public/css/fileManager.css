@@ -269,7 +269,7 @@ ul, #fileTree {
   display: inline-block;
 }
 .fileItem:hover:before {
-  color: whitesmoke;
+  color: var(--maximum-color);
 }
 
 .caret.folder {
