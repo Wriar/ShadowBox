@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 //let folderStructureCache;
 const DO_EXPAND_ROOT_STRUCTURE = true;
 const csrfToken = document.getElementById("csrf_token").value;
+let totalIntrospectionItems = 0;
 function regenerateFolderStructure() {
     //Remove all HTML from the fileTree element.
     document.getElementById("fileTree").innerHTML = "";
@@ -18,7 +20,9 @@ function regenerateFolderStructure() {
                 //folderStructureCache = data;
                 console.log(data);
 
-                if (createFolderStructure(document.getElementById("fileTree"), data)) {
+                const folderStructureResult = createFolderStructure(document.getElementById("fileTree"), data);
+
+                if (folderStructureResult[0], data) {
                     document.getElementById('fileTree-status').style.display = "none";
                 }
 
@@ -31,11 +35,19 @@ function regenerateFolderStructure() {
                         this.classList.toggle("folder-down");
                     });
                 }
+
+                if(folderStructureResult[0]) {
+                    // eslint-disable-next-line no-undef
+                    generateToast(0, `Successfully introspected ${totalIntrospectionItems} item` + (totalIntrospectionItems > 1 ? "s" : ""));
+                }
+                totalIntrospectionItems = 0; //Clear the total introspection items counter.
             } else {
-                throw new Error(response);
+                generateToast(3, response.message);
+                console.warn(`Fetch Error ${url}: ${response.message}`);
             }
         } else {
-            console.error("(J) Could not fetch folder structure.");
+            console.error("(J-SERVER) Could not fetch folder structure.");
+            generateToast(3, "Could not fetch the folder structure.");
             console.log(xhr.statusText);
         }
     };
@@ -43,6 +55,7 @@ function regenerateFolderStructure() {
     // Handle errors that may occur during the request
     xhr.onerror = function () {
         console.error("(J) Could not fetch folder structure.");
+        generateToast(3, "Could not fetch the folder structure.");
         console.log(xhr.statusText);
     };
 
@@ -57,6 +70,7 @@ let createdHomeIcon = false;
 let expandedInitialNestElement = false;
 
 function createFolderStructure(parent, data) {
+    let totalItems = 0;
     const folder = document.createElement("li");
 
     if (data.children && data.children.length > 0) {
@@ -87,6 +101,8 @@ function createFolderStructure(parent, data) {
                 item.textContent = child.name;
                 ul.appendChild(item);
             }
+            totalItems++;
+            totalIntrospectionItems++;
         });
 
         folder.appendChild(ul);
@@ -96,7 +112,7 @@ function createFolderStructure(parent, data) {
     }
 
     parent.appendChild(folder);
-    return true;
+    return [true, totalItems];
 }
 
 regenerateFolderStructure();

@@ -15,7 +15,7 @@ const loginMessages = {
 
 const stateMessages = {
     CSRF_TOKEN_INVALID: "Could not authenticate your request. Please log out and log in again (C1).",
-    NOT_LOGGED_IN: "You are not logged in.",
+    NOT_LOGGED_IN: "You are not logged in. Refresh the page and try again.",
 }
 
 const statusMessages = {

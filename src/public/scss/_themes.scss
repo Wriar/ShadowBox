@@ -11,6 +11,10 @@
     --default-text-color: #000000;
     --maximum-color: #000;
 
+    --success: green;
+    --warning: orange;
+    --error: red;
+
 }
 
 .theme-dark {
@@ -26,4 +30,8 @@
 
     --default-text-color: rgb(212, 212, 212);
     --maximum-color: #FFFFFF;
+
+    --success: green;
+    --warning: orange;
+    --error: red;
 }
