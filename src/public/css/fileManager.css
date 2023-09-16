@@ -448,6 +448,38 @@ body {
 
 .fm-fileview {
   padding: 10px;
+  /* file structure */
+}
+.fm-fileview .pathContainer {
+  display: table;
+  margin: 0 auto;
+  vertical-align: middle;
+  width: 100%;
+  border: 1px solid var(--control-hover-color);
+  padding: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+.fm-fileview .pathContainer button {
+  background-color: transparent;
+  border: none;
+  color: var(--maximum-color);
+  font-size: 1.2rem;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+.fm-fileview .pathContainer button :hover {
+  color: var(--theme-hover-color);
+}
+.fm-fileview .pathContainer button :active {
+  color: var(--theme-active-color);
+}
+.fm-fileview .pathContainer span {
+  font-size: 0.8rem;
+  vertical-align: middle;
+  line-height: 1.2rem;
+}
+.fm-fileview table {
+  width: 100%;
 }
 
 /*# sourceMappingURL=fileManager.css.map */

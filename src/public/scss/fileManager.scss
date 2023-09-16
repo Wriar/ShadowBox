@@ -49,4 +49,42 @@ body {
 
 .fm-fileview {
     padding: 10px;
+
+    .pathContainer {
+        display: table;
+        margin: 0 auto;
+        vertical-align: middle;
+        width: 100%;
+        border: 1px solid var(--control-hover-color);
+        padding: 0.2rem;
+        margin-bottom: 0.5rem;
+        button {
+            background-color: transparent;
+            border: none;
+            color: var(--maximum-color);
+            font-size: 1.2rem;
+            transition: all 0.1s ease-in-out;
+            cursor: pointer;
+            :hover {
+                color: var(--theme-hover-color);
+            }
+            :active {
+                color: var(--theme-active-color);
+            }
+        }
+        span {
+            font-size: 0.8rem;
+            vertical-align: middle;
+            line-height: 1.2rem;
+        }
+        
+    }
+
+    /* file structure */
+    table {
+        width: 100%;
+        th {
+
+        }
+    }
 }
