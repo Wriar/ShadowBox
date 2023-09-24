@@ -9,4 +9,15 @@ export default function loginRoute(app) {
             footer_copyright_text: displayText.COPYRIGHT,
         });
     });
+
+    app.get('/logout', (req, res) => {
+        req.session.destroy((err) => {
+            if(err) {
+                console.error(err);
+                res.redirect('/login');
+                return;
+            }
+            res.redirect('/login');
+        });
+    });
 }

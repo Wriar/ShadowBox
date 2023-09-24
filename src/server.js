@@ -66,7 +66,6 @@ loadRoutes(app);
 
 // TODO: Load the modules
 
-
 // Load & Test the database connection
 dbTryConnect(instData, "User Database");
 
@@ -74,7 +73,7 @@ console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 
 //If the process is run with the -n flag, it will override the HTTPS setting and run the server in HTTP mode.
 //This is used in workflow testing where port 443 is not available.
-let secureOverride = (process.argv[2] && process.argv[2] === '-n') ? true : false;
+let secureOverride = !!(process.argv[2] && process.argv[2] === '-n');
 
 
 if (useHTTPS && !secureOverride) {

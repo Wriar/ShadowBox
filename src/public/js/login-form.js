@@ -31,9 +31,11 @@ function usernameSubmit() {
                     //Hide Preloaders
                     $('#btn_userNext i').show();
                     $('#btn_userNext img').hide();
-
+                    
 
                     $('#password_reveal').fadeIn(500);
+                    $('password').focus(); //Focus on #password
+
                     //Show #h_username
                     $('#h_username').show();
                     $('#h_username').text(`Hi, ${usernameResponse}!`); //Set #h_username to username
@@ -69,6 +71,7 @@ function passwordSubmit() {
         hideShowError(true, "Please enter a password.");
         $('#btn_login i').show();
         $('#btn_login img').hide();
+        $('#password').focus();
         return;
     }
 
@@ -118,6 +121,7 @@ function returnToUsername() {
     $('#password_reveal').fadeOut(1, function () {
         $('#h_username').hide();
         $('#username_reveal').fadeIn(1);
+        $('#username').focus();
     });
 }
 
