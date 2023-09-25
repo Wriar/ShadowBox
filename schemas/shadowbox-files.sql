@@ -27,13 +27,24 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `uuid` varchar(255) NOT NULL COMMENT 'UUID of the file',
-  `fileName` varchar(255) NOT NULL COMMENT 'AES;SHA256 of the file name',
-  `filePath` text NOT NULL COMMENT 'AES;SHA256 of the file path',
-  `modifiedDate` text NOT NULL COMMENT 'AES;SHA256 of the file modified date',
-  `meta` text NOT NULL COMMENT 'AES of the file metadata',
+  `objectID` varchar(255) NOT NULL COMMENT 'objectID of the file',
+  `fileName` varchar(255) NOT NULL COMMENT 'AES Name of the File',
+  `filePath` text NOT NULL COMMENT 'Virtual Path of the File',
+  `modifiedDate` text NOT NULL COMMENT 'SECURE date of when the file was last modified.',
+  `meta` text NOT NULL COMMENT 'SECURE MetaData about the object',
   `permissions` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+COMMIT;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD UNIQUE KEY `objectID` (`objectID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
