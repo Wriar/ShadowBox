@@ -27,14 +27,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `objectID` varchar(255) NOT NULL COMMENT 'objectID of the file',
+  `objectID` varchar(255) NOT NULL COMMENT 'objectID of the file on disk',
   `fileName` varchar(255) NOT NULL COMMENT 'AES Name of the File',
   `filePath` text NOT NULL COMMENT 'Virtual Path of the File',
-  `modifiedDate` text NOT NULL COMMENT 'SECURE date of when the file was last modified.',
+  `modifiedDate` text NOT NULL COMMENT 'SECURE date of when the file was last modified in JS ISO Time format. (2020-08-02T22:04:10.143Z)',
   `meta` text NOT NULL COMMENT 'SECURE MetaData about the object',
   `permissions` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-COMMIT;
 
 --
 -- Indexes for dumped tables

@@ -1,8 +1,11 @@
 /* eslint-disable no-unused-vars */
+// noinspection JSUnresolvedReference
+
 import crypto from 'crypto';
 const AES_KEY_SIZE = 32; //AES-256-CBC Key Size in Bytes.
 const IV_BUFFER_ALLOC_SIZE = 16; //Allocate 16 bytes for the IV buffer.
 const AES_ALGORITHM = 'aes-256-cbc'; //AES-256-CBC Algorithm using 16-byte IV.
+
 
 /**
  * Asynchronous SB Implementation that Encrypts a String using ``AES-256-CBC``
@@ -85,8 +88,6 @@ async function aesDecryptText(encryptedText, password) {
         });
     });
 }
-
-
 
 
 /**
