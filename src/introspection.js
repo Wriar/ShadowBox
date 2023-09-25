@@ -1,4 +1,5 @@
 import fs from 'fs/promises'
+
 const FILE_BIN_BASEPATH = process.env.FILE_BIN_BASEPATH;
 /**
  * Recursively list all folders and all subfolders within a directory.
@@ -64,8 +65,7 @@ function convertFolderListToJSON(folderList) {
 async function getUserDirectoryStructure(username) {
     //TODO: Support multiple user storage solutions.
     const arrayFolderStructure = await listDirectoryStructure(`${FILE_BIN_BASEPATH}/${username}`);
-    const jsonFolderStructure = convertFolderListToJSON(arrayFolderStructure);
-    return jsonFolderStructure;
+    return convertFolderListToJSON(arrayFolderStructure);
 }
 
 

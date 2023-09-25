@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 import crypto from 'crypto';
+const AES_KEY_SIZE = 32; //AES-256-CBC Key Size in Bytes.
+const IV_BUFFER_ALLOC_SIZE = 16; //Allocate 16 bytes for the IV buffer.
+const AES_ALGORITHM = 'aes-256-cbc'; //AES-256-CBC Algorithm using 16-byte IV.
 
 /**
  * Asynchronous SB Implementation that Encrypts a String using ``AES-256-CBC``
@@ -26,12 +29,12 @@ async function aesEncryptText(text, password, iv = crypto.randomBytes(16)) {
             reject(new Error('IV must be a Buffer.'));
             return;
         }
-        crypto.scrypt(password, 'salt', 32, (err, key) => {
+        crypto.scrypt(password, 'salt', AES_KEY_SIZE, (err, key) => {
             if (err) {
                 reject(err);
                 return;
             }
-            const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+            const cipher = crypto.createCipheriv(AES_ALGORITHM, key, iv);
             let encryptedData = cipher.update(text, 'utf-8', 'hex');
             encryptedData += cipher.final('hex');
             const encryptedText = `${iv.toString('hex')}:${encryptedData}`;
@@ -65,14 +68,14 @@ async function aesDecryptText(encryptedText, password) {
         const [ivHex, encryptedData] = encryptedText.split(':');
         const iv = Buffer.from(ivHex, 'hex');
 
-        crypto.scrypt(password, 'salt', 32, (err, key) => {
+        crypto.scrypt(password, 'salt', AES_KEY_SIZE, (err, key) => {
             if (err) {
                 reject(err);
                 return;
             }
 
             try {
-                const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
+                const decipher = crypto.createDecipheriv(AES_ALGORITHM, key, iv);
                 let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
                 decryptedData += decipher.final('utf-8');
                 resolve(decryptedData);
@@ -84,9 +87,6 @@ async function aesDecryptText(encryptedText, password) {
 }
 
 
-const IV_BUFFER_ALLOC_SIZE = 16; //Allocate 16 bytes for the IV buffer.
-const AES_ALGORITHM = 'aes-256-cbc'; //AES-256-CBC Algorithm using 16-byte IV.
-const AES_KEY_SIZE = 32; //AES-256-CBC Key Size in Bytes.
 
 
 /**
@@ -118,7 +118,7 @@ async function aesEncryptFileStream(inputStream, outputStream, secret) {
 
     const cipher = crypto.createCipheriv(algorithm, secret, iv);
 
-    outputStream.write(iv); //Write IV to the output stream so it may be used later.
+    outputStream.write(iv); //Write IV to the output stream, so it may be used later.
     return new Promise((resolve, reject) => {
         inputStream.pipe(cipher).pipe(outputStream);
 
@@ -180,7 +180,6 @@ async function aesDecryptFileStream(inputStream, outputStream, secret) {
             console.error('Decryption error:', err.message);
             outputStream.end(); // End the output stream to gracefully terminate processing.
         });
-
         inputStream.pipe(decipher).pipe(outputStream);
 
         //Strip null bytes from the end of the stream.
@@ -196,5 +195,10 @@ async function aesDecryptFileStream(inputStream, outputStream, secret) {
     });
 }
 
-export { aesEncryptText, aesDecryptText, aesDecryptFileStream, aesEncryptFileStream };
+export {
+    aesEncryptText,
+    aesDecryptText,
+    aesDecryptFileStream,
+    aesEncryptFileStream
+};
 
