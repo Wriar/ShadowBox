@@ -31,7 +31,7 @@ async function returnUsernameValidity(username) {
         return [false, null];
     } finally {
         if (conn) {
-            conn.release();
+            await conn.release();
         }
     }
 }
@@ -68,7 +68,7 @@ async function returnUsernamePasswordValidity(username, password) {
         return [false, null];
     } finally {
         if (conn) {
-            conn.release();
+            await conn.release();
         }
     }
 }
