@@ -17,6 +17,25 @@ const window_element_resize_observer = new ResizeObserver(function (entries) {
             v_left_element.classList.add("hidden");
             v_right_element.classList.add("fullwidth");
             document.getElementById('fileTree').style.display = "none";
+
+            //Recursively Loop through all child elements in id=fileTreeView and set their display to none.
+
+            for (let i = 0; i < document.getElementById('fileTreeView').childElementCount; i++) {
+                let child = document.getElementById('fileTreeView').children[i];
+                child.style.display = "none";
+                if (child.children.length > 0) {
+                    for (let j = 0; j < child.children.length; j++) {
+                        let grandchild = child.children[j];
+                        grandchild.style.display = "none";
+                        if (grandchild.children.length > 0) {
+                            for (let k = 0; k < grandchild.children.length; k++) {
+                                let greatgrandchild = grandchild.children[k];
+                                greatgrandchild.style.display = "none";
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if (window.innerWidth > vwLastPreserveWidth) {
@@ -25,6 +44,27 @@ const window_element_resize_observer = new ResizeObserver(function (entries) {
             v_left_element.classList.remove("hidden");
             v_right_element.classList.remove("fullwidth");
             document.getElementById('fileTree').style.display = "block";
+
+            //Recursively Loop through all child elements in id=fileTreeView and set their display to block.
+
+            for (let i = 0; i < document.getElementById('fileTreeView').childElementCount; i++) {
+                let child = document.getElementById('fileTreeView').children[i];
+                child.style.display = "block";
+                if (child.children.length > 0) {
+                    for (let j = 0; j < child.children.length; j++) {
+                        let grandchild = child.children[j];
+                        grandchild.style.display = "block";
+                        if (grandchild.children.length > 0) {
+                            for (let k = 0; k < grandchild.children.length; k++) {
+                                let greatgrandchild = grandchild.children[k];
+                                greatgrandchild.style.display = "block";
+                            }
+                        }
+                    }
+                }
+            }
+            //Above method will show the introspection loader. Make sure to hide it.
+            document.getElementById('fileTree-status').style.display = "none";
         }
     }
 });

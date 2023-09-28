@@ -84,6 +84,7 @@ async function aesDecryptText(encryptedText, password) {
                 resolve(decryptedData);
             } catch (decryptError) {
                 reject(new Error('Incorrect password or corrupted data.'));
+
             }
         });
     });
@@ -167,7 +168,6 @@ async function aesDecryptFileStream(inputStream, outputStream, secret) {
                 reject(new Error("IV not found in input stream."));
             }
         });
-
         inputStream.on('error', (err) => {
             reject(err);
         });
