@@ -1,6 +1,7 @@
 import {authenticationEnumLockStates} from '../server/types.js';
 import {getUserDirectoryStructure} from '../introspection.js';
 import {stateMessages, statusMessages} from '../locale.js';
+
 export default function structLoaderRoutes(app) {
     app.get('/api/fm-dash/getFolderStructure', async (req, res) => {
         //Check if we are logged in

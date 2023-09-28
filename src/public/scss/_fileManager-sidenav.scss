@@ -200,37 +200,77 @@ li:not(.first) {
         cursor: pointer;
     }
 	//Contains interface controls for the file manager
-    .interfaceControls {
+    .sidebar-interfaces {
         position: absolute;
         bottom: 0;
         z-index: 1;
         width: 100%;
 		text-align: center;
-    }
+
+		//Top border is a gradient
+		border-top: 1px solid var(--background-color);
+
+		.loader {
+			height: 1rem;
+			width: 1rem;
+			border: 2px solid var(--background-color);
+			border-bottom-color: var(--theme-active-color);
+			border-radius: 50%;
+			display: inline-block !important; /* !important is needed to override hidden props in JS resizeObserver */
+			box-sizing: border-box;
+			animation: rotation 0.5s linear infinite;
+		}
+
+		@keyframes rotation {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+	}
 }
 
 .loader {
-    height : 8px;
-    width  : 36px; /* (6 * <margin: 2px>) + (3 * <width: 8px>) */
+	height: 8px;
+	width: 36px; /* (6 * <margin: 2px>) + (3 * <width: 8px>) */
 }
 
 .loader-box {
-    display                   : inline-block;
-    height                    : 8px;
-    width                     : 8px;
-    margin                    : 0px 2px;
-    background-color          : rgb(0,146,255);
-    animation-name            : fadeOutIn;
-    animation-duration        : 500ms;
-    animation-iteration-count : infinite;
-    animation-direction       : alternate;
+	display: inline-block;
+	height: 8px;
+	width: 8px;
+	margin: 0px 2px;
+	background-color: rgb(0, 146, 255);
+	animation-name: fadeOutIn;
+	animation-duration: 500ms;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
-.loader-box:nth-child(1) { animation-delay: 250ms; } /* (1/2) * <animation-duration: 500ms */
-.loader-box:nth-child(2) { animation-delay: 500ms; } /* (2/2) * <animation-duration: 500ms */
-.loader-box:nth-child(3) { animation-delay: 750ms; } /* (3/2) * <animation-duration: 500ms */
+.loader-box:nth-child(1) {
+	animation-delay: 250ms;
+}
+
+/* (1/2) * <animation-duration: 500ms */
+.loader-box:nth-child(2) {
+	animation-delay: 500ms;
+}
+
+/* (2/2) * <animation-duration: 500ms */
+.loader-box:nth-child(3) {
+	animation-delay: 750ms;
+}
+
+/* (3/2) * <animation-duration: 500ms */
 
 @keyframes fadeOutIn {
-    0%   { background-color : var(--theme-color); }
-    100% { background-color : rgba(0,146,255,0); }
+	0% {
+		background-color: var(--theme-color);
+	}
+	100% {
+		background-color: rgba(0, 146, 255, 0);
+	}
 }

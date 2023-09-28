@@ -7,6 +7,7 @@ function regenerateFolderStructure() {
     //Remove all HTML from the fileTree element.
     document.getElementById("fileTree").innerHTML = "";
     document.getElementById('fileTree-status').style.display = "block";
+    modifySidebarInterfaceStatus(interfaceStatus.LOADING_GENERIC, "Loading folder structure...");
     // Create a new XMLHttpRequest object
     const xhr = new XMLHttpRequest();
     const url = `/api/fm-dash/getFolderStructure?csrf_token=${csrfToken}`;
@@ -24,6 +25,7 @@ function regenerateFolderStructure() {
 
                 if (folderStructureResult[0], data) {
                     document.getElementById('fileTree-status').style.display = "none";
+                    modifySidebarInterfaceStatus(interfaceStatus.READY, "Up to date.");
                 }
 
                 let toggler = document.getElementsByClassName("caret");

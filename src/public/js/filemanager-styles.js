@@ -6,6 +6,7 @@ let vwLastPreserveWidth = window.innerWidth;
 
 //If the window width is less than 200px, hide the left element (tree view) and make the right element full width.
 //If the window width goes back to the original width, reset the inline styles.
+
 const window_element_resize_observer = new ResizeObserver(function (entries) {
     // eslint-disable-next-line no-unused-vars
     for (const targetResizeObservers of entries) {
@@ -22,6 +23,11 @@ const window_element_resize_observer = new ResizeObserver(function (entries) {
 
             for (let i = 0; i < document.getElementById('fileTreeView').childElementCount; i++) {
                 let child = document.getElementById('fileTreeView').children[i];
+
+                //If the element has a "no-observe" tag, skip it. (<span class="loader" no-observe></span>)
+                if(child.hasAttribute("no-observe")) {
+                    continue;
+                }
                 child.style.display = "none";
                 if (child.children.length > 0) {
                     for (let j = 0; j < child.children.length; j++) {
