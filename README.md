@@ -1,6 +1,7 @@
-<h1 style="text-align: center">ShadowBox FileStore</h1>
 
-<div style="text-align: center;">
+
+<div style="text-align: center;" align="center">
+    <h1 style="text-align: center" align="center">ShadowBox FileStore</h1>
     <a href="https://app.deepsource.com/gh/Wriar/ShadowBox/?ref=repository-badge">
         <img src="https://app.deepsource.com/gh/Wriar/ShadowBox.svg/?label=active+issues&show_trend=true&token=5APRnpsK93ZKzHm3t9ZQKgp8" alt="Active Issues" title="DeepSource Analysis">
     </a>
