@@ -19,9 +19,9 @@ export default function structLoaderRoutes(app) {
         }
 
         const username = req.session.userData[0].username;
-        const accountMaster = req.session.decryptedAccountMaster;
+        //const accountMaster = req.session.decryptedAccountMaster;
 
-        getUserDirectoryStructure(username, accountMaster).then((folderStructure) => {
+        await getUserDirectoryStructure(username).then((folderStructure) => {
             res.json({code: 0, message: statusMessages.OK, folderStructure: folderStructure});
         }).catch((error) => {
             //Cannot get folder structure
