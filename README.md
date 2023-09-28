@@ -1,10 +1,21 @@
-# ShadowBox-Dev [![Active Issues](https://app.deepsource.com/gh/Wriar/ShadowBox.svg/?label=active+issues&show_trend=true&token=5APRnpsK93ZKzHm3t9ZQKgp8)](https://app.deepsource.com/gh/Wriar/ShadowBox/?ref=repository-badge) [![CodeFactor](https://www.codefactor.io/repository/github/wriar/shadowbox/badge?s=892deaf91df08db750f4974dfa5b688e8cdcc423)](https://www.codefactor.io/repository/github/wriar/shadowbox) ![Project Status is In Development](https://img.shields.io/badge/Project%20Status-In%20Development-yellow)
+<h1 style="text-align: center">ShadowBox FileStore</h1>
 
 <div style="text-align: center;">
+    <a href="https://app.deepsource.com/gh/Wriar/ShadowBox/?ref=repository-badge">
+        <img src="https://app.deepsource.com/gh/Wriar/ShadowBox.svg/?label=active+issues&show_trend=true&token=5APRnpsK93ZKzHm3t9ZQKgp8" alt="Active Issues" title="DeepSource Analysis">
+    </a>
+    <a href="https://www.codefactor.io/repository/github/wriar/shadowbox">
+        <img src="https://www.codefactor.io/repository/github/wriar/shadowbox/badge?s=892deaf91df08db750f4974dfa5b688e8cdcc423" alt="CodeFactor" title="CodeFactor Issue Tracker">
+    </a>
+    <img src="https://img.shields.io/badge/Project%20Status-In%20Development-yellow" alt="Project Status is In Development" title="Badge with the project status">
+</div>
+
+<div style="text-align: center;">
+
 <img src="preview.png" alt="ShadowBox Preview"  style="max-height: 300px; text-align: center; width: auto;">
 </div>
 
-ShadowBox *will* be a zero-knowledge open-source web-based file storage & hosting system, featuring partial or full encryption through cryptographic ciphers. Contributors are welcome to help develop this project.
+ShadowBox *will* be a zero-knowledge open-source web-based file storage & hosting system, featuring full or partial data encryption through cryptographic ciphers. Contributors are welcome to help develop this project.
 > [!WARNING]  
 > This is a developmental repository of ShadowBox. As this software is still being developed, some or all features may not be available as it is currently a work in progress.
 
@@ -16,7 +27,7 @@ ShadowBox *will* be a zero-knowledge open-source web-based file storage & hostin
     - ``MYSQL_INSTDATA_DATABASE`` is the name of the database that contains the instance data of our SB server. Import the ``schemas/shadowbox-data.sql`` file into this database and generate a new Bcrypt hash for the ``admin`` account.
     - ``MYSQL_FILETABLES_DATABASE`` is the name of the database that contains the file tables of our SB server. Import the ``schemas/shadowbox-filetables.sql`` file into this database.
     - ``SESSION_SECRET`` is the secret key used to sign the session cookies. This can be any secure random string.
-    - ``FILE_BIN_BASEPATH`` is the path to the directory where uploaded files will be stored. This directory must be writable by the SB server and is recommended to be stored on a seperate partition. **This is the default file storage method**.
+    - ``FILE_BIN_BASEPATH`` is the path to the directory where uploaded files will be stored. This directory must be writable by the SB server and is recommended to be stored on a separate partition. **This is the default file storage method**.
 
 2. Setup a MariaDB instance with the schemas that are provided in the instance. Refer to Step 1 for adding the schemas to the environmental variables file.
 3. Run ``npm install`` to install all dependencies
@@ -31,7 +42,7 @@ Storing uploaded files are supported on partitions mounted to the computer runni
 > [!NOTE]
 > The SB server will not create the directory for you. You must create the directory yourself. **NEVER** manually attempt to edit any contents of the filebin, as this may cause the server to crash, corrupt the filebin, or misalign the filetable stored on the SQL server.
 
-## What works right now and what doesnt?
+## What works right now and what doesn't?
 - [x] User Authentication
 - [x] Rendering Login & File Area
 - [x] Introspecting files
