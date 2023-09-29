@@ -10,7 +10,7 @@ let vwLastPreserveWidth = window.innerWidth;
 const window_element_resize_observer = new ResizeObserver(function (entries) {
     // eslint-disable-next-line no-unused-vars
     for (const targetResizeObservers of entries) {
-        console.log("The width of left item: " + v_left_element.offsetWidth + "px")
+        //console.log("The width of left item: " + v_left_element.offsetWidth + "px")
         if (v_left_element.offsetWidth <= 200) {
             if (vwLastPreserveWidth === -1) {
                 vwLastPreserveWidth = window.innerWidth;

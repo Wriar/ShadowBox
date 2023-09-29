@@ -111,7 +111,7 @@ li {
   background-color: transparent !important;
   border: 0px;
   font-size: 80%;
-  color: var(--control-color);
+  color: var(--default-text-color);
 }
 
 .btn-mobile:hover {
