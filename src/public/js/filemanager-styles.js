@@ -24,10 +24,6 @@ const window_element_resize_observer = new ResizeObserver(function (entries) {
             for (let i = 0; i < document.getElementById('fileTreeView').childElementCount; i++) {
                 let child = document.getElementById('fileTreeView').children[i];
 
-                //If the element has a "no-observe" tag, skip it. (<span class="loader" no-observe></span>)
-                if(child.hasAttribute("no-observe")) {
-                    continue;
-                }
                 child.style.display = "none";
                 if (child.children.length > 0) {
                     for (let j = 0; j < child.children.length; j++) {
@@ -55,15 +51,36 @@ const window_element_resize_observer = new ResizeObserver(function (entries) {
 
             for (let i = 0; i < document.getElementById('fileTreeView').childElementCount; i++) {
                 let child = document.getElementById('fileTreeView').children[i];
-                child.style.display = "block";
+
+
+                //If the child has a attribute of "data-pos-origin", set its display to that value. Otherwise, set it to block.
+                if(child.hasAttribute("data-pos-origin")) {
+                    child.style.display = child.getAttribute("data-pos-origin");
+                } else {
+                    child.style.display = "block";
+                }
+
+
                 if (child.children.length > 0) {
                     for (let j = 0; j < child.children.length; j++) {
                         let grandchild = child.children[j];
-                        grandchild.style.display = "block";
+
+                        //If the grandchild has a attribute of "data-pos-origin", set its display to that value. Otherwise, set it to block.
+                        if(grandchild.hasAttribute("data-pos-origin")) {
+                            grandchild.style.display = grandchild.getAttribute("data-pos-origin");
+                        } else {
+                            grandchild.style.display = "block";
+                        }
                         if (grandchild.children.length > 0) {
                             for (let k = 0; k < grandchild.children.length; k++) {
                                 let greatgrandchild = grandchild.children[k];
-                                greatgrandchild.style.display = "block";
+
+                                //If the greatgrandchild has a attribute of "data-pos-origin", set its display to that value. Otherwise, set it to block.
+                                if(greatgrandchild.hasAttribute("data-pos-origin")) {
+                                    greatgrandchild.style.display = greatgrandchild.getAttribute("data-pos-origin");
+                                } else {
+                                    greatgrandchild.style.display = "block";
+                                }
                             }
                         }
                     }

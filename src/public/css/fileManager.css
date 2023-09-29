@@ -2,6 +2,7 @@
   --background-color: #FFFFFF;
   --control-color: #EBEBEE;
   --control-hover-color: #D8D8D8;
+  --control-hover-edge-color: #BFBFBF;
   --navigation-color: #2B446A;
   --theme-color: #2B445A;
   --theme-hover-color: #1B619E;
@@ -17,6 +18,7 @@
   --background-color: #181818;
   --control-color: #242424;
   --control-hover-color: #242424;
+  --control-hover-edge-color: #464646;
   --navigation-color: linear-gradient(to right, #162132, #253b5b);
   --theme-color: #328bda;
   --theme-hover-color: rgb(45, 152, 245);
@@ -386,6 +388,22 @@ li:not(.first) {
   display: inline-block !important; /* !important is needed to override hidden props in JS resizeObserver */
   box-sizing: border-box;
   animation: rotation 0.5s linear infinite;
+}
+.fileTreeView .sidebar-interfaces .btn-rounded {
+  border-radius: 50%;
+  padding: 0.5rem 0.6rem;
+  margin-left: 0.5rem;
+  border: 1px solid var(--control-hover-edge-color);
+  background-color: var(--control-hover-color);
+  color: var(--default-text-color);
+  transition: background-color 0.1s ease-in-out;
+}
+.fileTreeView .sidebar-interfaces .btn-rounded:hover {
+  background-color: var(--control-hover-edge-color);
+}
+.fileTreeView .sidebar-interfaces .btn-rounded:active {
+  transition: none;
+  background-color: rgba(var(--control-hover-edge-color), 0.5);
 }
 @keyframes rotation {
   0% {

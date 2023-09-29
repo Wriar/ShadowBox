@@ -221,6 +221,24 @@ li:not(.first) {
 			animation: rotation 0.5s linear infinite;
 		}
 
+		.btn-rounded {
+			border-radius: 50%;
+			padding: 0.5rem 0.6rem;
+			margin-left: 0.5rem;
+			border: 1px solid var(--control-hover-edge-color);
+			background-color: var(--control-hover-color);
+			color: var(--default-text-color);
+			//Hover transition ONLY. No transition on active state.
+			transition: background-color .1s ease-in-out;
+			&:hover {
+				background-color: var(--control-hover-edge-color);
+			}
+			&:active {
+				transition: none;
+				background-color: rgba(var(--control-hover-edge-color), 0.5);
+			}
+		}
+
 		@keyframes rotation {
 			0% {
 				transform: rotate(0deg);
