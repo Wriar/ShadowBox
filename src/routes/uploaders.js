@@ -17,7 +17,7 @@ export default function uploadersRoute(app) {
 
         busboyInstance.on('file', (fieldname, file) => {
             fileName = 'encrypted_file.txt'; // Modify the filename as needed
-            const filePath = __dirname + '/' + fileName;
+            const filePath = `${__dirname}/${fileName}`;
             writeStream = fs.createWriteStream(filePath);
 
             // Perform file encryption asynchronously
@@ -48,14 +48,14 @@ export default function uploadersRoute(app) {
         try {
             // Create a read stream from the encrypted file
             const fileName = 'encrypted_file.txt'; // Modify the filename as needed
-            const filePath = __dirname + '/' + fileName;
+            const filePath = `${__dirname}/${fileName}`;
             const readStream = fs.createReadStream(filePath);
 
             // Perform file decryption asynchronously
             //console.log("Using IV: " + iv.toString('hex'));
             console.log("Awaiting AES Decrypt Stream");
             
-            res.setHeader('Content-Disposition', 'attachment; filename=' + fileName);
+            res.setHeader(`Content-Disposition`, `attachment; filename=${fileName}`);
 
             await aesDecryptFileStream(readStream, res, "TESTESTESTESTESTESTESTESTESTESTE");
 

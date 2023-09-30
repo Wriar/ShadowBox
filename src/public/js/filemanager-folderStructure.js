@@ -40,7 +40,7 @@ function regenerateFolderStructure() {
 
                 if(folderStructureResult[0]) {
                     // eslint-disable-next-line no-undef
-                    generateToast(0, `Successfully introspected ${totalIntrospectionItems} item` + (totalIntrospectionItems > 1 ? "s" : ""));
+                    generateToast(0, `Successfully introspected ${totalIntrospectionItems} item${(totalIntrospectionItems > 1 ? "s" : "")}`);
                 }
                 totalIntrospectionItems = 0; //Clear the total introspection items counter.
             } else {

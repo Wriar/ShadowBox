@@ -2,7 +2,7 @@
 function usernameSubmit() {
     $('#btn_userNext i').hide();
     $('#btn_userNext img').show();
-    console.log("Attempting authorization negotiation...")
+    console.log("Attempting authorization negotiation...");
 
     const username = $('#username').val();
 
@@ -43,10 +43,10 @@ function usernameSubmit() {
                 
 
             } catch (ex) {
-                hideShowError(true, "Unexpected response from server. Please try again later." + data);
+                hideShowError(true, `Unexpected response from server. Please try again later. ${data}`);
                 $('#btn_userNext i').show();
                 $('#btn_userNext img').hide();
-                console.log("An error occured when attempting to parse server response of " + data);
+                console.log(`An error occured when attempting to parse server response of ${data}`);
             }
             
         },
@@ -95,10 +95,10 @@ function passwordSubmit() {
                     $('#btn_login img').hide();
                 }
             } catch (ex) {
-                hideShowError(true, "Unexpected response from server. Please try again later." + data);
+                hideShowError(true, `Unexpected response from server. Please try again later. ${data}`);
                 $('#btn_login i').show();
                 $('#btn_login img').hide();
-                console.log("An error occured when attempting to parse server response of " + data);
+                console.log(`An error occured when attempting to parse server response of ${data}`);
             }
         },
         error: function (xhr, status, error) {

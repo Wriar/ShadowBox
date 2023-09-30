@@ -40,6 +40,6 @@ function modifySidebarInterfaceStatus(statusEnum, statusMessage) {
             document.getElementById("sidebar-interfaces_loader").style.opacity = "0"; //use for now TODO later
             break;
         default:
-            console.error("Unknown interface status provided to modifier: " + statusEnum);
+            console.error(`Unknown interface status enum ${statusEnum}`);
     }
 }
