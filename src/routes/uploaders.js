@@ -55,7 +55,7 @@ export default function uploadersRoute(app) {
             //console.log("Using IV: " + iv.toString('hex'));
             console.log("Awaiting AES Decrypt Stream");
             
-            res.setHeader(`Content-Disposition`, `attachment; filename=${fileName}`);
+            res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
 
             await aesDecryptFileStream(readStream, res, "TESTESTESTESTESTESTESTESTESTESTE");
 
