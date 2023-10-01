@@ -526,5 +526,28 @@ body {
 .fm-fileview table {
   width: 100%;
 }
+.file-browser tbody:before {
+  content: "@";
+  display: block;
+  line-height: 10px;
+  text-indent: -99999px;
+}
+.file-browser tbody {
+  line-height: 1.2rem;
+}
+.file-browser tbody td:first-child {
+  text-align: center;
+}
+.file-browser thead {
+  margin-bottom: 0.5rem;
+}
+.file-browser thead td {
+  font-size: 0.8rem;
+  border-left: 1px solid var(--control-hover-color);
+  padding: 0.3rem;
+}
+.file-browser thead td:first-child {
+  text-align: center;
+}
 
 /*# sourceMappingURL=fileManager.css.map */

@@ -88,3 +88,35 @@ body {
         }
     }
 }
+
+.file-browser {
+
+    tbody:before {
+        content:"@";
+        display:block;
+        line-height:10px;
+        text-indent:-99999px;
+    }
+
+    tbody{
+        line-height: 1.2rem;
+        td{
+            &:first-child {
+                text-align: center;
+            }
+        }
+    }
+    thead {
+        margin-bottom: 0.5rem;
+        td {
+            font-size: 0.8rem;
+            border-left: 1px solid var(--control-hover-color);
+            padding: 0.3rem;
+
+            //The FIRST td (checkbox) is center aligned
+            &:first-child {
+                text-align: center;
+            }
+        }
+    }
+}

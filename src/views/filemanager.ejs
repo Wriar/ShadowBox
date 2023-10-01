@@ -172,15 +172,45 @@
                         <span>&emsp;</span>
                         <span><i class="icon-hard-drive"></i> Document Root > Test > Test > Test</span>
                     </div>
-                    <table>
-                        <th>
-                            <td>Icon</td>
-                            <td>Name</td>
-                            <td>Size</td>
-                            <td>Type</td>
-                            <td>Date Modified</td>
-                        </th>
+                    <table class="file-browser" style="height: 100%;" data-ctm="right click action!">
+                        <thead data-no-ctm="true">
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td>Name</td>
+                                <td>Size</td>
+                                <td>Type</td>
+                                <td>Date Modified</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><i class="icon-file-image"></i> Sky Background Photograph.png</td>
+                                <td>2MB</td>
+                                <td>Image (PNG)</td>
+                                <td>09/30/2023 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><i class="icon-file-text"></i> Document.docx</td>
+                                <td>1.2MB</td>
+                                <td>Document (DOCX)</td>
+                                <td>09/30/2023 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><i class="icon-scroll-text"></i> Important Report.pdf</td>
+                                <td>3.8MB</td>
+                                <td>PDF Document</td>
+                                <td>09/30/2023 4:15 PM</td>
+                            </tr>
+
+
+                        </tbody>
                     </table>
+
+                    <p>Showing 1 of 1 page(s).</p>
                     <!--
                     <p>Keep Yourself Safe <b>NOW</b>!</p>
                     <button onclick="toggleSideBar();">Open Nav</button>
@@ -204,6 +234,7 @@
     <input type="hidden" id="csrf_token" value="<%= csrf_token %>" />
 
     <script src="/static-resx/js/filemanager-sidenav.js"></script>
+    <script src="static-resx/js/filemanager-context.js"></script>
     <script src="/static-resx/js/filemanager-folderStructure.js"></script>
     <script src="/static-resx/js/filemanager-styles.js"></script>
     <script src="/static-resx/js/toastActions.js"></script>
