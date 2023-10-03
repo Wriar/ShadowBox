@@ -149,7 +149,7 @@
 
                 </div>
 
-                <!--Tool Ribbion For Mobile, Minus Text, Icon Only-->
+                <!--Tool Ribbon For Mobile, Minus Text, Icon Only-->
                 <div class="fm-ribbon-mobile">
                     <button title="New File"><i class="icon-file-plus-2"></i></button>
                     <button title="New Folder"><i style="color: goldenrod;" class="icon-folder-plus"></i></button>
@@ -172,8 +172,9 @@
                         <span>&emsp;</span>
                         <span><i class="icon-hard-drive"></i> Document Root > Test > Test > Test</span>
                     </div>
-                    <table class="file-browser" style="height: 100%;" data-ctm="right click action!">
-                        <thead data-no-ctm="true">
+                    <div id="file-browser-container" class="file-browser-container">
+                        <table id="file-browser" class="file-browser" style="height: 100%;" data-ctm="right click action!">
+                            <thead data-no-ctm="true">
                             <tr>
                                 <td><input type="checkbox"/></td>
                                 <td>Name</td>
@@ -181,36 +182,185 @@
                                 <td>Type</td>
                                 <td>Date Modified</td>
                             </tr>
-                        </thead>
+                            </thead>
 
-                        <tbody>
+                            <tbody>
                             <tr>
                                 <td><input type="checkbox"/></td>
-                                <td><i class="icon-file-image"></i> Sky Background Photograph.png</td>
+                                <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
                                 <td>2MB</td>
                                 <td>Image (PNG)</td>
                                 <td>09/30/2023 9:00 PM</td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox"/></td>
-                                <td><i class="icon-file-text"></i> Document.docx</td>
+                                <td><img src="/static-resx/ico/files/document.png" alt="icon"/>  Document.docx</td>
                                 <td>1.2MB</td>
                                 <td>Document (DOCX)</td>
                                 <td>09/30/2023 2:30 PM</td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox"/></td>
-                                <td><i class="icon-scroll-text"></i> Important Report.pdf</td>
+                                <td><img src="/static-resx/ico/files/pdf.png" alt="icon"/>  Important Report.pdf</td>
+                                <td>3.8MB</td>
+                                <td>PDF Document</td>
+                                <td>09/30/2023 4:15 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
+                                <td>2MB</td>
+                                <td>Image (PNG)</td>
+                                <td>09/30/2023 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/document.png" alt="icon"/>  Document.docx</td>
+                                <td>1.2MB</td>
+                                <td>Document (DOCX)</td>
+                                <td>09/30/2023 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/pdf.png" alt="icon"/>  Important Report.pdf</td>
+                                <td>3.8MB</td>
+                                <td>PDF Document</td>
+                                <td>09/30/2023 4:15 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
+                                <td>2MB</td>
+                                <td>Image (PNG)</td>
+                                <td>09/30/2023 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/document.png" alt="icon"/>  Document.docx</td>
+                                <td>1.2MB</td>
+                                <td>Document (DOCX)</td>
+                                <td>09/30/2023 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/pdf.png" alt="icon"/>  Important Report.pdf</td>
+                                <td>3.8MB</td>
+                                <td>PDF Document</td>
+                                <td>09/30/2023 4:15 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
+                                <td>2MB</td>
+                                <td>Image (PNG)</td>
+                                <td>09/30/2023 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/document.png" alt="icon"/>  Document.docx</td>
+                                <td>1.2MB</td>
+                                <td>Document (DOCX)</td>
+                                <td>09/30/2023 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/pdf.png" alt="icon"/>  Important Report.pdf</td>
+                                <td>3.8MB</td>
+                                <td>PDF Document</td>
+                                <td>09/30/2023 4:15 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
+                                <td>2MB</td>
+                                <td>Image (PNG)</td>
+                                <td>09/30/2023 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/document.png" alt="icon"/>  Document.docx</td>
+                                <td>1.2MB</td>
+                                <td>Document (DOCX)</td>
+                                <td>09/30/2023 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/pdf.png" alt="icon"/>  Important Report.pdf</td>
+                                <td>3.8MB</td>
+                                <td>PDF Document</td>
+                                <td>09/30/2023 4:15 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
+                                <td>2MB</td>
+                                <td>Image (PNG)</td>
+                                <td>09/30/2023 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/document.png" alt="icon"/>  Document.docx</td>
+                                <td>1.2MB</td>
+                                <td>Document (DOCX)</td>
+                                <td>09/30/2023 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/pdf.png" alt="icon"/>  Important Report.pdf</td>
+                                <td>3.8MB</td>
+                                <td>PDF Document</td>
+                                <td>09/30/2023 4:15 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
+                                <td>2MB</td>
+                                <td>Image (PNG)</td>
+                                <td>09/30/2023 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/document.png" alt="icon"/>  Document.docx</td>
+                                <td>1.2MB</td>
+                                <td>Document (DOCX)</td>
+                                <td>09/30/2023 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/pdf.png" alt="icon"/>  Important Report.pdf</td>
+                                <td>3.8MB</td>
+                                <td>PDF Document</td>
+                                <td>09/30/2023 4:15 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
+                                <td>2MB</td>
+                                <td>Image (PNG)</td>
+                                <td>09/30/2023 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/document.png" alt="icon"/>  Document.docx</td>
+                                <td>1.2MB</td>
+                                <td>Document (DOCX)</td>
+                                <td>09/30/2023 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td><img src="/static-resx/ico/files/pdf.png" alt="icon"/>  Important Report.pdf</td>
                                 <td>3.8MB</td>
                                 <td>PDF Document</td>
                                 <td>09/30/2023 4:15 PM</td>
                             </tr>
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <p>Showing 1 of 1 page(s).</p>
+
+                    <!--<p>Showing 1 of 1 page(s).</p>-->
                     <!--
                     <p>Keep Yourself Safe <b>NOW</b>!</p>
                     <button onclick="toggleSideBar();">Open Nav</button>

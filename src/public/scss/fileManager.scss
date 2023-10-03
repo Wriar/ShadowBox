@@ -88,23 +88,36 @@ body {
         }
     }
 }
-
+.file-browser-container {
+    //height: 70vh; //Height is further managed by JS.
+    width: 100%;
+    overflow-y: scroll;
+}
 .file-browser {
+    width: 100%;
+    border-collapse: collapse;
+
+
 
     tbody:before {
         content:"@";
-        display:block;
         line-height:10px;
         text-indent:-99999px;
+        display: block;
     }
 
     tbody{
-        line-height: 1.2rem;
+        overflow-y: auto;
+        line-height: 1.4rem;
+        height: 100%;
         td{
             &:first-child {
                 text-align: center;
             }
+
         }
+
+
     }
     thead {
         margin-bottom: 0.5rem;
@@ -117,6 +130,12 @@ body {
             &:first-child {
                 text-align: center;
             }
+
+            position: sticky;
+            top: 0;
+
+            background-color: var(--background-color);
         }
+
     }
 }

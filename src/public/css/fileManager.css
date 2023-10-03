@@ -526,14 +526,25 @@ body {
 .fm-fileview table {
   width: 100%;
 }
+.file-browser-container {
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.file-browser {
+  width: 100%;
+  border-collapse: collapse;
+}
 .file-browser tbody:before {
   content: "@";
-  display: block;
   line-height: 10px;
   text-indent: -99999px;
+  display: block;
 }
 .file-browser tbody {
-  line-height: 1.2rem;
+  overflow-y: auto;
+  line-height: 1.4rem;
+  height: 100%;
 }
 .file-browser tbody td:first-child {
   text-align: center;
@@ -545,6 +556,9 @@ body {
   font-size: 0.8rem;
   border-left: 1px solid var(--control-hover-color);
   padding: 0.3rem;
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
 }
 .file-browser thead td:first-child {
   text-align: center;
