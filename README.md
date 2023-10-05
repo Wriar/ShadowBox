@@ -13,7 +13,7 @@
 
 <div style="text-align: center;">
 
-<img src="preview.png" alt="ShadowBox Preview"  style="max-height: 300px; text-align: center; width: auto;">
+<img src="preview2.png" alt="ShadowBox Preview"  style="max-height: 300px; text-align: center; width: auto;">
 </div>
 
 ShadowBox *will* be a zero-knowledge open-source web-based file storage & hosting system, featuring full or partial data encryption through cryptographic ciphers. Contributors are welcome to help develop this project.
