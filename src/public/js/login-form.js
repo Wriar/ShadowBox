@@ -98,11 +98,11 @@ function passwordSubmit() {
                 hideShowError(true, `Unexpected response from server. Please try again later. ${data}`);
                 $('#btn_login i').show();
                 $('#btn_login img').hide();
-                console.log(`An error occured when attempting to parse server response of ${data}`);
+                console.log(`An error occurred when attempting to parse server response of ${data}`);
             }
         },
         error: function (xhr, status, error) {
-            hideShowError(true, "An error occured when negotiating request with server. Please try again later.");
+            hideShowError(true, "An error occurred when negotiating request with server. Please try again later.");
             $('#btn_login i').show();
             $('#btn_login img').hide();
             console.log(error);
@@ -125,11 +125,22 @@ function returnToUsername() {
     });
 }
 
-function hideShowError(doShow = false, message) {
+function hideShowError(doShow = false, message, color = 'red') {
     if (doShow) {
         $('#error-text').text(message);
+        $('#error-text').css('color', color);
         $('#error-text').show();
     } else {
         $('#error-text').hide();
     }
+}
+
+//Message Generation. If the page URL has ?m=base64, then decode the base64 and display it.
+const urlParams = new URLSearchParams(window.location.search);
+const msg = urlParams.get('m');
+if (msg) {
+
+    let messageData = atob(msg).split(':');
+    console.log(messageData);
+    hideShowError(true, messageData[1], messageData[0]);
 }
