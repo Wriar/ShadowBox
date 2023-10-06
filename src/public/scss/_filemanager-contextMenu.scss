@@ -1,0 +1,82 @@
+
+// Define styles for .cls-context-menu-link
+.cls-context-menu-link {
+	display: block;
+	padding: 20px;
+	background-color: var(--background-color);
+}
+
+// Define styles for .cls-context-menu
+$border-radius: 0.5rem;
+.contextMenu {
+	cursor: default;
+	position: absolute;
+	display: none;
+	background-color: var(--control-hover-color);
+
+	border-radius: $border-radius;
+	border: 1px solid var(--control-hover-edge-color);
+	box-shadow: 2rem 2rem 2rem rgba(0, 0, 0, 0.2);
+
+	ul,
+	li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		background: var(--control-hover-color);
+
+		li {
+			//border-bottom: solid 1px var(--default-text-color);
+
+			&:last-child {
+				border: none;
+			}
+
+			a {
+				display: block;
+				padding: 0.3rem 1rem;
+				text-decoration: none;
+				color: var(--maximum-color);
+				cursor: default;
+				font-size: 0.9rem;
+
+				//transition: all 0.1s ease-in-out;
+				&:hover {
+					background: var(--control-hover-edge-color);
+					color: #FFF;
+					transition: all 0.05s ease-in-out;
+				}
+
+				//First child hover
+				&:hover:first-child {
+					border-top-left-radius: $border-radius;
+					border-top-right-radius: $border-radius;
+				}
+				//Last child hover
+				&:hover:last-child {
+					border-bottom-left-radius: $border-radius;
+					border-bottom-right-radius: $border-radius;
+				}
+			}
+
+			&:first-child {
+				border-top-left-radius: $border-radius;
+				border-top-right-radius: $border-radius;
+			}
+
+			&:last-child {
+				border-bottom-left-radius: $border-radius;
+				border-bottom-right-radius: $border-radius;
+			}
+		}
+		&:first-child {
+			border-top-left-radius: $border-radius;
+			border-top-right-radius: $border-radius;
+		}
+
+		&:last-child {
+			border-bottom-left-radius: $border-radius;
+			border-bottom-right-radius: $border-radius;
+		}
+	}
+}

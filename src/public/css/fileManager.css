@@ -3,6 +3,7 @@
   --control-color: #EBEBEE;
   --control-hover-color: #D8D8D8;
   --control-hover-edge-color: #BFBFBF;
+  --control-context-highlight: #D8D8D8;
   --navigation-color: #2B446A;
   --theme-color: #2B445A;
   --theme-hover-color: #1B619E;
@@ -19,6 +20,7 @@
   --control-color: #242424;
   --control-hover-color: #242424;
   --control-hover-edge-color: #464646;
+  --control-context-highlight: #646363;
   --navigation-color: linear-gradient(to right, #162132, #253b5b);
   --theme-color: #328bda;
   --theme-hover-color: rgb(45, 152, 245);
@@ -454,6 +456,78 @@ li:not(.first) {
     background-color: rgba(0, 146, 255, 0);
   }
 }
+.cls-context-menu-link {
+  display: block;
+  padding: 20px;
+  background-color: var(--background-color);
+}
+
+.contextMenu {
+  cursor: default;
+  position: absolute;
+  display: none;
+  background-color: var(--control-hover-color);
+  border-radius: 0.5rem;
+  border: 1px solid var(--control-hover-edge-color);
+  box-shadow: 2rem 2rem 2rem rgba(0, 0, 0, 0.2);
+}
+.contextMenu ul,
+.contextMenu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--control-hover-color);
+}
+.contextMenu ul li:last-child,
+.contextMenu li li:last-child {
+  border: none;
+}
+.contextMenu ul li a,
+.contextMenu li li a {
+  display: block;
+  padding: 0.3rem 1rem;
+  text-decoration: none;
+  color: var(--maximum-color);
+  cursor: default;
+  font-size: 0.9rem;
+}
+.contextMenu ul li a:hover,
+.contextMenu li li a:hover {
+  background: var(--control-hover-edge-color);
+  color: #FFF;
+  transition: all 0.05s ease-in-out;
+}
+.contextMenu ul li a:hover:first-child,
+.contextMenu li li a:hover:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.contextMenu ul li a:hover:last-child,
+.contextMenu li li a:hover:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.contextMenu ul li:first-child,
+.contextMenu li li:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.contextMenu ul li:last-child,
+.contextMenu li li:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.contextMenu ul:first-child,
+.contextMenu li:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.contextMenu ul:last-child,
+.contextMenu li:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
 body {
   font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
   height: 100vh;
@@ -521,7 +595,7 @@ body {
 .fm-fileview .pathContainer span {
   font-size: 0.8rem;
   vertical-align: middle;
-  line-height: 1.2rem;
+  line-height: 1.3rem;
 }
 .fm-fileview table {
   width: 100%;
@@ -543,8 +617,11 @@ body {
 }
 .file-browser tbody {
   overflow-y: auto;
-  line-height: 1.4rem;
+  line-height: 1.6rem;
   height: 100%;
+}
+.file-browser tbody td {
+  cursor: default;
 }
 .file-browser tbody td:first-child {
   text-align: center;

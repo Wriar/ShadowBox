@@ -1,6 +1,7 @@
 @import "_themes.scss";
 @import "_fileManager-nav.scss";
 @import "_fileManager-sidenav.scss";
+@import "_filemanager-contextMenu.scss";
 
 
 body {
@@ -75,7 +76,7 @@ body {
         span {
             font-size: 0.8rem;
             vertical-align: middle;
-            line-height: 1.2rem;
+            line-height: 1.3rem;
         }
         
     }
@@ -108,9 +109,10 @@ body {
 
     tbody{
         overflow-y: auto;
-        line-height: 1.4rem;
+        line-height: 1.6rem;
         height: 100%;
         td{
+            cursor: default;
             &:first-child {
                 text-align: center;
             }

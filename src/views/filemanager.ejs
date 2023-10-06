@@ -381,6 +381,20 @@
         <p style="color: white;">This is the file properties viewer.</p>
     </div>
 
+    <!--Page Right Click Context Menu-->
+    <div id="contextMenu" class="contextMenu">
+        <ul>
+            <li><a href="#to=0"><i class="icon-eye"></i> View</a></li>
+            <li><a href="#to=0"><i class="icon-pencil"></i> Edit</a></li>
+            <li><a href="#to=0"><i class="icon-download"></i> Download</a></li>
+            <li><a href="#to=0"><i class="icon-pencil-line"></i> Rename</a></li>
+            <li><a href="#to=0"><i class="icon-trash-2"></i> Delete</a></li>
+            <li><a href="#to=0"><i class="icon-info"></i> Properties</a></li>
+            <li><a href=""><i class="icon-file-symlink"></i> New Shortcut</a></li>
+            <li><a href=""><i class="icon-users"></i> Advanced Sharing & Audit</a></li>
+        </ul>
+    </div>
+
     <input type="hidden" id="csrf_token" value="<%= csrf_token %>" />
 
     <script src="/static-resx/js/filemanager-sidenav.js"></script>
@@ -389,6 +403,8 @@
     <script src="/static-resx/js/filemanager-styles.js"></script>
     <script src="/static-resx/js/toastActions.js"></script>
     <script src="/static-resx/js/toastify.min.js"></script>
+
+
 </body>
 
 </html>
