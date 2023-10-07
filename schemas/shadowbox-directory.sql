@@ -31,6 +31,7 @@ CREATE TABLE `admin_directory` (
   `dirID` varchar(255) NOT NULL COMMENT 'UUIDv4 of the directory reference.',
   `directoryFullPath` text NOT NULL COMMENT 'Encrypted directory of the path, including itself.',
   `createdAt` text NOT NULL COMMENT 'Encrypted ISO datetime when the directory was created.',
+  `depthHint` int(11) NOT NULL COMMENT 'Plain depth of the directory to prioritize in introspection (0=root)',
   `meta` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

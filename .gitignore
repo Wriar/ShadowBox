@@ -136,3 +136,6 @@ certs/key.key
 .env
 
 .idea
+
+/samples/passwords.txt
+/samples/output.txt
