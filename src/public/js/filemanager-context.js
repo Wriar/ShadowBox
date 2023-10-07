@@ -5,7 +5,6 @@ document.onclick = function(e) {
     contextMenu.style.display = 'none';
 }
 
-
 document.oncontextmenu = function (e) {
     //Start with the element. Check if it has a data-ctm attribute. If not, check its parent. Repeat until we find one.
     //If the parent has a data-no-ctm attribute, stop.
@@ -13,10 +12,13 @@ document.oncontextmenu = function (e) {
     while (!ctmElement.hasAttribute('data-ctm')) {
         ctmElement = ctmElement.parentElement;
         if (ctmElement.hasAttribute('data-no-ctm')) {
+            contextMenu.style.display = 'none';
             return;
         }
     }
     if(!ctmElement) {
+        //No context menu element was found
+        contextMenu.style.display = 'none';
         return;
     }
 

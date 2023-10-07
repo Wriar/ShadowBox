@@ -43,6 +43,18 @@ switch (selectedOption) {
         });
         break;
     }
+    case "decrypt": {
+        const ENCRYPTEDTEXT = process.argv[5];
+        const PASSWORD = process.argv[7];
+        console.log(blue + `Decrypting: ${ENCRYPTEDTEXT}` + reset);
+
+        aesDecryptText(ENCRYPTEDTEXT, PASSWORD).then((decryptedText) => {
+            console.log(`${green} ==== BEGIN DECRYPTED TEXT ==== ${reset}`);
+            console.log(yellow + decryptedText + reset);
+            console.log(`${green} ==== END DECRYPTED TEXT ==== ${reset}`);
+        });
+        break;
+    }
     default: {
         console.warn("Invalid option selected.");
     }

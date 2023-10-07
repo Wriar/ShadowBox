@@ -177,7 +177,7 @@
                             <thead data-no-ctm="true">
                             <tr>
                                 <td><input type="checkbox"/></td>
-                                <td>Name</td>
+                                <td>Name <i class="icon-arrow-down-a-z"></i></td>
                                 <td>Size</td>
                                 <td>Type</td>
                                 <td>Date Modified</td>
@@ -186,6 +186,30 @@
                             </thead>
 
                             <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><img src="/static-resx/ico/files/folder.png" alt="icon" /> Documents</td>
+                                <td></td>
+                                <td>File Folder</td>
+                                <td>09/30/2023 4:15 PM</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><img src="/static-resx/ico/files/folder.png" alt="icon" /> Pictures</td>
+                                <td></td>
+                                <td>File Folder</td>
+                                <td>09/30/2023 4:15 PM</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><img src="/static-resx/ico/files/folder.png" alt="icon" /> Video</td>
+                                <td></td>
+                                <td>File Folder</td>
+                                <td>09/30/2023 4:15 PM</td>
+                                <td></td>
+                            </tr>
                             <tr>
                                 <td><input type="checkbox"/></td>
                                 <td><img src="/static-resx/ico/files/image.png" alt="icon"/> Sky Background Photograph.png</td>
@@ -406,7 +430,8 @@
     <input type="hidden" id="csrf_token" value="<%= csrf_token %>" />
 
     <script src="/static-resx/js/filemanager-sidenav.js"></script>
-    <script src="static-resx/js/filemanager-context.js"></script>
+    <script src="/static-resx/js/filemanager-context.js"></script>
+    <script src="/static-resx/js/filemanager-filebrowser.js"></script>
     <script src="/static-resx/js/filemanager-folderStructure.js"></script>
     <script src="/static-resx/js/filemanager-styles.js"></script>
     <script src="/static-resx/js/toastActions.js"></script>
