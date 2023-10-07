@@ -111,6 +111,10 @@ body {
         overflow-y: auto;
         line-height: 1.6rem;
         height: 100%;
+        tr:hover {
+            background-color: var(--control-hover-color);
+            transition: background-color 0.05s ease-in-out;
+        }
         td{
             cursor: default;
             &:first-child {

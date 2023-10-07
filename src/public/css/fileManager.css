@@ -620,6 +620,10 @@ body {
   line-height: 1.6rem;
   height: 100%;
 }
+.file-browser tbody tr:hover {
+  background-color: var(--control-hover-color);
+  transition: background-color 0.05s ease-in-out;
+}
 .file-browser tbody td {
   cursor: default;
 }
