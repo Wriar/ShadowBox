@@ -14,6 +14,7 @@ import createLog from './server/logger.js';
 import loadRoutes from './routing.js';
 import dbTryConnect from './server/dbTryConnect.js';
 import instData from './server/db/instData.js';
+import userFileData from './server/db/userFileData.js';
 
 const app = express();
 
@@ -68,6 +69,7 @@ loadRoutes(app);
 
 // Load & Test the database connection
 dbTryConnect(instData, "User Database");
+dbTryConnect(userFileData, "File Structure Database");
 
 console.log('\x1b[36m%s\x1b[0m', '[OK] Initial Configuration Loaded');
 

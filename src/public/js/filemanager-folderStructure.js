@@ -17,9 +17,26 @@ function regenerateFolderStructure() {
         if (xhr.status === 200) {
             let response = xhr.response;
             if (response.code === 0) {
-                const data = response.folderStructure;
-                //folderStructureCache = data;
-                console.log(data);
+
+                const folderData = response.folderStructure[1];
+                console.log(folderData);
+
+                //TODO: Implement Web Worker for queries over 1000 folders.
+
+                if(folderData.length >= 1000) {
+                    const promptResult = confirm(`Warning: You have ${folderData.length} folders which exceeds the recommended limit of 1000 folders. 
+                    This may cause the browser to become unresponsive during decryption & introspection. Are you sure you want to continue?`);
+
+                    if (!promptResult) {
+                        modifySidebarInterfaceStatus(interfaceStatus.READY, "Unloaded.");
+                        generateToast(3, "Folder structure loading cancelled.");
+                        return;
+                    }
+                }
+
+                //TODO: Decrypt Requests; appropriately parse the data.
+
+
 
                 const folderStructureResult = createFolderStructure(document.getElementById("fileTree"), data);
 

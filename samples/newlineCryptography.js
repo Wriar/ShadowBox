@@ -1,6 +1,6 @@
 import fs from "fs";
 import crypto from "crypto";
-import { aesEncryptText, aesDecryptText } from '../src/cryptography.js';
+import { aesEncryptText } from '../src/cryptography.js';
 
 
 const input = fs.readFileSync('input.txt', "utf8").split(/\r?\n/);

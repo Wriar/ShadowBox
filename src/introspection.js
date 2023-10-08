@@ -1,6 +1,9 @@
-import fs from 'fs/promises'
+import fs from 'fs/promises';
+import userDataPool from './server/db/userFileData.js';
 
 const FILE_BIN_BASEPATH = process.env.FILE_BIN_BASEPATH;
+
+//#region Old Functions using direct file-system access naming (not used)
 /**
  * Recursively list all folders and all subfolders within a directory.
  * Does not list files.
@@ -57,17 +60,70 @@ function convertFolderListToJSON(folderList) {
     return root;
 }
 
+//#endregion
+
 /**
- * Provided a username, asynchronously returns the folder structure of the user.
+ * Provided a username, asynchronously returns the encrypted folder structure of the user.
+ * Assumes that any requests are authenticated and verified prior to calling this function.
  * @param {String} username Username of the user to get the directory structure of. 
- * @returns {Object} A JSON representation of the folder structure. { name: "My Files", children: [] }
+ * @returns {Object} Dumped rows of the user's encrypted directory structure.
  */
-async function getUserDirectoryStructure(username) {
-    //TODO: Support multiple user storage solutions.
-    const arrayFolderStructure = await listDirectoryStructure(`${FILE_BIN_BASEPATH}/${username}`);
-    return convertFolderListToJSON(arrayFolderStructure);
+async function getEncryptedUserDirectoryStructure(username) {
+
+    /*
+    old code:
+
+    const dirPath = `${FILE_BIN_BASEPATH}/${username}`;
+    const folderList = await listDirectoryStructure(dirPath);
+    const folderStructure = convertFolderListToJSON(folderList);
+    return folderStructure;
+    */
+
+    const retrievalResult = await returnUserVirtualDirectories(username);
+    if (!retrievalResult[0]) {
+        console.error("Error retrieving virtual directories for user " + username);
+        return [false, null];
+    }
+    const rows = retrievalResult[1];
+    return [true, rows];
+}
+
+/**
+ * Given a username, asynchronously returns the user's encrypted virtual directories on the Database Server.
+ * **WARNING:** assumes username is sanitized and trusted; an additional check will be conducted.
+ * @param {String} username Username of the user to get the virtual directories of.
+ * @returns {Promise<boolean[]|(boolean|*)[]>}
+ */
+async function returnUserVirtualDirectories(username) {
+    let conn;
+    if (!verifyUntrustedSQLInput(username)) {
+        console.error("Unsanitized username provided to virtual directory lookup. Aborting...");
+        return [false, null];
+    }
+    try {
+        conn = await userDataPool.getConnection();
+        const rows = await conn.query(`SELECT * FROM ${username}_virtualdir;`);
+        return [true, rows];
+    } catch (err) {
+        return [false, null];
+    } finally {
+        if (conn) {
+            await conn.release();
+        }
+    }
+}
+
+/**
+ * Verifies that the provided input is safe for use in SQL queries, exclusively for username lookups.
+ * Checks if the input contains only letters, numbers, underscores, and/or dashes.
+ * @param input {String} The input to verify.
+ * @returns {boolean} Whether or not the input is safe for use in SQL queries.
+ */
+function verifyUntrustedSQLInput(input) {
+    //Ensure the input contains only letters, numbers, underscores, and dashes.
+    const regex = /^[a-zA-Z0-9_-]*$/;
+    return regex.test(input);
 }
 
 
-
-export { listDirectoryStructure, convertFolderListToJSON, getUserDirectoryStructure }
+export { listDirectoryStructure, convertFolderListToJSON, getEncryptedUserDirectoryStructure, returnUserVirtualDirectories } //

@@ -1,5 +1,5 @@
 import {authenticationEnumLockStates} from '../server/types.js';
-import {getUserDirectoryStructure} from '../introspection.js';
+import {getEncryptedUserDirectoryStructure} from '../introspection.js';
 import {stateMessages, statusMessages} from '../locale.js';
 
 export default function structLoaderRoutes(app) {
@@ -22,7 +22,7 @@ export default function structLoaderRoutes(app) {
         const username = req.session.userData[0].username;
         //const accountMaster = req.session.decryptedAccountMaster;
 
-        await getUserDirectoryStructure(username).then((folderStructure) => {
+        await getEncryptedUserDirectoryStructure(username).then((folderStructure) => {
             res.json({code: 0, message: statusMessages.OK, folderStructure: folderStructure});
         }).catch((error) => {
             //Cannot get folder structure
