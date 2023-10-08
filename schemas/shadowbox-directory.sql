@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: LA2-Dc2-PROD-DB-01.internal
--- Generation Time: Oct 07, 2023 at 09:51 PM
+-- Generation Time: Oct 08, 2023 at 02:37 AM
 -- Server version: 10.3.38-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.33
 
@@ -24,21 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin_directory`
+-- Table structure for table `admin_virtualdir`
 --
 
-CREATE TABLE `admin_directory` (
+CREATE TABLE `admin_virtualdir` (
   `dirID` varchar(255) NOT NULL COMMENT 'UUIDv4 of the directory reference.',
-  `directoryFullPath` text NOT NULL COMMENT 'Encrypted directory of the path, including itself.',
+  `dirFullPath` text NOT NULL COMMENT 'Encrypted directory of the path, including itself.',
   `createdAt` text NOT NULL COMMENT 'Encrypted ISO datetime when the directory was created.',
-  `depthHint` int(11) NOT NULL COMMENT 'Plain depth of the directory to prioritize in introspection (0=root)',
-  `meta` text NOT NULL
+  `depthHint` int(255) NOT NULL COMMENT 'Folder Depth (0=root) to prioritize during indexing',
+  `meta` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for table `admin_directory`
+-- Dumping data for table `admin_virtualdir`
 --
-ALTER TABLE `admin_directory`
+
+
+--
+-- Indexes for table `admin_virtualdir`
+--
+ALTER TABLE `admin_virtualdir`
   ADD PRIMARY KEY (`dirID`);
 COMMIT;
 
