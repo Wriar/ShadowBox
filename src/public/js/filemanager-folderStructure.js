@@ -3,6 +3,10 @@
 const DO_EXPAND_ROOT_STRUCTURE = true;
 const csrfToken = document.getElementById("csrf_token").value;
 let totalIntrospectionItems = 0;
+
+var txtCryptoWorker;
+
+const browserHasWebWorkers = typeof (Worker) !== "undefined";
 function regenerateFolderStructure() {
     //Remove all HTML from the fileTree element.
     document.getElementById("fileTree").innerHTML = "";
@@ -21,6 +25,16 @@ function regenerateFolderStructure() {
                 const folderData = response.folderStructure[1];
                 console.log(folderData);
 
+                //Check for web worker support
+                if (!browserHasWebWorkers) {
+                    console.warn("Browser does not support web workers. This may cause the browser to become unresponsive during decryption & introspection.");
+                    const workerPromptResult = confirm("Warning: Your browser does not support web workers. This may cause the browser to become unresponsive during decryption & introspection depending on the number of files on your account. Do you want to continue?");
+                    if (!workerPromptResult) {
+                        modifySidebarInterfaceStatus(interfaceStatus.READY, "Unloaded.");
+                        generateToast(3, "Folder structure loading cancelled.");
+                        return;
+                    }
+                }
                 //TODO: Implement Web Worker for queries over 1000 folders.
 
                 if(folderData.length >= 1000) {
@@ -34,9 +48,30 @@ function regenerateFolderStructure() {
                     }
                 }
 
+                //Create the text crypto worker if it does not already exist.
+                if(!createTextCryptoWorker()) {
+                    alert("Error creating text crypto worker. Please ensure your browser supports web workers.");
+                    modifySidebarInterfaceStatus(interfaceStatus.READY, "Unloaded.");
+                    generateToast(3, "Folder structure loading cancelled.");
+                    return;
+                } else {
+                    txtCryptoWorker.postMessage(
+                        {
+                            type: "decryptDirStringBatch",
+                            data: folderData,
+                        }
+                    );
+                    console.log("posted message to worker!");
+                }
+
                 //TODO: Decrypt Requests; appropriately parse the data.
 
 
+
+                console.log("Beginning folder structure introspection...");
+
+
+                /*
 
                 const folderStructureResult = createFolderStructure(document.getElementById("fileTree"), data);
 
@@ -60,6 +95,8 @@ function regenerateFolderStructure() {
                     generateToast(0, `Successfully introspected ${totalIntrospectionItems} item${(totalIntrospectionItems > 1 ? "s" : "")}`);
                 }
                 totalIntrospectionItems = 0; //Clear the total introspection items counter.
+                */
+
             } else {
                 generateToast(3, response.message);
                 console.warn(`Fetch Error ${url}: ${response.message}`);
@@ -81,6 +118,26 @@ function regenerateFolderStructure() {
     // Send the request to the server
     xhr.send();
 
+}
+
+/**
+ * Registers a new text cryptography worker instance if it does not already exist.
+ * @returns {boolean}
+ */
+function createTextCryptoWorker() {
+    if(typeof(txtCryptoWorker) === "undefined" && browserHasWebWorkers) {
+        txtCryptoWorker = new Worker("/static-resx/js/cryptographyWorker.js")
+        txtCryptoWorker.onmessage = function (e) {
+            console.log(e);
+        }
+        txtCryptoWorker.onerror = function (e) {
+            console.error("Error in text cryptography worker instance");
+            console.error(e);
+        }
+        console.log("Registered text cryptography worker instance");
+        return true;
+    }
+    return false;
 }
 
 let createdHomeIcon = false;
@@ -133,6 +190,7 @@ function createFolderStructure(parent, data) {
     parent.appendChild(folder);
     return [true, totalItems];
 }
+
 
 regenerateFolderStructure();
 
