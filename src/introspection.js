@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import userDataPool from './server/db/userFileData.js';
+import {aesDecryptText} from "./cryptography.js";
 
 const FILE_BIN_BASEPATH = process.env.FILE_BIN_BASEPATH;
 
@@ -63,12 +64,12 @@ function convertFolderListToJSON(folderList) {
 //#endregion
 
 /**
- * Provided a username, asynchronously returns the encrypted folder structure of the user.
+ * Provided a username, asynchronously returns the decrypted folder structure of the user.
  * Assumes that any requests are authenticated and verified prior to calling this function.
  * @param {String} username Username of the user to get the directory structure of. 
- * @returns {Object} Dumped rows of the user's encrypted directory structure.
+ * @returns {Boolean, Array, Array} Returns an array containing the success status of the operation, and the folder structure of the user.
  */
-async function getEncryptedUserDirectoryStructure(username) {
+async function getDecryptedUserDirectoryStructure(username, clearAccountMaster) {
 
     /*
     old code:
@@ -85,7 +86,22 @@ async function getEncryptedUserDirectoryStructure(username) {
         return [false, null];
     }
     const rows = retrievalResult[1];
-    return [true, rows];
+
+    let finalFolderStructure = [];
+    let finalFolderList = [];
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const dirID = row.dirID;
+        const dirFullPath = (await aesDecryptText(row.dirFullPath, clearAccountMaster)).substring(1);
+        const createdAt = await aesDecryptText(row.createdAt, clearAccountMaster);
+        const meta = row.meta; //TODO
+
+        finalFolderList[i] = dirFullPath;
+        finalFolderStructure[i] = [dirID, dirFullPath, createdAt, meta];
+    }
+
+
+    return [true, convertFolderListToJSON(finalFolderList), finalFolderStructure];
 }
 
 /**
@@ -126,4 +142,4 @@ function verifyUntrustedSQLInput(input) {
 }
 
 
-export { listDirectoryStructure, convertFolderListToJSON, getEncryptedUserDirectoryStructure, returnUserVirtualDirectories } //
+export { listDirectoryStructure, convertFolderListToJSON, getDecryptedUserDirectoryStructure, returnUserVirtualDirectories } //

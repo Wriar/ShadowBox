@@ -4,14 +4,12 @@ const DO_EXPAND_ROOT_STRUCTURE = true;
 const csrfToken = document.getElementById("csrf_token").value;
 let totalIntrospectionItems = 0;
 
-var txtCryptoWorker;
-
 const browserHasWebWorkers = typeof (Worker) !== "undefined";
 function regenerateFolderStructure() {
     //Remove all HTML from the fileTree element.
     document.getElementById("fileTree").innerHTML = "";
     document.getElementById('fileTree-status').style.display = "block";
-    modifySidebarInterfaceStatus(interfaceStatus.LOADING_GENERIC, "Loading folder structure...");
+    modifySidebarInterfaceStatus(interfaceStatus.LOADING_GENERIC, "Loading...");
     // Create a new XMLHttpRequest object
     const xhr = new XMLHttpRequest();
     const url = `/api/fm-dash/getFolderStructure?csrf_token=${csrfToken}`;
@@ -48,34 +46,20 @@ function regenerateFolderStructure() {
                     }
                 }
 
-                //Create the text crypto worker if it does not already exist.
-                if(!createTextCryptoWorker()) {
-                    alert("Error creating text crypto worker. Please ensure your browser supports web workers.");
-                    modifySidebarInterfaceStatus(interfaceStatus.READY, "Unloaded.");
-                    generateToast(3, "Folder structure loading cancelled.");
-                    return;
-                } else {
-                    txtCryptoWorker.postMessage(
-                        {
-                            type: "decryptDirStringBatch",
-                            data: folderData,
-                        }
-                    );
-                    console.log("posted message to worker!");
-                }
 
-                //TODO: Decrypt Requests; appropriately parse the data.
+
+                //Appropriately parse the data.
 
 
 
                 console.log("Beginning folder structure introspection...");
 
 
-                /*
 
-                const folderStructureResult = createFolderStructure(document.getElementById("fileTree"), data);
 
-                if (folderStructureResult[0], data) {
+                const folderStructureResult = createFolderStructure(document.getElementById("fileTree"), folderData);
+
+                if (folderStructureResult[0]) {
                     document.getElementById('fileTree-status').style.display = "none";
                     modifySidebarInterfaceStatus(interfaceStatus.READY, "Up to date.");
                 }
@@ -95,7 +79,6 @@ function regenerateFolderStructure() {
                     generateToast(0, `Successfully introspected ${totalIntrospectionItems} item${(totalIntrospectionItems > 1 ? "s" : "")}`);
                 }
                 totalIntrospectionItems = 0; //Clear the total introspection items counter.
-                */
 
             } else {
                 generateToast(3, response.message);
@@ -120,25 +103,6 @@ function regenerateFolderStructure() {
 
 }
 
-/**
- * Registers a new text cryptography worker instance if it does not already exist.
- * @returns {boolean}
- */
-function createTextCryptoWorker() {
-    if(typeof(txtCryptoWorker) === "undefined" && browserHasWebWorkers) {
-        txtCryptoWorker = new Worker("/static-resx/js/cryptographyWorker.js")
-        txtCryptoWorker.onmessage = function (e) {
-            console.log(e);
-        }
-        txtCryptoWorker.onerror = function (e) {
-            console.error("Error in text cryptography worker instance");
-            console.error(e);
-        }
-        console.log("Registered text cryptography worker instance");
-        return true;
-    }
-    return false;
-}
 
 let createdHomeIcon = false;
 
