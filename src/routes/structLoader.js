@@ -3,6 +3,29 @@ import {getDecryptedUserDirectoryStructure} from '../introspection.js';
 import {stateMessages, statusMessages} from '../locale.js';
 
 export default function structLoaderRoutes(app) {
+    app.get('/api/fm-dash/getFileListing', async (req, res) => {
+        if(req.session.sessionLockState !== authenticationEnumLockStates.AUTH_COMPLETE || !req.session.userData[0].username) {
+            //User is not logged in
+            res.json({code: 1, message: stateMessages.NOT_LOGGED_IN});
+            return;
+        }
+
+        //Verify the CSRF Token
+        const presentedCSRFToken = req.query.csrf_token;
+        if(req.session.csrf_token !== presentedCSRFToken) {
+            //CSRF Token does not match
+            res.json({code: 1, message: stateMessages.CSRF_TOKEN_INVALID});
+            return;
+        }
+
+        const username = req.session.userData[0].username;
+        let dirUUID = req.query.dirUUID;
+
+        if(dirUUID === undefined || dirUUID === null || dirUUID === "root" || dirUUID === "") {
+            dirUUID = "";
+        }
+
+    });
     app.get('/api/fm-dash/getFolderStructure', async (req, res) => {
         //Check if we are logged in
         if(req.session.sessionLockState !== authenticationEnumLockStates.AUTH_COMPLETE || !req.session.userData[0].username) {

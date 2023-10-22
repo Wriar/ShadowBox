@@ -129,6 +129,31 @@ async function returnUserVirtualDirectories(username) {
     }
 }
 
+async function returnUserFileListing(username, dirUUID) {
+    let conn;
+    if (!verifyUntrustedSQLInput(username)) {
+        console.error("Un-sanitized username provided to file listing lookup. Aborting...");
+        return [false, null];
+    }
+    try {
+        conn = await userDataPool.getConnection();
+        //DirUUID should be prepared
+        const rows = await conn.query(`SELECT * FROM ${username}_files WHERE dirUUID = ?;`, [dirUUID]);
+        let returnResults = [];
+        for (let i = 0; i < rows.length; i++) {
+            //const
+
+        }
+        return [true, rows];
+    } catch (err) {
+        return [false, null];
+    } finally {
+        if (conn) {
+            await conn.release();
+        }
+    }
+}
+
 /**
  * Verifies that the provided input is safe for use in SQL queries, exclusively for username lookups.
  * Checks if the input contains only letters, numbers, underscores, and/or dashes.
@@ -142,4 +167,10 @@ function verifyUntrustedSQLInput(input) {
 }
 
 
-export { listDirectoryStructure, convertFolderListToJSON, getDecryptedUserDirectoryStructure, returnUserVirtualDirectories } //
+export {
+    listDirectoryStructure,
+    convertFolderListToJSON,
+    getDecryptedUserDirectoryStructure,
+    returnUserFileListing,
+    returnUserVirtualDirectories
+} //
