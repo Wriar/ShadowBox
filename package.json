@@ -15,7 +15,7 @@
     "url": "git+https://github.com/Wriar/ShadowBox-Dev.git"
   },
   "author": "Wriar",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Wriar/ShadowBox-Dev/issues"
   },
