@@ -4,6 +4,7 @@
   --control-hover-color: #D8D8D8;
   --control-hover-edge-color: #BFBFBF;
   --control-context-highlight: #D8D8D8;
+  --control-disabled-color: #D8D8D8;
   --navigation-color: #2B446A;
   --theme-color: #2B445A;
   --theme-hover-color: #1B619E;
@@ -21,6 +22,7 @@
   --control-hover-color: #242424;
   --control-hover-edge-color: #464646;
   --control-context-highlight: #646363;
+  --control-disabled-color: #646363;
   --navigation-color: linear-gradient(to right, #162132, #253b5b);
   --theme-color: #328bda;
   --theme-hover-color: rgb(45, 152, 245);
@@ -359,6 +361,16 @@ li:not(.first) {
 }
 .fileTreeView table tr td.controls button :active {
   color: var(--theme-active-color);
+}
+.fileTreeView table tr button.disabled {
+  color: var(--control-disabled-color) !important;
+  pointer-events: none;
+}
+.fileTreeView table tr button.disabled :hover {
+  color: var(--control-disabled-color) !important;
+}
+.fileTreeView table tr button.disabled :active {
+  color: var(--control-disabled-color) !important;
 }
 .fileTreeView div.statusContainer {
   padding-top: 1rem;

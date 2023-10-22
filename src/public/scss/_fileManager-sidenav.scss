@@ -180,6 +180,17 @@ li:not(.first) {
                 }
 
             }
+			button.disabled {
+				color: var(--control-disabled-color) !important;
+				pointer-events: none;
+				:hover {
+					color: var(--control-disabled-color) !important;
+				}
+				:active {
+					color: var(--control-disabled-color) !important;
+				}
+
+			}
         }
     }
 

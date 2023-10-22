@@ -5,7 +5,18 @@ const csrfToken = document.getElementById("csrf_token").value;
 let totalIntrospectionItems = 0;
 
 const browserHasWebWorkers = typeof (Worker) !== "undefined";
+
+let regenerationLock = false;
+
+
 function regenerateFolderStructure() {
+    //Prevent multiple regeneration requests from being sent which overloads the client.
+    if (regenerationLock) {
+        console.error("File sync already requested.");
+        return false;
+    }
+    regenerationLock = true;
+
     //Remove all HTML from the fileTree element.
     document.getElementById("fileTree").innerHTML = "";
     document.getElementById('fileTree-status').style.display = "block";
@@ -30,6 +41,8 @@ function regenerateFolderStructure() {
                     if (!workerPromptResult) {
                         modifySidebarInterfaceStatus(interfaceStatus.READY, "Unloaded.");
                         generateToast(3, "Folder structure loading cancelled.");
+
+                        regenerationLock = false;
                         return;
                     }
                 }
@@ -42,6 +55,8 @@ function regenerateFolderStructure() {
                     if (!promptResult) {
                         modifySidebarInterfaceStatus(interfaceStatus.READY, "Unloaded.");
                         generateToast(3, "Folder structure loading cancelled.");
+
+                        regenerationLock = false;
                         return;
                     }
                 }
@@ -79,6 +94,7 @@ function regenerateFolderStructure() {
                     generateToast(0, `Successfully introspected ${totalIntrospectionItems} item${(totalIntrospectionItems > 1 ? "s" : "")}`);
                 }
                 totalIntrospectionItems = 0; //Clear the total introspection items counter.
+                regenerationLock = false;
 
             } else {
                 generateToast(3, response.message);
@@ -88,6 +104,7 @@ function regenerateFolderStructure() {
             console.error("(J-SERVER) Could not fetch folder structure.");
             generateToast(3, "Could not fetch the folder structure.");
             console.log(xhr.statusText);
+            regenerationLock = false;
         }
     };
 
@@ -95,6 +112,7 @@ function regenerateFolderStructure() {
     xhr.onerror = function () {
         console.error("(J) Could not fetch folder structure.");
         generateToast(3, "Could not fetch the folder structure.");
+        regenerationLock = false;
         console.log(xhr.statusText);
     };
 

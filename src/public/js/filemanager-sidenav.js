@@ -30,12 +30,14 @@ const interfaceStatus = {
 function modifySidebarInterfaceStatus(statusEnum, statusMessage) {
     switch(statusEnum) {
         case interfaceStatus.LOADING_GENERIC:
+            document.getElementById("btn-sidebar_reloadDirList").classList.add("disabled");
             document.getElementById("sidebar-interfaces_description").innerText = statusMessage;
             document.getElementById("sidebar-interfaces_loader").style.display = "inline-block";
             document.getElementById("sidebar-interfaces_loader").style.opacity = "100"; //use for now TODO later
 
             break;
         case interfaceStatus.READY:
+            document.getElementById("btn-sidebar_reloadDirList").classList.remove("disabled");
             document.getElementById("sidebar-interfaces_description").innerHTML = `<i style="color: var(--success);" class="icon-file-check-2"></i> ${statusMessage}`;
             document.getElementById("sidebar-interfaces_loader").style.opacity = "0"; //use for now TODO later
             break;
