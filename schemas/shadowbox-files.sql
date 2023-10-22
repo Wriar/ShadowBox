@@ -35,6 +35,8 @@ CREATE TABLE `admin` (
   `permissions` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+ALTER TABLE `admin` ADD `objectKey` VARCHAR(255) NOT NULL COMMENT 'SECURE decryption key of file object contents.' AFTER `modifiedDate`;
+
 --
 -- Indexes for dumped tables
 --
