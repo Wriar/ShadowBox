@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import userDataPool from './server/db/userFileData.js';
 import {aesDecryptText} from "./cryptography.js";
+import createLog from "./server/logger.js";
 
 const FILE_BIN_BASEPATH = process.env.FILE_BIN_BASEPATH;
 
@@ -133,26 +134,28 @@ async function returnUserFileListing(username, dirUUID, clearAccountMaster) {
     let conn;
     if (!verifyUntrustedSQLInput(username)) {
         console.error("Un-sanitized username provided to file listing lookup. Aborting...");
-        return [false, null];
+        return [false, "Sanitization Error"];
     }
     try {
         conn = await userDataPool.getConnection();
         //DirUUID should be prepared
-        const rows = await conn.query(`SELECT * FROM ${username}_files WHERE dirUUID = ?;`, [dirUUID]);
+        const rows = await conn.query(`SELECT * FROM ${username} WHERE filePath = ?;`, [dirUUID]);
         let returnResults = [];
         for (let i = 0; i < rows.length; i++) {
             //Decrypt the file name and file path
             const row = rows[i];
             const objectID = row.objectID;
-            const fileName = aesDecryptText(row.fileName, clearAccountMaster);
-            const filePath = aesDecryptText(row.filePath, clearAccountMaster);
-            const modifiedDate = aesDecryptText(row.modifiedDate, clearAccountMaster);
+            const fileName = await aesDecryptText(row.fileName, clearAccountMaster); //There is no redundant await, analyzer is incorrect.
+            const modifiedDate = await aesDecryptText(row.modifiedDate, clearAccountMaster);
             const meta = row.meta; //TODO
             const permissions = row.permissions; //TODO
 
+            returnResults[i] = [objectID, fileName, dirUUID, modifiedDate, meta, permissions];
+
         }
-        return [true, rows];
+        return [true, returnResults];
     } catch (err) {
+        createLog(2, `Error retrieving file listing for user ${username} in directory ${dirUUID}.`, err);
         return [false, null];
     } finally {
         if (conn) {

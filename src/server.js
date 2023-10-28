@@ -15,6 +15,7 @@ import loadRoutes from './routing.js';
 import dbTryConnect from './server/dbTryConnect.js';
 import instData from './server/db/instData.js';
 import userFileData from './server/db/userFileData.js';
+import {returnUserFileListing} from "./introspection.js";
 
 const app = express();
 
@@ -82,10 +83,12 @@ if (useHTTPS && !secureOverride) {
     https.createServer(httpsOptions, app).listen(443, () => {
         console.log('\x1b[36m%s\x1b[0m', "[OK] HTTPS Server listening on port 443");
         createLog(0, "HTTPS Server has started.");
+
     });
 } else {
     app.listen(port, () => {
         console.log('\x1b[36m%s\x1b[0m', `[OK] HTTP Server listening on port ${port}`);
         createLog(0, "HTTP Server has started.");
     });
-}
+}//
+

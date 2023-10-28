@@ -2,6 +2,8 @@
 // noinspection JSUnresolvedReference
 
 import crypto from 'crypto';
+import createLog from "./server/logger.js";
+
 const AES_KEY_SIZE = 32; //AES-256-CBC Key Size in Bytes.
 const IV_BUFFER_ALLOC_SIZE = 16; //Allocate 16 bytes for the IV buffer.
 const AES_ALGORITHM = 'aes-256-cbc'; //AES-256-CBC Algorithm using 16-byte IV.
@@ -83,6 +85,7 @@ async function aesDecryptText(encryptedText, password) {
                 decryptedData += decipher.final('utf-8');
                 resolve(decryptedData);
             } catch (decryptError) {
+                createLog(2, `Decryption Error! ${decryptError} failed on data ${encryptedText}`, err);
                 reject(new Error('Incorrect password or corrupted data.'));
 
             }
