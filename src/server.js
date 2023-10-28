@@ -15,7 +15,6 @@ import loadRoutes from './routing.js';
 import dbTryConnect from './server/dbTryConnect.js';
 import instData from './server/db/instData.js';
 import userFileData from './server/db/userFileData.js';
-import {returnUserFileListing} from "./introspection.js";
 
 const app = express();
 
