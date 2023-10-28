@@ -20,7 +20,7 @@ function regenerateFolderStructure() {
     //Remove all HTML from the fileTree element.
     document.getElementById("fileTree").innerHTML = "";
     document.getElementById('fileTree-status').style.display = "block";
-    modifySidebarInterfaceStatus(interfaceStatus.LOADING_GENERIC, "Loading...");
+    modifySidebarInterfaceStatus(interfaceStatus.LOADING_GENERIC, "Decrypting...");
     // Create a new XMLHttpRequest object
     const xhr = new XMLHttpRequest();
     const url = `/api/fm-dash/getFolderStructure?csrf_token=${csrfToken}`;
@@ -86,6 +86,7 @@ function regenerateFolderStructure() {
                     toggler[i].addEventListener("click", function () {
                         this.parentElement.querySelector(".nested").classList.toggle("active");
                         this.classList.toggle("folder-down");
+
                     });
                 }
 
@@ -172,6 +173,7 @@ function createFolderStructure(parent, data) {
     parent.appendChild(folder);
     return [true, totalItems];
 }
+
 
 
 regenerateFolderStructure();

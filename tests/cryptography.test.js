@@ -3,7 +3,7 @@ import { aesEncryptText, aesDecryptText, aesEncryptFileStream, aesDecryptFileStr
 import crypto from 'crypto';
 import fs from 'fs';
 
-const testString = "Why are oranges called oranges? But an apple is not called a red? Ah! I can't take it anymore! Eating a burger with no honey mustard. Eating a burger with no honey mustard. Eating a burger with no honey mustard! ";
+const testString = "Ah! I can't take it anymore! Eating a burger with no honey mustard. Eating a burger with no honey mustard. Eating a burger with no honey mustard! ";
 const testPassword = 'Pa33w0rd23!';
 const testIV = crypto.randomBytes(16);
 

@@ -129,7 +129,7 @@ async function returnUserVirtualDirectories(username) {
     }
 }
 
-async function returnUserFileListing(username, dirUUID) {
+async function returnUserFileListing(username, dirUUID, clearAccountMaster) {
     let conn;
     if (!verifyUntrustedSQLInput(username)) {
         console.error("Un-sanitized username provided to file listing lookup. Aborting...");
@@ -141,7 +141,14 @@ async function returnUserFileListing(username, dirUUID) {
         const rows = await conn.query(`SELECT * FROM ${username}_files WHERE dirUUID = ?;`, [dirUUID]);
         let returnResults = [];
         for (let i = 0; i < rows.length; i++) {
-            //const
+            //Decrypt the file name and file path
+            const row = rows[i];
+            const objectID = row.objectID;
+            const fileName = aesDecryptText(row.fileName, clearAccountMaster);
+            const filePath = aesDecryptText(row.filePath, clearAccountMaster);
+            const modifiedDate = aesDecryptText(row.modifiedDate, clearAccountMaster);
+            const meta = row.meta; //TODO
+            const permissions = row.permissions; //TODO
 
         }
         return [true, rows];

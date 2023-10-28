@@ -11,6 +11,11 @@ document.oncontextmenu = function (e) {
     let ctmElement = e.target;
     while (!ctmElement.hasAttribute('data-ctm')) {
         ctmElement = ctmElement.parentElement;
+        if(!ctmElement) {
+            //No menu found.
+            contextMenu.style.display = 'none';
+            return;
+        }
         if (ctmElement.hasAttribute('data-no-ctm')) {
             contextMenu.style.display = 'none';
             return;

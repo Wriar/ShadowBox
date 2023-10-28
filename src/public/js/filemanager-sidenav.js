@@ -19,6 +19,7 @@ function closeNav() {
 //Defines possible states the sidebar can be in.
 const interfaceStatus = {
     LOADING_GENERIC: 1,
+    LOADING_DECRYPTING: 2,
     READY: 0,
 }
 
@@ -41,6 +42,7 @@ function modifySidebarInterfaceStatus(statusEnum, statusMessage) {
             document.getElementById("sidebar-interfaces_description").innerHTML = `<i style="color: var(--success);" class="icon-file-check-2"></i> ${statusMessage}`;
             document.getElementById("sidebar-interfaces_loader").style.opacity = "0"; //use for now TODO later
             break;
+
         default:
             console.error(`Unknown interface status enum ${statusEnum}`);
     }
