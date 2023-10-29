@@ -7,7 +7,7 @@ let totalIntrospectionItems = 0;
 const browserHasWebWorkers = typeof (Worker) !== "undefined";
 
 let regenerationLock = false;
-
+let CLEAR_FOLDER_STRUCTURE_CACHE = null;
 
 function regenerateFolderStructure() {
     //Prevent multiple regeneration requests from being sent which overloads the client.
@@ -61,6 +61,8 @@ function regenerateFolderStructure() {
                     }
                 }
 
+                CLEAR_FOLDER_STRUCTURE_CACHE = response.folderStructure[2];
+
 
 
                 //Appropriately parse the data.
@@ -107,7 +109,7 @@ function regenerateFolderStructure() {
             console.log(xhr.statusText);
             regenerationLock = false;
         }
-    };
+    }
 
     // Handle errors that may occur during the request
     xhr.onerror = function () {
@@ -177,5 +179,3 @@ function createFolderStructure(parent, data) {
 
 
 regenerateFolderStructure();
-
-

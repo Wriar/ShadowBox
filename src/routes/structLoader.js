@@ -1,5 +1,5 @@
 import {authenticationEnumLockStates} from '../server/types.js';
-import {getDecryptedUserDirectoryStructure} from '../introspection.js';
+import {getDecryptedUserDirectoryStructure, returnUserFileListing} from '../introspection.js';
 import {stateMessages, statusMessages} from '../locale.js';
 
 export default function structLoaderRoutes(app) {
@@ -24,6 +24,10 @@ export default function structLoaderRoutes(app) {
         if(dirUUID === undefined || dirUUID === null || dirUUID === "root" || dirUUID === "") {
             dirUUID = "";
         }
+
+        returnUserFileListing(username, dirUUID, req.session.decryptedAccountMaster).then((fileListing) => {
+            res.json({code: 0, message: statusMessages.OK, fileListing: fileListing});
+        });
 
     });
     app.get('/api/fm-dash/getFolderStructure', async (req, res) => {
