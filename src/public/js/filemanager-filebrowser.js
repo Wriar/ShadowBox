@@ -56,6 +56,16 @@ const fileExtensionsMap = new Map([
     ['.xls', 'Spreadsheet (XLS)'],
     ['.ppt', 'Presentation (PPT)'],
     ['.log', 'Log File (LOG)'],
+    ['.bak', 'Backup File (BAK)'],
+    ['.db', 'Database (DB)'],
+    ['.dbf', 'Database (DBF)'],
+    ['.sql', 'SQL Database (SQL)'],
+    ['.db', 'Database (DB)'],
+    ['heic', 'Image (HEIC)'],
+    ['heif', 'Image (HEIF)'],
+    ['webp', 'Image (WEBP)'],
+    ['cr2', 'Image (CR2)'],
+    ['m3u8', 'Playlist (M3U8)'],
 ]);
 
 
