@@ -135,3 +135,6 @@ function setFileTableHeight() {
 setFileTableHeight();
 //Whenever window is resized, set the file table height.
 window.addEventListener('resize', setFileTableHeight);
+
+// eslint-disable-next-line no-undef
+document.getElementById('btnNavigateUpDirectory').addEventListener('click', navigateUpDirectory);

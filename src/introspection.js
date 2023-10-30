@@ -136,6 +136,10 @@ async function returnUserFileListing(username, dirUUID, clearAccountMaster) {
         console.error("Un-sanitized username provided to file listing lookup. Aborting...");
         return [false, "Sanitization Error"];
     }
+    if (!verifyUntrustedUUID(dirUUID)) {
+        console.error("Un-sanitized dirUUID provided to file listing lookup. Aborting...");
+        return [false, "Directory Sanitization Error"];
+    }
     try {
         conn = await userDataPool.getConnection();
         //DirUUID should be prepared
@@ -176,7 +180,11 @@ function verifyUntrustedSQLInput(input) {
     return regex.test(input);
 }
 
-
+function verifyUntrustedUUID(input) {
+    //UUID Must only contain uppercase & lowercase letters, numbers, and hyphens.
+    const regex = /^[a-zA-Z0-9-]*$/;
+    return regex.test(input);
+}
 export {
     listDirectoryStructure,
     convertFolderListToJSON,

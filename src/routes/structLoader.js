@@ -19,7 +19,7 @@ export default function structLoaderRoutes(app) {
         }
 
         const username = req.session.userData[0].username;
-        let dirUUID = req.query.dirUUID;
+        let dirUUID = req.query.dirID;
 
         if(dirUUID === undefined || dirUUID === null || dirUUID === "root" || dirUUID === "") {
             dirUUID = "";

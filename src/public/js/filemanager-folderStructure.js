@@ -99,6 +99,7 @@ function regenerateFolderStructure() {
                 }
                 totalIntrospectionItems = 0; //Clear the total introspection items counter.
                 regenerationLock = false;
+                setCurrentDirectoryListing(""); //Reset the current directory listing.
 
             } else {
                 generateToast(3, response.message);
