@@ -16,6 +16,7 @@ function regenerateFolderStructure() {
         return false;
     }
     regenerationLock = true;
+    console.log(`[${new Date().toISOString()}] Regenerating folder structure...`);
 
     //Remove all HTML from the fileTree element.
     document.getElementById("fileTree").innerHTML = "";
@@ -32,7 +33,7 @@ function regenerateFolderStructure() {
             if (response.code === 0) {
 
                 const folderData = response.folderStructure[1];
-                console.log(folderData);
+                //console.log(folderData);
 
                 //Check for web worker support
                 if (!browserHasWebWorkers) {
