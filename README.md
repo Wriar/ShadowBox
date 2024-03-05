@@ -52,3 +52,9 @@ Storing uploaded files are supported on partitions mounted to the computer runni
 - [ ] File Download
 - [ ] File Deletion
 - [ ] Searching
+
+
+## Legal
+For licensing, see LICENSE.md
+
+The U.S. Government Department of Commerce, Bureau of Industry and Security (BIS) may have classified this software as Export Commodity Control Number (ECCN) 5D002.C.1, which includes information security software using or performing cryptographic functions with asymmetric algorithms. The form and manner of this distribution makes it eligible for export under the License Exception ENC Technology Software Unrestricted (TSU) exception (see the BIS Export Administration Regulations, Section 740.13) for both object code and source code.
